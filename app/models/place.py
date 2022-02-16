@@ -28,7 +28,7 @@ class Place(db.Model, UserMixin):
             'city': self.city,
             'state': self.state,
             'zip_code': self.zip_code,
-            'price': self.price,
+            'price': str(self.price),
             'guests': self.guests
         }
 
