@@ -9,10 +9,13 @@ def seed_users():
         username='Picard', email='picard@tng.com', password='password')
     data = User(
         username='Data', email='data@tng.com', password='password')
+    test = User(
+        username='Test', email='test@tng.com', password='password')
 
     db.session.add(demo)
     db.session.add(picard)
     db.session.add(data)
+    db.session.add(test)
 
     db.session.commit()
 
