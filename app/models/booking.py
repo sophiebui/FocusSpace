@@ -8,8 +8,9 @@ class Booking(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     place_id = db.Column(db.Integer, db.ForeignKey("places.id"), nullable=False)
-    start_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    time = db.Column(db.Time, nullable=False)
+    duration = db.Column(db.Integer, nullable=False)
     guests = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, server_default=func.now())
     updated_at = db.Column(db.DateTime, onupdate=func.now())
@@ -20,8 +21,9 @@ class Booking(db.Model, UserMixin):
             'id': self.id,
             'user_id': self.user_id,
             'place_id': self.place_id,
-            'start_date': self.start_date,
-            'end_date': self.end_date,
+            'date': self.date,
+            'time': self.time,
+            'duration': self.duration,
             'guests': self.guests
         }
 

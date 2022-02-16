@@ -1,8 +1,8 @@
-"""empty message
+"""create place, review, image, booking tables
 
-Revision ID: 2c2c02326dcd
+Revision ID: 36f48a0f925a
 Revises: ffdc0a98111c
-Create Date: 2022-02-15 18:01:58.764335
+Create Date: 2022-02-15 20:14:04.752545
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2c2c02326dcd'
+revision = '36f48a0f925a'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
@@ -38,8 +38,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('place_id', sa.Integer(), nullable=False),
-    sa.Column('start_date', sa.Date(), nullable=False),
-    sa.Column('end_date', sa.Date(), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
+    sa.Column('time', sa.Time(), nullable=False),
+    sa.Column('duration', sa.Integer(), nullable=False),
     sa.Column('guests', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
