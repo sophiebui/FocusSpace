@@ -1,15 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import LoginFormModal from '../LoginFormModal'
 import SignupFormModal from '../SignupFormModal'
 import './Navigation.css'
 import logo from '../../assets/logo-light.PNG'
-import ProfileButton from './ProfileButton';
+import { login } from '../../store/session';
+// import ProfileButton from './ProfileButton';
 
 const NavBar = () => {
     const user = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
     let sessionLinks;
+
+    const demoLogin = () => {
+        const email = 'demo@aa.io';
+        const password = 'password';
+        return dispatch(login(email, password));
+      }
+
     if (user) {
         sessionLinks = (
         <>
@@ -21,6 +30,7 @@ const NavBar = () => {
         <>
             <LoginFormModal />
             <SignupFormModal />
+            <button className='nav-button' onClick={demoLogin}>Demo</button>
         </>
         );
     }
@@ -28,7 +38,7 @@ const NavBar = () => {
         <nav>
         <ul className='navbar'>
             <li >
-                <img src={logo} alt='FocusPlace logo' class='logo' />
+                <img src={logo} alt='FocusPlace logo' className='logo' />
             </li>
             {/* <li>        <ProfileButton user={user} /></li> */}
             <li>
