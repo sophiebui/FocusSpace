@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlaces } from '../../store/places';
-const Places = () => {
+import { useParams } from 'react-router-dom';
+import { getOnePlace } from '../../store/places';
+const PlaceId = () => {
     const dispatch = useDispatch();
+    const { placeId } = useParams()
     const places = useSelector(state => Object.values(state.places))
 
 	useEffect(() => {
-			dispatch(getPlaces());
+			dispatch(getOnePlace(placeId));
 		},[ dispatch ])
 
     return (
@@ -16,7 +18,7 @@ const Places = () => {
                     <div key={place.id}>
                         {place.name}
                     </div>
-                    <div key={place.address}>
+                    <div key={place.id}>
                         {place.address}
                     </div>
                 </div>
@@ -25,4 +27,4 @@ const Places = () => {
     )
 };
 
-export default Places;
+export default PlaceId;

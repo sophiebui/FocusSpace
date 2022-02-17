@@ -1,9 +1,17 @@
 const LOAD_PLACES = 'LOAD_PLACES';
+const ADD_PLACE = 'ADD_PLACE'
 
 // ACTIONS
 export const loadPlaces = places => {
     return {
         type: LOAD_PLACES,
+        places,
+    }
+};
+
+export const addOnePlace = places => {
+    return {
+        type: ADD_PLACE,
         places,
     }
 };
@@ -19,6 +27,19 @@ export const getPlaces = () => async (dispatch) => {
     }
 }
 
+export const getOnePlace = (id) => async (dispatch) => {
+    const response = await fetch(`/api/places/${id}`, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    const place = await response.json();
+    if (response.ok) {
+        dispatch(addOnePlace(place));
+    }
+    return place;
+}
+
 
 // REDUCER
 const placesReducer = (state = {}, action) => {
@@ -29,6 +50,13 @@ const placesReducer = (state = {}, action) => {
                 newState[place.id] = place;
             });
             return newState
+        }
+        case ADD_PLACE: {
+            const newPlace = { ...state };
+            console.log('newPlace', newPlace)
+            console.log(action)
+            newPlace[action.places.id] = action.places
+            return newPlace
         }
         default: return state;
     }

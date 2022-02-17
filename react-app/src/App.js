@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
+// import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Places from './components/Places'
+import PlaceId from './components/PlaceId'
 
 
 function App() {
@@ -30,8 +29,11 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <ProtectedRoute path='/places'>
+        <ProtectedRoute path='/places'  exact={true}>
             <Places />
+        </ProtectedRoute>
+        <ProtectedRoute path='/places/:placeId'  exact={true}>
+            <PlaceId />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
