@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import DeletePlaceForm from './DeletePlaceForm';
-
+import {useStateIfMounted} from 'use-state-if-mounted'
 
 function DeletePlaceModal({place}) {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useStateIfMounted(false);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -14,7 +13,7 @@ function DeletePlaceModal({place}) {
 
   return (
     <>
-    <button className='delete-place-button' onClick={() => setShowModal(true)}>Delete</button>
+    <button className='delete-place-button' onClick={onSubmit}>Delete</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeletePlaceForm setShowModal={setShowModal} place={place}  />

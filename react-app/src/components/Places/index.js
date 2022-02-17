@@ -12,8 +12,8 @@ const Places = () => {
     return (
         <div>
             {places?.map((place) => (
-                <div>
-                    <div key={place.id}>
+                <div key={place.id}>
+                    <div key={place.name}>
                         {place.name}
                     </div>
                     <div key={place.address}>

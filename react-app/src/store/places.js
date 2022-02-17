@@ -28,7 +28,7 @@ export const deletePlace = place => {
 export const getPlaces = () => async (dispatch) => {
     const res = await fetch('/api/places/');
     const data = await res.json();
-    console.log('this is data', data)
+
     if (res.ok) {
         dispatch(loadPlaces(data.places));
         return res;
@@ -41,6 +41,7 @@ export const getOnePlace = (id) => async (dispatch) => {
             "Content-Type": "application/json"
         }
     });
+
     const place = await response.json();
     if (response.ok) {
         dispatch(addOnePlace(place));
@@ -49,13 +50,14 @@ export const getOnePlace = (id) => async (dispatch) => {
 }
 
 export const removePlace = (payload) => async (dispatch) => {
-	const response = await fetch(`/api/user-study-decks/${payload.place_id}`, {
+    console.log('payload from frontend', payload)
+	const response = await fetch(`/api/places/${payload.place_id}`, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},
         Accept: 'application/json',
         body: JSON.stringify(payload)
 	});
-
+    
     const data = await response.json();
 	if (response.ok) {
 		dispatch(deletePlace(data));

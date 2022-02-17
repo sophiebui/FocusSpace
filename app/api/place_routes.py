@@ -46,5 +46,5 @@ def delete_place(id):
         place = Place.query.get(id)
         db.session.delete(place)
         db.session.commit()
-        return {}, 200
+        return place.to_dict(), 200
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

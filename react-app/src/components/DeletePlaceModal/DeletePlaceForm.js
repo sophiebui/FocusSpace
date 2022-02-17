@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import removePlace from "../../store/places";
+import { removePlace } from "../../store/places";
 import { useHistory } from 'react-router-dom';
-
+import {useStateIfMounted} from 'use-state-if-mounted'
 
 
 
@@ -10,7 +10,7 @@ function DeletePlaceForm({place, setShowModal}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [ , setErrors] = useState([]);
-    const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useStateIfMounted("");
     const currUserId = useSelector(state => state.session.user.id);
     const currUserPlaceId = useSelector(state => state?.places[place.id]?.user_id);
 
@@ -27,7 +27,7 @@ function DeletePlaceForm({place, setShowModal}) {
         return dispatch(removePlace(payload))
             .then(
                 response => {
-                    if (response.errors) {
+                    if (response?.errors) {
                         setErrors(response.errors)
                         return
                     }
@@ -43,10 +43,10 @@ function DeletePlaceForm({place, setShowModal}) {
     return (
         <div className='delete'>
         <h2>Are you sure you want to delete this place?</h2>
-        <h3 style={{color:"black"}} >This cannot be undone.</h3>
+        <h3>This cannot be undone.</h3>
         <button type="button" onClick={(e) => submitDelete()} className='delete-submit-button'>Yes</button>
         <button type="button" onClick={(e) => setShowModal(false)} className='delete-cancel-button'>No</button>
-        <h2 style={{color:"green"}}>{success}</h2>
+        <h2>{success}</h2>
     </div>)
 }
 

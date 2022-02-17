@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = ({ setShowModal }) => {
-	const [ errors, setErrors ] = useState([]);
+	const [ , setErrors ] = useState([]);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const user = useSelector((state) => state.session.user);
