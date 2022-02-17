@@ -2,12 +2,20 @@ ul {
     list-style: none;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
+
 a {
     text-decoration: none;
 }
-button {
+.nav-button {
     border:none;
+    width: 7rem;
+    height: 2rem;
+}
+.logo {
+    width: 20rem;
+    height: auto;
 }
 .form-container {
   padding: 25px;
