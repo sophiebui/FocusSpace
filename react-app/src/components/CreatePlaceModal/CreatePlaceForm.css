@@ -1,3 +1,14 @@
+.create-place-button {
+    border: none;
+    width: 12rem;
+    height: 2rem;
+    background-color: #FF5A5F;
+    border-radius: 4px;
+}
+.create-place-button:hover {
+    color: white;
+    cursor: pointer;
+}
 .add-place-header {
     margin-top: -9px;
     padding: 0px;

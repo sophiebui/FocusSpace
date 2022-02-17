@@ -52,9 +52,9 @@ function CreatePlaceForm({ setShowModal }) {
     return (
         <div className="form-container">
             <form className='form' onSubmit={handleSubmit}>
-                {/* <h2>
+                <h2>
                     {success}
-                </h2> */}
+                </h2>
                 <ul>
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
