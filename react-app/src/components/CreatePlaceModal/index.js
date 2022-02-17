@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import CreatePlaceForm from './CreatePlaceModal';
-
-
+import CreatePlaceForm from './CreatePlaceForm';
 
 function CreatePlaceModal() {
     const [showModal, setShowModal] = useState(false);

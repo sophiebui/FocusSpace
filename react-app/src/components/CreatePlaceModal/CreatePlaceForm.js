@@ -1,25 +1,37 @@
 import { useState } from 'react';
-// import  from '../../store/places';
+import { addPlace } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
+import { states } from '../../assets/stateAbbreviations'
 
+import './CreatePlaceForm.css'
 function CreatePlaceForm({ setShowModal }) {
     const dispatch = useDispatch();
     const user_id = useSelector(state => state.session.user.id);
-    const [title, setTitle] = useState('');
+    const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zipCode, setZipCode] = useState('');
+    const [price, setPrice] = useState('');
+    const [guests, setGuests] = useState('');
     const [errors, setErrors] = useState([]);
     const [success, setSuccess] = useState("");
-
-
+    const statesArr = Object.keys(states)
 
     const handleSubmit = async e => {
         e.preventDefault();
         setErrors([]);
-
         const newPlace = {
-            title,
+            user_id,
+            name,
             description,
-            user_id
+            address,
+            city,
+            state,
+            zipCode,
+            price,
+            guests
         }
 
         return dispatch(addPlace(newPlace))
@@ -40,34 +52,77 @@ function CreatePlaceForm({ setShowModal }) {
     return (
         <div className="form-container">
             <form className='form' onSubmit={handleSubmit}>
-            <h2 style={{color:"green", marginBottom:"-20px"}}>{success}</h2>
+                {/* <h2>
+                    {success}
+                </h2> */}
                 <ul>
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}
                 </ul>
-                <label className='form'>
-                <h1>Add Place</h1>
 
+                <h1 className='add-place-header'>Add Place</h1>
+                <div className='input-container'>
                     <input
                         type='text'
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                         required
-                        placeholder='Title'
-                        className='input'
+                        className='input add-place'
+                        id='name'
                     />
-                </label>
-                <label>
-                </label>
-                <input
-                    type='text'
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    placeholder='Description'
-                    className='input'
-                />
-
+                    <label className={name && 'filled'} htmlFor='name'>Name</label>
+                </div>
+                <div className='input-container'>
+                    <input
+                        type='text'
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                        className='input add-place'
+                        id='description'
+                    />
+                    <label className={description && 'filled'} htmlFor='description'>Description</label>
+                </div>
+                <div className='input-container'>
+                    <input
+                        type='text'
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
+                        className='input add-place'
+                        id='address'
+                    />
+                    <label className={address && 'filled'} htmlFor='address'>Address</label>
+                </div>
+                <div className='input-container'>
+                    <input
+                        type='text'
+                        value={city}
+                        onChange={e => setCity(e.target.value)}
+                        className='input add-place'
+                        id='city'
+                    />
+                    <label className={city && 'filled'} htmlFor='city'>City</label>
+                </div>
+                <div className='select-wrap'>
+                    <label htmlFor='state'>State</label>
+                    <select
+                        name='state'
+                        value={state}
+                        onChange={e => setState(e.target.value)}
+                        id='state'>
+                            {statesArr.map((state) => <option value={state}>{state}</option>)}
+                    </select>
+                </div>
+                <div className='input-container'>
+                    <input
+                        type='text'
+                        value={zipCode}
+                        onChange={e => setZipCode(e.target.value)}
+                        className='input add-place'
+                        id='zipCode'
+                    />
+                    <label className={zipCode && 'filled'} htmlFor='zipCode'>Zip Code</label>
+                </div>
                 <div className='form-button-container'>
                     <button className='form-button'>Add Place</button>
                 </div>
