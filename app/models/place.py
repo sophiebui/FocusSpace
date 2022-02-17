@@ -24,6 +24,7 @@ class Place(db.Model, UserMixin):
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
+            'description': self.description,
             'address': self.address,
             'city': self.city,
             'state': self.state,

@@ -1,5 +1,6 @@
 const LOAD_PLACES = 'LOAD_PLACES';
 const ADD_PLACE = 'ADD_PLACE'
+const DELETE_PLACE = 'DELETE_PLACE'
 
 // ACTIONS
 export const loadPlaces = places => {
@@ -9,10 +10,17 @@ export const loadPlaces = places => {
     }
 };
 
-export const addOnePlace = places => {
+export const addOnePlace = place => {
     return {
         type: ADD_PLACE,
-        places,
+        place,
+    }
+};
+
+export const deletePlace = place => {
+    return {
+        type: DELETE_PLACE,
+        place,
     }
 };
 
@@ -40,6 +48,24 @@ export const getOnePlace = (id) => async (dispatch) => {
     return place;
 }
 
+export const removePlace = (payload) => async (dispatch) => {
+	const response = await fetch(`/api/user-study-decks/${payload.place_id}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        Accept: 'application/json',
+        body: JSON.stringify(payload)
+	});
+
+    const data = await response.json();
+	if (response.ok) {
+		dispatch(deletePlace(data));
+		return null;
+	}
+    else {
+        return response
+    }
+};
+
 
 // REDUCER
 const placesReducer = (state = {}, action) => {
@@ -53,10 +79,13 @@ const placesReducer = (state = {}, action) => {
         }
         case ADD_PLACE: {
             const newPlace = { ...state };
-            console.log('newPlace', newPlace)
-            console.log(action)
-            newPlace[action.places.id] = action.places
+            newPlace[action.place.id] = action.place
             return newPlace
+        }
+        case DELETE_PLACE: {
+            const newState = Object.assign({}, state);
+            delete newState[action.place.id];
+            return newState;
         }
         default: return state;
     }
