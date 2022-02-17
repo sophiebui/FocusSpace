@@ -1,14 +1,17 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+// import LogoutButton from '../auth/LogoutButton';
 import LoginFormModal from '../LoginFormModal'
 import SignupFormModal from '../SignupFormModal'
 import './Navigation.css'
+import logo from '../../assets/logo-light.PNG'
+
 const NavBar = () => {
   return (
     <nav>
-      <ul>
+      <ul className='navbar'>
+        <li className='logo'><img src={logo} alt='FocusPlace logo' /></li>
         <li>
           <NavLink to='/' exact={true} >
             Home
@@ -20,14 +23,9 @@ const NavBar = () => {
         <li>
           <SignupFormModal to='/sign-up' exact={true} />
         </li>
-        <li>
-          <NavLink to='/users' exact={true} >
-            Users
-          </NavLink>
-        </li>
-        <li>
+        {/* <li>
           <LogoutButton />
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

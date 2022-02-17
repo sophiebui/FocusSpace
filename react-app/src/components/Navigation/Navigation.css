@@ -1,7 +1,14 @@
 ul {
     list-style: none;
+    display: flex;
+    flex-direction: row;
 }
-
+a {
+    text-decoration: none;
+}
+button {
+    border:none;
+}
 .form-container {
   padding: 25px;
 }
@@ -17,7 +24,7 @@ ul {
     margin: 0em 0em 1.5em 0em;
 }
 
-input{
+input {
     border: solid rgb(218, 215, 215) .005px;
     border-radius: 4px;
     margin: -15px 0px 14px 0px;
