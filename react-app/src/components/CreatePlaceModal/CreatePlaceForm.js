@@ -123,6 +123,26 @@ function CreatePlaceForm({ setShowModal }) {
                     />
                     <label className={zipCode && 'filled'} htmlFor='zipCode'>Zip Code</label>
                 </div>
+                <div className='input-container'>
+                    <input
+                        type='text'
+                        value={price}
+                        onChange={e => setPrice(e.target.value)}
+                        className='input add-place'
+                        id='price'
+                    />
+                    <label className={price && 'filled'} htmlFor='price'>Price</label>
+                </div>
+                <div className='input-container'>
+                    <input
+                        type='number'
+                        value={guests}
+                        onChange={e => setGuests(e.target.value)}
+                        className='input add-place'
+                        id='guests'
+                    />
+                    <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
+                </div>
                 <div className='form-button-container'>
                     <button className='form-button'>Add Place</button>
                 </div>
