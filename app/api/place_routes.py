@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.forms.place_form import DeletePlaceForm
+from app.forms.place_form import DeletePlaceForm, PlaceForm
 from app.models import Place, db
 
 place_routes = Blueprint('places', __name__)
@@ -16,14 +16,33 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@place_routes.route('/', methods=['GET', 'PUT'])
+@place_routes.route('/', methods=['GET', 'POST'])
 def get_places():
     """
     Route for displaying all places
     """
-    places = Place.query.all()
-    print(places)
-    return {'places': [place.to_dict() for place in places]}
+    if request.method == 'POST':
+        form = PlaceForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            name = form.data['name']
+            description = form.data['description']
+            address = form.data['address']
+            city = form.data['city']
+            state = form.data['state']
+            zip_code = form.data['zip_code']
+            price = form.data['price']
+            guests = form.data['guests']
+            new_place = Place(name=name, description=description, address=address, city=city, state=state, zip_code=zip_code, price=price, guests=guests)
+            db.session.add(new_place)
+            db.session.commit()
+        elif form.errors:
+            print("form.errors", form.errors)
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    else:
+        places = Place.query.all()
+        print(places)
+        return {'places': [place.to_dict() for place in places]}
 
 @place_routes.route('/<int:id>', methods=['GET'])
 def get_one_place(id):
