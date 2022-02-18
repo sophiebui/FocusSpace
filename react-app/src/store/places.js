@@ -36,16 +36,15 @@ export const getPlaces = () => async (dispatch) => {
 };
 
 export const getOnePlace = (id) => async (dispatch) => {
-	const response = await fetch(`/api/places/${id}`, {
-		headers: {
-			'Content-Type': 'application/json'
+    const response = await fetch(`/api/places/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
 		}
 	});
 
 	const place = await response.json();
-    console.log(place)
 	if (response.ok) {
-		dispatch(addOnePlace(place));
+        dispatch(addOnePlace(place));
 	}
 	return place;
 };
@@ -70,7 +69,7 @@ export const editPlace = place => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(place)
     })
-    console.log('response from frontend', response)
+
     const data = await response.json();
     if (response.ok) {
         dispatch(addOnePlace(data));
@@ -79,7 +78,6 @@ export const editPlace = place => async (dispatch) => {
 }
 
 export const removePlace = (payload) => async (dispatch) => {
-	console.log('payload from frontend', payload);
 	const response = await fetch(`/api/places/${payload.place_id}`, {
 		method: 'DELETE',
 		headers: { 'Content-Type': 'application/json' },

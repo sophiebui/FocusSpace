@@ -30,5 +30,5 @@ class User(db.Model, UserMixin):
         }
 
     place = db.relationship("Place", back_populates="user")
-    booking = db.relationship("Booking", back_populates="user")
-    review = db.relationship("Review", back_populates="user")
+    bookings = db.relationship("Booking", back_populates="user")
+    reviews = db.relationship("Review", back_populates="user")
