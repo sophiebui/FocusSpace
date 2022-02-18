@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.forms.place_form import DeletePlaceForm, PlaceForm
+from app.forms import DeletePlaceForm, PlaceForm
 from app.models import Place, db, Image
 
 place_routes = Blueprint('places', __name__)
