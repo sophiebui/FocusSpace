@@ -20,8 +20,6 @@ const PlaceId = () => {
         const isOwner = user === place?.user_id;
         return (
         <div>
-            <Swiper>
-
             <div className='images-container'>
             {place?.images?.map((image) => (
                 <div key={image.id} className='image-div'>
@@ -29,8 +27,6 @@ const PlaceId = () => {
                 </div>
             ))}
             </div>
-
-            </Swiper>
 
             <h1 className='place-name-heading'>
                 {place.name}
