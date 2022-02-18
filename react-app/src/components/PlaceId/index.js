@@ -11,7 +11,6 @@ const PlaceId = () => {
     const { placeId } = useParams()
     const user = useSelector((state) => state.session.user.id);
     const place = useSelector(state => state.places[placeId])
-	console.log('--------', place?.images)
     useEffect(() => {
 			dispatch(getOnePlace(placeId));
 		},[ dispatch, placeId ])
@@ -41,7 +40,7 @@ const PlaceId = () => {
             )}
         </div>
     )
-} else return 'This listing does not exist'
+} else return null
 }
 
 export default PlaceId;
