@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOnePlace } from '../../store/places';
 import DeletePlaceModal from '../DeletePlaceModal';
+import EditPlaceModal from '../EditPlaceModal';
 import './PlaceId.css'
 
 
@@ -35,7 +36,8 @@ const PlaceId = () => {
             </p>
             {isOwner && (
                 <>
-                <DeletePlaceModal place={place}/>
+                <EditPlaceModal place={place} />
+                <DeletePlaceModal place={place} />
                 </>
             )}
         </div>

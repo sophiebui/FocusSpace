@@ -12,7 +12,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{field.capitalize()} : {error}')
     return errorMessages
 
 
@@ -76,7 +76,10 @@ def get_one_place(id):
             place.guests=guests
             db.session.add(place)
             db.session.commit()
-            return place.to_dict()
+            images_query = Image.query.filter(Image.place_id == id).join(Place).all()
+            images = {'images': [image_query.to_dict() for image_query in images_query]}
+            place_images = place.to_dict() | images
+            return place_images
         elif form.errors:
             print("form.errors", form.errors)
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401

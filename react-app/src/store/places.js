@@ -64,6 +64,20 @@ export const addPlace = (newPlace) => async (dispatch) => {
 	return data;
 };
 
+export const editPlace = place => async (dispatch) => {
+    const response = await fetch(`/api/places/${place.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(place)
+    })
+    console.log('response from frontend', response)
+    const data = await response.json();
+    if (response.ok) {
+        dispatch(addOnePlace(data));
+    }
+    return data;
+}
+
 export const removePlace = (payload) => async (dispatch) => {
 	console.log('payload from frontend', payload);
 	const response = await fetch(`/api/places/${payload.place_id}`, {
