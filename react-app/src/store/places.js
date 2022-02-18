@@ -43,6 +43,7 @@ export const getOnePlace = (id) => async (dispatch) => {
 	});
 
 	const place = await response.json();
+    console.log(place)
 	if (response.ok) {
 		dispatch(addOnePlace(place));
 	}

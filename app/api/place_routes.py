@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.forms.place_form import DeletePlaceForm, PlaceForm
-from app.models import Place, db
+from app.models import Place, db, Image
 
 place_routes = Blueprint('places', __name__)
 
@@ -43,6 +43,7 @@ def get_places():
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     else:
         places = Place.query.all()
+
         print(places)
         return {'places': [place.to_dict() for place in places]}
 
@@ -51,8 +52,12 @@ def get_one_place(id):
     """
     Route for getting specic place based on specific id
     """
-    place = Place.query.get(id)
-    return place.to_dict()
+    place = Place.query.get(id).to_dict()
+    images_query = Image.query.filter(Image.place_id == id).join(Place).all()
+    images = {'images': [image_query.to_dict() for image_query in images_query]}
+    place_images = place | images
+    return place_images
+
 
 
 @place_routes.route('/<int:id>', methods=['DELETE'])
