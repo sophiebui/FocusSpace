@@ -1,9 +1,9 @@
-const ADD_PLACE = 'ADD_PLACE';
+const ADD_BOOKING = 'ADD_BOOKING';
 
 // ACTIONS
 export const addOneBooking = (booking) => {
 	return {
-		type: ADD_PLACE,
+		type: ADD_BOOKING,
 		booking
 	};
 };
@@ -26,7 +26,7 @@ export const addBooking = (newBooking) => async (dispatch) => {
 // REDUCER
 const bookingsReducer = (state = {}, action) => {
 	switch (action.type) {
-		case ADD_PLACE: {
+		case ADD_BOOKING: {
 			const newBooking = { ...state };
 			newBooking[action.booking.id] = action.booking;
 			return newBooking;
