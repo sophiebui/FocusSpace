@@ -24,7 +24,9 @@ def get_places():
     if request.method == 'POST':
         form = PlaceForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        print('this is form data---------', form.data)
         if form.validate_on_submit():
+            user_id = form.data["user_id"]
             name = form.data['name']
             description = form.data['description']
             address = form.data['address']
@@ -33,7 +35,7 @@ def get_places():
             zip_code = form.data['zip_code']
             price = form.data['price']
             guests = form.data['guests']
-            new_place = Place(name=name, description=description, address=address, city=city, state=state, zip_code=zip_code, price=price, guests=guests)
+            new_place = Place(user_id=user_id, name=name, description=description, address=address, city=city, state=state, zip_code=zip_code, price=price, guests=guests)
             db.session.add(new_place)
             db.session.commit()
         elif form.errors:

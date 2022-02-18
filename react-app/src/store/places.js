@@ -26,7 +26,7 @@ export const deletePlace = (place) => {
 
 // SELECTORS/THUNKS
 export const getPlaces = () => async (dispatch) => {
-	const res = await fetch('/api/places');
+	const res = await fetch('/api/places/');
 	const data = await res.json();
 
 	if (res.ok) {
@@ -50,7 +50,7 @@ export const getOnePlace = (id) => async (dispatch) => {
 };
 
 export const addPlace = (newPlace) => async (dispatch) => {
-	const response = await fetch(`/api/places`, {
+	const response = await fetch(`/api/places/`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(newPlace)

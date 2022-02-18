@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, IntegerField
-from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms.validators import DataRequired, Length, EqualTo, NumberRange
 
 class PlaceForm(FlaskForm):
     user_id = IntegerField("", validators={DataRequired()})
@@ -9,7 +9,7 @@ class PlaceForm(FlaskForm):
     address = StringField("Address: ", validators={DataRequired()})
     city = StringField("City: ", validators={DataRequired()})
     state = StringField("State: ", validators={DataRequired()})
-    zip_code = StringField("Zip Code: ",  validators=[DataRequired(), Length(min=5, message="Zip code must be 5 characters")])
+    zip_code = IntegerField("Zip Code: ",  validators=[DataRequired(), NumberRange(min=5, message="Zip code must be 5 characters")])
     price = IntegerField("Price: ", validators={DataRequired()})
     guests = IntegerField("Address: ", validators={DataRequired()})
     submit = SubmitField("Submit")

@@ -11,7 +11,7 @@ function CreatePlaceForm({ setShowModal }) {
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
-    const [state, setState] = useState('');
+    const [state, setState] = useState('AL');
     const [zipCode, setZipCode] = useState('');
     const [price, setPrice] = useState('');
     const [guests, setGuests] = useState('');
@@ -29,9 +29,9 @@ function CreatePlaceForm({ setShowModal }) {
             address,
             city,
             state,
-            zipCode,
+            zip_code: zipCode,
             price,
-            guests
+            guests: guests
         }
 
         return dispatch(addPlace(newPlace))
@@ -110,7 +110,7 @@ function CreatePlaceForm({ setShowModal }) {
                         value={state}
                         onChange={e => setState(e.target.value)}
                         id='state'>
-                            {statesArr.map((state) => <option value={state}>{state}</option>)}
+                            {statesArr.map((state) => <option value={state} key={state}>{state}</option>)}
                     </select>
                 </div>
                 <div className='input-container'>
