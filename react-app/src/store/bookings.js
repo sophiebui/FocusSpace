@@ -10,11 +10,12 @@ export const addOneBooking = (booking) => {
 
 // SELECTORS/THUNKS
 export const addBooking = (newBooking) => async (dispatch) => {
-	const response = await fetch(`/api/bookings/`, {
+	const response = await fetch(`/api/bookings/${newBooking.place_id}`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(newBooking)
 	});
+    console.log(response)
 
 	const data = await response.json();
 	if (response.ok) {

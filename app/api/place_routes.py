@@ -37,6 +37,7 @@ def get_places():
             new_place = Place(user_id=user_id, name=name, description=description, address=address, city=city, state=state, zip_code=zip_code, price=price, guests=guests)
             db.session.add(new_place)
             db.session.commit()
+            print('-'*40, new_place.to_dict())
             return new_place.to_dict()
         elif form.errors:
             print("form.errors", form.errors)

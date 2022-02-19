@@ -34,9 +34,10 @@ function CreateBookingForm({ place, setShowModal }) {
                 }
                 setSuccess('Success!');
                 setTimeout(() => {
-                    setShowModal(false);
+                    setSuccess(false)
                 }, 1500);
             });
+            
         };
 
 	return (

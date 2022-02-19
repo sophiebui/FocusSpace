@@ -7,7 +7,6 @@ import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
 import './PlaceId.css'
 
-
 const PlaceId = () => {
     const dispatch = useDispatch();
     const { placeId } = useParams()
@@ -42,12 +41,14 @@ const PlaceId = () => {
                 <DeletePlaceModal place={place} />
                 </>
             )}
+            {!isOwner && (
             <div>
                 <CreateBookingForm place={place}/>
             </div>
+            )}
         </div>
     )
-} else return null
+} else return "Error: this place does not exist"
 }
 
 export default PlaceId;
