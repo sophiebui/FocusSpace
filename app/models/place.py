@@ -30,11 +30,12 @@ class Place(db.Model, UserMixin):
             'state': self.state,
             'zip_code': self.zip_code,
             'price': str(self.price),
-            'guests': self.guests
+            'guests': self.guests,
+            'images': [image.to_dict() for image in self.images]
         }
 
 
     user = db.relationship("User", back_populates="place")
-    booking = db.relationship("Booking", back_populates="place", cascade="all, delete")
-    review = db.relationship("Review", back_populates="place", cascade="all, delete")
-    image = db.relationship("Image", back_populates="place", cascade="all, delete")
+    bookings = db.relationship("Booking", back_populates="place", cascade="all, delete")
+    reviews = db.relationship("Review", back_populates="place", cascade="all, delete")
+    images = db.relationship("Image", back_populates="place", cascade="all, delete")

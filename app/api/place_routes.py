@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from app.forms.place_form import DeletePlaceForm, PlaceForm
-from app.models import Place, db, Image
+from app.forms import DeletePlaceForm, PlaceForm
+from app.models import Place, db
 
 place_routes = Blueprint('places', __name__)
 
@@ -37,6 +37,7 @@ def get_places():
             new_place = Place(user_id=user_id, name=name, description=description, address=address, city=city, state=state, zip_code=zip_code, price=price, guests=guests)
             db.session.add(new_place)
             db.session.commit()
+            print('-'*40, new_place.to_dict())
             return new_place.to_dict()
         elif form.errors:
             print("form.errors", form.errors)
@@ -76,18 +77,13 @@ def get_one_place(id):
             place.guests=guests
             db.session.add(place)
             db.session.commit()
-            images_query = Image.query.filter(Image.place_id == id).join(Place).all()
-            images = {'images': [image_query.to_dict() for image_query in images_query]}
-            place_images = place.to_dict() | images
-            return place_images
+            return place.to_dict()
         elif form.errors:
             print("form.errors", form.errors)
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     else:
-        images_query = Image.query.filter(Image.place_id == id).join(Place).all()
-        images = {'images': [image_query.to_dict() for image_query in images_query]}
-        place_images = place.to_dict() | images
-        return place_images
+        return place.to_dict()
+
 
 @place_routes.route('/<int:id>', methods=['DELETE'])
 def delete_place(id):

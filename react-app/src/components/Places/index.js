@@ -18,7 +18,7 @@ const Places = () => {
                </div>
             {places?.map((place) => (
                 <div key={place.id}>
-                    <div key={place.name}>
+                    <div key={place.id}>
                         {place.name}
                     </div>
                     <div key={place.address}>

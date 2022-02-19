@@ -22,11 +22,11 @@ class Booking(db.Model, UserMixin):
             'user_id': self.user_id,
             'place_id': self.place_id,
             'date': self.date,
-            'time': self.time,
+            'time': str(self.time),
             'duration': self.duration,
             'guests': self.guests
         }
 
 
-    user = db.relationship("User", back_populates="booking")
-    place = db.relationship("Place", back_populates="booking")
+    user = db.relationship("User", back_populates="bookings")
+    place = db.relationship("Place", back_populates="bookings")

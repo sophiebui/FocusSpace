@@ -24,5 +24,5 @@ class Review(db.Model, UserMixin):
         }
 
 
-    user = db.relationship("User", back_populates="review")
-    place = db.relationship("Place", back_populates="review")
+    user = db.relationship("User", back_populates="reviews")
+    place = db.relationship("Place", back_populates="reviews")

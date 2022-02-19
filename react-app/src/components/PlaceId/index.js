@@ -2,16 +2,17 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOnePlace } from '../../store/places';
+import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
 import './PlaceId.css'
-
 
 const PlaceId = () => {
     const dispatch = useDispatch();
     const { placeId } = useParams()
     const user = useSelector((state) => state.session.user.id);
     const place = useSelector(state => state.places[placeId])
+
     useEffect(() => {
 			dispatch(getOnePlace(placeId));
 		},[ dispatch, placeId ])
@@ -40,9 +41,14 @@ const PlaceId = () => {
                 <DeletePlaceModal place={place} />
                 </>
             )}
+            {!isOwner && (
+            <div>
+                <CreateBookingForm place={place}/>
+            </div>
+            )}
         </div>
     )
-} else return null
+} else return "Error: this place does not exist"
 }
 
 export default PlaceId;
