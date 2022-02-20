@@ -38,7 +38,6 @@ export const addBooking = (newBooking) => async (dispatch) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(newBooking)
 	});
-    console.log(response)
 
 	const data = await response.json();
 	if (response.ok) {
@@ -46,6 +45,22 @@ export const addBooking = (newBooking) => async (dispatch) => {
 	}
 	return data;
 };
+
+export const editBooking = booking => async (dispatch) => {
+    const response = await fetch(`/api/bookings/${booking.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(booking)
+    })
+    console.log('response from frontend', booking)
+    console.log('response from backend', response)
+    const data = await response.json();
+    console.log('data from backend:  ', data)
+    if (response.ok) {
+        dispatch(addOneBooking(data));
+    }
+    return data;
+}
 
 // REDUCER
 const bookingsReducer = (state = {}, action) => {

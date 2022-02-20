@@ -35,7 +35,7 @@ class Place(db.Model, UserMixin):
         }
 
 
-    user = db.relationship("User", back_populates="place")
-    bookings = db.relationship("Booking", back_populates="place", cascade="all, delete")
-    reviews = db.relationship("Review", back_populates="place", cascade="all, delete")
-    images = db.relationship("Image", back_populates="place", cascade="all, delete")
+    user = db.relationship("User", back_populates="places")
+    bookings = db.relationship("Booking", back_populates="places", cascade="all, delete")
+    reviews = db.relationship("Review", back_populates="places", cascade="all, delete")
+    images = db.relationship("Image", back_populates="places", cascade="all, delete")

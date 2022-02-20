@@ -29,6 +29,6 @@ class User(db.Model, UserMixin):
             'email': self.email
         }
 
-    place = db.relationship("Place", back_populates="user")
+    places = db.relationship("Place", back_populates="user")
     bookings = db.relationship("Booking", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")

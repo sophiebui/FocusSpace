@@ -20,4 +20,4 @@ class Image(db.Model, UserMixin):
         }
 
 
-    place = db.relationship("Place", back_populates="images")
+    places = db.relationship("Place", back_populates="images")
