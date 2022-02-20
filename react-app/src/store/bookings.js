@@ -1,3 +1,4 @@
+const LOAD_BOOKINGS = 'LOAD_BOOKING';
 const ADD_BOOKING = 'ADD_BOOKING';
 
 // ACTIONS
@@ -7,6 +8,28 @@ export const addOneBooking = (booking) => {
 		booking
 	};
 };
+
+export const loadBookings = (bookings) => {
+    return {
+        type: LOAD_BOOKINGS,
+        bookings
+    }
+}
+
+export const getBookings = (userId) => async (dispatch) => {
+	const response = await fetch(`/api/bookings/${userId}`, {
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+
+	const data = await response.json();
+	if (response.ok) {
+		dispatch(loadBookings(data.bookings));
+		return response;
+	}
+};
+
 
 // SELECTORS/THUNKS
 export const addBooking = (newBooking) => async (dispatch) => {
@@ -27,6 +50,13 @@ export const addBooking = (newBooking) => async (dispatch) => {
 // REDUCER
 const bookingsReducer = (state = {}, action) => {
 	switch (action.type) {
+        case LOAD_BOOKINGS: {
+			const newState = {};
+			action.bookings.forEach((booking) => {
+				newState[booking.id] = booking;
+			});
+			return newState;
+		}
 		case ADD_BOOKING: {
 			const newBooking = { ...state };
 			newBooking[action.booking.id] = action.booking;
