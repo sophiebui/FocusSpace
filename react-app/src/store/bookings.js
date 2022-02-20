@@ -1,5 +1,6 @@
 const LOAD_BOOKINGS = 'LOAD_BOOKING';
 const ADD_BOOKING = 'ADD_BOOKING';
+const DELETE_BOOKING = 'DELETE BOOKING';
 
 // ACTIONS
 export const addOneBooking = (booking) => {
@@ -16,6 +17,15 @@ export const loadBookings = (bookings) => {
     }
 }
 
+export const deleteBooking = (booking) => {
+	return {
+		type: DELETE_BOOKING,
+		booking
+	};
+};
+
+
+// SELECTORS/THUNKS
 export const getBookings = (userId) => async (dispatch) => {
 	const response = await fetch(`/api/bookings/${userId}`, {
 		headers: {
@@ -30,8 +40,6 @@ export const getBookings = (userId) => async (dispatch) => {
 	}
 };
 
-
-// SELECTORS/THUNKS
 export const addBooking = (newBooking) => async (dispatch) => {
 	const response = await fetch(`/api/bookings/${newBooking.place_id}`, {
 		method: 'POST',
@@ -52,15 +60,33 @@ export const editBooking = booking => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(booking)
     })
-    console.log('response from frontend', booking)
-    console.log('response from backend', response)
     const data = await response.json();
-    console.log('data from backend:  ', data)
     if (response.ok) {
         dispatch(addOneBooking(data));
     }
     return data;
 }
+
+
+export const removeBooking = (payload) => async (dispatch) => {
+    console.log('-----payload----', payload)
+	const response = await fetch(`/api/bookings/${payload.booking_id}`, {
+        method: 'DELETE',
+		headers: { 'Content-Type': 'application/json' },
+		Accept: 'application/json',
+		body: JSON.stringify(payload)
+	});
+
+    console.log('-----response----', response)
+	const data = await response.json();
+    console.log('-----data----', data)
+	if (response.ok) {
+		dispatch(deleteBooking(data));
+		return null;
+	} else {
+		return response;
+	}
+};
 
 // REDUCER
 const bookingsReducer = (state = {}, action) => {
@@ -76,6 +102,11 @@ const bookingsReducer = (state = {}, action) => {
 			const newBooking = { ...state };
 			newBooking[action.booking.id] = action.booking;
 			return newBooking;
+		}
+        case DELETE_BOOKING: {
+			const newState = Object.assign({}, state);
+			delete newState[action.booking.id];
+			return newState;
 		}
 		default:
 			return state;

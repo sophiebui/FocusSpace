@@ -75,7 +75,6 @@ def get_one_place(id):
             place.zip_code=zip_code
             place.price=price
             place.guests=guests
-            db.session.add(place)
             db.session.commit()
             return place.to_dict()
         elif form.errors:

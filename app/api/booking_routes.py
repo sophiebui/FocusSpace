@@ -33,13 +33,13 @@ def new_booking(id):
         form = BookingForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-            user_id = form.data["user_id"]
-            booking_id = form.data['booking_id']
+            user_id = form.data['user_id']
+            place_id = form.data['place_id']
             date = form.data['date']
             time = form.data['time']
             duration = form.data['duration']
             guests = form.data['guests']
-            new_booking = Booking(user_id=user_id, booking_id=booking_id, date=date, time=time, duration=duration, guests=guests)
+            new_booking = Booking(user_id=user_id, place_id=place_id, date=date, time=time, duration=duration, guests=guests)
             db.session.add(new_booking)
             db.session.commit()
             return new_booking.to_dict()
@@ -48,7 +48,6 @@ def new_booking(id):
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     if request.method == 'PUT':
         booking = Booking.query.get(id)
-        print('-'*40, 'made it one' )
         form = BookingForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
@@ -64,9 +63,24 @@ def new_booking(id):
             booking.time=time
             booking.duration=duration
             booking.guests=guests
-            # db.session.add(booking)
             db.session.commit()
             return booking.to_dict()
         elif form.errors:
             print("form.errors", form.errors)
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@booking_routes.route('/<int:id>', methods=['DELETE'])
+def delete_booking(id):
+    """
+    Route for getting a specifc booking based on id then deletes it from the database.
+    Returns 200 status if the booking was deleted & 404 if the booking does not exist
+    """
+    form = DeleteBookingForm()
+    print('----------id-----------', id)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        booking = Booking.query.get(id)
+        db.session.delete(booking)
+        db.session.commit()
+        return booking.to_dict(), 200
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
