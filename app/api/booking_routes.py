@@ -15,6 +15,13 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field.capitalize()} : {error}')
     return errorMessages
 
+@booking_routes.route('/<int:user_id>', methods=['GET'])
+def get_bookings(user_id):
+    """
+    Route for getting a user's bookings based on their userId
+    """
+    user_bookings = Booking.query.filter(Booking.user_id == user_id).all()
+    return {'bookings': [booking.to_dict() for booking in user_bookings]}
 
 @booking_routes.route('/<int:id>', methods=['POST'])
 def new_booking(id):
