@@ -1,0 +1,14 @@
+.banner {
+    width: 75rem;
+    height: 50rem;
+    border-radius: 2rem;
+}
+
+.black-bkgd-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 53rem;
+    width: auto;
+}

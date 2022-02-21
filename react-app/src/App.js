@@ -9,6 +9,7 @@ import Places from './components/Places'
 import PlaceId from './components/PlaceId'
 import Bookings from './components/Bookings'
 import PageNotFound from './components/PageNotFound';
+import HomePage from './components/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,9 +42,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <HomePage />
+        </Route>
         <Route>
             <PageNotFound />
           </Route>
