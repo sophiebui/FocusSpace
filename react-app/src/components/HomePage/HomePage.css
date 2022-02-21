@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.banner {
+    width: 71rem;
+    height: 43rem;
+    border-radius: 2rem;
+    margin-top: 40px;
+}
+
+.black-bkgd-div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    height: 59rem;
+    width: auto;
+    padding-top: 2rem;
+}
+
+

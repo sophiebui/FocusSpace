@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
-const LoginForm = ({ setShowModal }) => {
+const LoginForm = ({ setLoginModal, demoLogin }) => {
 	const [ , setErrors ] = useState([]);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
@@ -17,7 +17,7 @@ const LoginForm = ({ setShowModal }) => {
 			if (response?.errors) {
 				setErrors(response.errors);
 				return;
-			} else if (!response?.errors) setShowModal(false);
+			} else if (!response?.errors) setLoginModal(false);
 		});
 	};
 
@@ -45,7 +45,7 @@ const LoginForm = ({ setShowModal }) => {
                     type='text'
                     value={email}
                     onChange={updateEmail}
-                    className='input'
+                    className='nav-bar-input'
                 />
                 <label htmlFor='password' />
                 <input
@@ -54,11 +54,10 @@ const LoginForm = ({ setShowModal }) => {
                     type='password'
                     value={password}
                     onChange={updatePassword}
-                    className='input'
+                    className='nav-bar-input'
                 />
-                <button className='form-button' type='submit'>
-                    Login
-                </button>
+                <button className='nav-bar-form-button' type='submit'> Login </button>
+                <button className='nav-bar-form-button' onClick={demoLogin}>Demo</button>
 
             </form>
         </div>

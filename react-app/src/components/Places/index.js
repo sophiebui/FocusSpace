@@ -12,7 +12,7 @@ const Places = () => {
 		},[ dispatch ])
 
     return (
-        <div>
+        <div className='page-container'>
            <div>
            <CreatePlaceModal />
                </div>

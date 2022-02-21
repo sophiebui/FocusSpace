@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.forms import BookingForm, DeleteBookingForm
-from app.models import Booking, db, Image
+from app.models import Booking, db
 
 booking_routes = Blueprint('bookings', __name__)
 
@@ -51,7 +51,6 @@ def new_booking(id):
         form = BookingForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
-            print('-'*40, 'made it' )
             user_id = form.data["user_id"]
             place_id = form.data['place_id']
             date = form.data['date']
@@ -76,7 +75,6 @@ def delete_booking(id):
     Returns 200 status if the booking was deleted & 404 if the booking does not exist
     """
     form = DeleteBookingForm()
-    print('----------id-----------', id)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         booking = Booking.query.get(id)

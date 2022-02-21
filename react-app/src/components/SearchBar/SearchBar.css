@@ -1,0 +1,29 @@
+.search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    border-radius: 10rem;
+    width: 59rem;
+
+}
+
+.search-input {
+    height: 22px;
+    border: none;
+}
+
+.search-form-button {
+    width: 3.5rem;
+    height: 2.5rem;
+    margin: 1.25rem;
+    border-radius: 50%;
+    background-color: #FF5A5F;
+    border: none;
+}
+
+.search-icon {
+    height: 25px;
+    width: 25px;
+    filter: invert(1);
+}

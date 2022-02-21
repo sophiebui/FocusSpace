@@ -19,7 +19,7 @@ const Bookings = () => {
 
     if (isOwner) {
         return (
-            <div>
+            <div className='page-container'>
                 {bookings?.map((booking) => (
                     <div key={booking.id}>
                         <div key={booking.place.name}>
