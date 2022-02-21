@@ -58,7 +58,7 @@ return (
 				name="username"
 				onChange={updateUsername}
 				value={username}
-				className="input"
+				className="nav-bar-input"
 			/>
 			<label />
 			<input
@@ -67,7 +67,7 @@ return (
 				name="email"
 				onChange={updateEmail}
 				value={email}
-				className="input"
+				className="nav-bar-input"
 			/>
 			<label />
 			<input
@@ -76,7 +76,7 @@ return (
 				name="password"
 				onChange={updatePassword}
 				value={password}
-				className="input"
+				className="nav-bar-input"
 			/>
 			<label />
 			<input
@@ -86,7 +86,7 @@ return (
 				onChange={updateRepeatPassword}
 				value={repeatPassword}
 				required={true}
-				className="input"
+				className="nav-bar-input"
 			/>
 			<button className="form-button" type="submit">
 				Sign Up

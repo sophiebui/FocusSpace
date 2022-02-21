@@ -45,7 +45,7 @@ const LoginForm = ({ setShowModal }) => {
                     type='text'
                     value={email}
                     onChange={updateEmail}
-                    className='input'
+                    className='nav-bar-input'
                 />
                 <label htmlFor='password' />
                 <input
@@ -54,9 +54,9 @@ const LoginForm = ({ setShowModal }) => {
                     type='password'
                     value={password}
                     onChange={updatePassword}
-                    className='input'
+                    className='nav-bar-input'
                 />
-                <button className='form-button' type='submit'>
+                <button className='nav-bar-form-button' type='submit'>
                     Login
                 </button>
 

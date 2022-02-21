@@ -1,3 +1,14 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    color: white;
+    padding: 1em;
+    z-index: 9999;
+    margin: 0;
+}
 ul {
     list-style: none;
     display: flex;
@@ -32,14 +43,14 @@ a {
     margin: 0em 0em 1.5em 0em;
 }
 
-input {
+.nav-bar-input {
     border: solid rgb(218, 215, 215) .005px;
     border-radius: 4px;
     margin: -15px 0px 14px 0px;
     height: 3em;
 }
 
-.form-button {
+.nav-bar-form-button {
     width: 100%;
     color: white;
     background-color: #FF5A5F;
