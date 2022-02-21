@@ -29,5 +29,5 @@ class Booking(db.Model, UserMixin):
         }
 
 
-    user = db.relationship("User", back_populates="bookings")
-    places = db.relationship("Place", back_populates="bookings")
+    user = db.relationship("User", back_populates="bookings", lazy='subquery')
+    places = db.relationship("Place", back_populates="bookings", lazy='subquery')
