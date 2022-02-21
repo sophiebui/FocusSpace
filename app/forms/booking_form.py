@@ -17,6 +17,6 @@ class BookingForm(FlaskForm):
 
 
 class DeleteBookingForm(FlaskForm):
-    place_id = IntegerField("", validators=[DataRequired()])
+    booking_id = IntegerField("", validators=[DataRequired()])
     curr_user_id = IntegerField("", validators=[DataRequired(), EqualTo('curr_user_id', message='You are not authorized to delete this listing')])
-    place_user_id = IntegerField("", validators=[DataRequired(), EqualTo('place_user_id', message='You are not authorized to delete this listing')])
+    booking_user_id = IntegerField("", validators=[DataRequired(), EqualTo('booking_user_id', message='You are not authorized to delete this listing')])

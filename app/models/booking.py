@@ -24,9 +24,10 @@ class Booking(db.Model, UserMixin):
             'date': self.date,
             'time': str(self.time),
             'duration': self.duration,
-            'guests': self.guests
+            'guests': self.guests,
+            'place': self.places.to_dict()
         }
 
 
     user = db.relationship("User", back_populates="bookings")
-    place = db.relationship("Place", back_populates="bookings")
+    places = db.relationship("Place", back_populates="bookings")

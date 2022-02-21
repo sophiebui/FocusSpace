@@ -37,7 +37,7 @@ function CreateBookingForm({ place, setShowModal }) {
                     setSuccess(false)
                 }, 1500);
             });
-            
+
         };
 
 	return (
