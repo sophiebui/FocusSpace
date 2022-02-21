@@ -23,6 +23,8 @@ a {
     border:none;
     width: 7rem;
     height: 2rem;
+    border-radius: 2px;
+    margin-right: 12px;
 }
 .logo {
     width: 20rem;
@@ -62,3 +64,25 @@ a {
 .form-button:hover {
     cursor: pointer;
 }
+
+.navbar-profile-button-div {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-content: space-between;
+}
+.menu-bar-icon {
+    filter: invert(1);
+    height: 30px;
+    padding: 5px;
+}
+
+.profile-dropdown {
+	border-radius: 5px;
+    position: relative;
+    z-index: 9999;
+    top: 50px;
+    right: 40px;
+}
+
+

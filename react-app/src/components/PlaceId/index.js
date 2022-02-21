@@ -20,7 +20,7 @@ const PlaceId = () => {
     if (place) {
         const isOwner = user === place?.user_id;
         return (
-        <div>
+        <div className='page-container'>
             <div className='images-container'>
             {place?.images?.map((image) => (
                 <div key={image.id} className='image-div'>
