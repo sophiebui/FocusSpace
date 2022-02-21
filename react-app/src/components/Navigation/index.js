@@ -17,7 +17,6 @@ const NavBar = () => {
     const [ profileButton, setProfileButton ] = useState(false);
 	const [ loginModal, setLoginModal ] = useState(false);
 	const [ signupModal, setSignupModal ] = useState(false);
-	let sessionLinks;
 
 	const demoLogin = () => {
 		const email = 'demo@aa.io';
@@ -35,10 +34,12 @@ const NavBar = () => {
                             <img src={logoDark} alt='FocusPlace logo' className='logo' />
                         </NavLink>
                     </li>
-                    <li>{sessionLinks}</li>
+                    <li>
+                        <NavLink to='/places' className={'navbar-explore-link'}>Explore</NavLink>
+                    </li>
                     <li className='navbar-profile-button-div' onClick={() => setProfileButton(!profileButton)}>
-                        <img src={bars} alt='menu bars' className='menu-bar-icon' />
-                        <img src={userLogo} alt='user-logo' className='menu-bar-icon' />
+                        <img src={bars} alt='menu bars' className='menu-bar-icon menu-bars-icon' />
+                        <img src={userLogo} alt='user-logo' className='menu-bar-icon menu-user-icon' />
                     </li>
                     {loginModal && (
                         <Modal onClose={() => setLoginModal(false)}>
