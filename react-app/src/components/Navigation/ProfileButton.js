@@ -22,18 +22,16 @@ const ProfileButton = ({ setProfileButton, setSignupModal, setLoginModal }) => {
                     onOutsideClick={() => {
                         setProfileButton(false);
                     }}>
-                    <div className='profile-dropdown'>
-                        <ul>
-                            <li>
-                                <NavLink to={`/bookings/${userId}`}>View Upcoming Bookings</NavLink>
-                            </li>
-                            <li>
-                                <button onClick={logout} className='logout-button'>
-                                    Log Out
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul className='profile-dropdown'>
+                        <li>
+                            <NavLink to={`/bookings/${userId}`} className='profile-dropdown-link'>View Upcoming Bookings</NavLink>
+                        </li>
+                        <li>
+                            <button onClick={logout} className='logout-button'>
+                                Log Out
+                            </button>
+                        </li>
+                    </ul>
                 </OutsideClickHandler>
             </>
 			) : (
