@@ -13,7 +13,9 @@
 	margin-top: -9px;
 	padding: 0px;
 }
-
+.input {
+    height: 2rem;
+}
 .input-container {
 	position: relative;
 	display: flex;
@@ -22,7 +24,7 @@
 
 .input-container label {
 	position: absolute;
-	transform: translate(0, 7px) scale(1);
+	transform: translate(0, 16px) scale(1);
 	transform-origin: top left;
 	transition: 200ms ease-out;
 	font-size: 16px;
@@ -31,27 +33,32 @@
 }
 
 .input-container:focus-within label {
-	transform: translate(0, -9px) scale(0.75);
+    transform: translate(0, 5px) scale(0.75)
 }
 
 .input-container .filled {
-	transform: translate(0, -9px) scale(0.75);
+    transform: translate(0, 5px) scale(0.75)
 }
 
 .add-place {
 	font-size: 16px;
 	padding-top: 11px;
 	padding-left: 10px;
+    margin: 2px;
 }
 
 .select-wrap {
-	padding: 0 5px;
-	border: solid rgb(218, 215, 215) .005px;
-	border-radius: 4px;
-	position: relative;
-	margin: -15px 0px 14px 0px;
-	height: 3em;
+
+    border: solid #767676 0.005px;
+    color: black;
+    position: relative;
+    margin: 2px 0px 2px 2px;
+    height: 3em;
+    border-radius: 2px;
+    overflow: hidden;
+    width: 30.5rem;
 }
+
 .select-wrap label {
 	font-size: 12px;
 	color: #777;
@@ -62,13 +69,12 @@
 }
 
 select {
-	margin-left: 4px;
-	font-size: 14px;
-	width: 100%;
-	height: 60px;
-	cursor: pointer;
-	border: 0px;
-	outline: none;
+    margin-left: 4px;
+    font-size: 14px;
+    width: 98%;
+    height: 59px;
+    cursor: pointer;
+    border: none;
 }
 
 select::-webkit-scrollbar {
@@ -94,4 +100,17 @@ select > option {
 	width: 75%;
 	height: 20px;
 	margin: 20px;
+}
+
+.form-button{
+    width: 100%;
+    color: white;
+    background-color: #FF5A5F;
+    border: none;
+    border-radius: 4px;
+    height: 3em;
+}
+
+.image-upload-div {
+    margin: 12px 0px 12px 5px;
 }
