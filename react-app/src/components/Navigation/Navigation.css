@@ -14,16 +14,59 @@
     grid-template-areas: "logo explore profileButton";
     align-items: center;
     grid-auto-rows: 13px;
+    transition: all 0.25s;
+}
+.light-navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    color: black;
+    padding: 1em;
+    z-index: 9999;
+    margin: 0px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 3fr 3.5fr 0.1fr;
+    grid-template-areas: "logo explore profileButton";
+    align-items: center;
+    grid-auto-rows: 13px;
+    height: 2rem;
+    padding-top: 1.5rem;
+    transition: all 0.25s;
+}
+.light-navbar a:visited {
+    color: black;
+}
+
+
+.dark-navbar a:visited {
+    color: white;
 }
 
 .profile-dropdown-link{
     text-decoration: none;
 }
 
-.logo {
+.profile-dropdown a:visited {
+    color: black;
+}
+
+
+.light-logo {
     width: 20rem;
     grid-area: logo;
-    height: auto;
+    height: 56px;
+    margin-top: 14px;
+    filter: invert(1)
+}
+
+.dark-logo {
+    width: 20rem;
+    grid-area: logo;
+    height: 56px;
+    margin-top: 14px;
 }
 
 
@@ -41,6 +84,7 @@
     align-content: space-between;
     grid-area: profileButton;
     background-color: rgb(253, 253, 253);
+    border: solid rgb(218, 215, 215) .005px;
 }
 
 .nav-button {
@@ -98,30 +142,7 @@
     height: 1.75rem;
 }
 
-.light-navbar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: white;
-    color: black;
-    padding: 1em;
-    z-index: 9999;
-    margin: 10px 0px 0px 0px;
-    list-style: none;
-    display: grid;
-    grid-template-columns: 3fr 3fr 0.1fr;
-    grid-template-areas: "logo explore profileButton";
-    align-items: center;
-    grid-auto-rows: 13px;
-}
-.light-navbar a:visited {
-    color: black;
-}
 
-.dark-navbar a:visited {
-    color: white;
-}
 
 .profile-dropdown {
     border-radius: 5px;
@@ -131,9 +152,5 @@
     list-style: none;
     max-width: 15%;
     top: 3rem;
-    color: black;
-}
-
-.profile-dropdown a:visited {
     color: black;
 }
