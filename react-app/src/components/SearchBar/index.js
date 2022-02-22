@@ -18,17 +18,16 @@ function SearchBar({ place }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors([]);
-		const newBooking = {
+		const query = {
 			location,
 			// user_id,
 			place_id: place.id,
 			date,
 			time,
-			duration,
 			guests
 		};
 
-		return dispatch(addBooking(newBooking)).then((response) => {
+		return dispatch(addBooking(query)).then((response) => {
 			if (response.errors) {
 				setErrors(response.errors);
 				return;
@@ -80,18 +79,6 @@ function SearchBar({ place }) {
 					onChange={(e) => setTime(e.target.value)}
 					className="search-input"
 					id="time"
-				/>
-			</div>
-			<div className="search-input-div">
-				<label className="serach-duration-label" htmlFor="duration">
-					Duration
-				</label>
-				<input
-					type="number"
-					value={duration}
-					onChange={(e) => setDuration(e.target.value)}
-					className="search-input"
-					id="duration"
 				/>
 			</div>
 			<div className="search-input-div">
