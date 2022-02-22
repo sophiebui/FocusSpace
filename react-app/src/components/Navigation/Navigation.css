@@ -73,6 +73,8 @@
 .navbar-explore-link {
     grid-area: explore;
     text-decoration: none;
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .navbar-profile-button-div {
