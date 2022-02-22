@@ -16,7 +16,7 @@ function CreatePlaceForm({ setShowModal }) {
     const [price, setPrice] = useState('');
     const [guests, setGuests] = useState('');
     const [errors, setErrors] = useState([]);
-    const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState('');
     const statesArr = Object.keys(states)
 
     const handleSubmit = async e => {
@@ -41,7 +41,7 @@ function CreatePlaceForm({ setShowModal }) {
                         setErrors(response.errors)
                         return
                     }
-                    setSuccess("Success!");
+                    setSuccess('Success!');
                     setTimeout(() => {
                         setShowModal(false);
                     }, 1500);
@@ -50,7 +50,7 @@ function CreatePlaceForm({ setShowModal }) {
     };
 
     return (
-        <div className="form-container">
+        <div className='form-container'>
             <form className='form' onSubmit={handleSubmit}>
                 <h2>
                     {success}
@@ -142,6 +142,14 @@ function CreatePlaceForm({ setShowModal }) {
                         id='guests'
                     />
                     <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
+                </div>
+                <div className='image-upload-div'>
+                    <label htmlFor='images'>Upload Images: </label>
+                    <input
+                    type='file'
+                    accept='.png,.jpg,.jpeg,.gif'
+                    name='images'
+                    className='image-upload-input' />
                 </div>
                 <div className='form-button-container'>
                     <button className='form-button'>Add Place</button>
