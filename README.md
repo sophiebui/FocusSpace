@@ -16,7 +16,7 @@ FocusSpace is a website where users can create, search, and book different focus
 
 1. Clone the project repository
 ```
-   git clone https://github.com/DanielLaV/study_buddy.git
+   git clone git@github.com:sophiebui/FocusSpace.git
 ```
 2. Install dependencies
 ```
@@ -28,7 +28,7 @@ FocusSpace is a website where users can create, search, and book different focus
    FLASK_APP=app
    FLASK_ENV=development
    SECRET_KEY=<<YOUR-SECRET_KEY>>
-   DATABASE_URL=postgresql://study_buddy_dev:<<PASSWORD>>@localhost/study_buddy_db
+   DATABASE_URL=postgresql://focusspace_user:<<PASSWORD>>@localhost/focusspace
 ```
 4. Set up your PostgreSQL user, password, and database. Make sure that it matches your .env file!
 
