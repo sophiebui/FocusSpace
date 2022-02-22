@@ -16,16 +16,6 @@
     grid-auto-rows: 13px;
 }
 
-.profile-dropdown {
-    border-radius: 5px;
-    position: relative;
-    left: 107rem;
-    background-color: rgb(253, 253, 253);
-    list-style: none;
-    max-width: 15%;
-    top: 3rem;
-}
-
 .profile-dropdown-link{
     text-decoration: none;
 }
@@ -61,7 +51,7 @@
     margin-right: 12px;
 }
 .form-container {
-  padding: 25px;
+    padding: 25px;
 }
 .form {
     display: flex;
@@ -124,4 +114,26 @@
     grid-template-areas: "logo explore profileButton";
     align-items: center;
     grid-auto-rows: 13px;
+}
+.light-navbar a:visited {
+    color: black;
+}
+
+.dark-navbar a:visited {
+    color: white;
+}
+
+.profile-dropdown {
+    border-radius: 5px;
+    position: relative;
+    left: 107rem;
+    background-color: rgb(253, 253, 253);
+    list-style: none;
+    max-width: 15%;
+    top: 3rem;
+    color: black;
+}
+
+.profile-dropdown a:visited {
+    color: black;
 }
