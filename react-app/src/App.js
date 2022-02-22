@@ -30,9 +30,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <ProtectedRoute path='/places'  exact={true}>
+        <Route path='/places'  exact={true}>
             <Places />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/places/:placeId'  exact={true}>
             <PlaceId />
         </ProtectedRoute>
