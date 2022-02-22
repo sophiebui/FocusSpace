@@ -1,0 +1,33 @@
+.places-images-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.places-image-div {
+    width: 18rem;
+    height: 12rem;
+}
+
+.places-images {
+    width:100%;
+    height:100%;
+    border-radius: 1rem;
+    object-fit: cover;
+
+}
+
+.places-container {
+    display: flex;
+    margin: 2rem;
+}
+
+.places-container-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 17px;
+}
+
+.create-place-button-div {
+    margin-left: 38px
+}
