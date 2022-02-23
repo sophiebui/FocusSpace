@@ -51,9 +51,13 @@ const LoginForm = ({ setLoginModal }) => {
 	return (
         <div className='form-container'>
             <form className='form' onSubmit={onLogin}>
-                <ul className='errors-list'>{errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}</ul>
+                {errors.length > 0 ?
+                <ul className='errors-list'>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                        ))}
+                </ul>
+                : null}
                 <h1 className='form-title'>Welcome to FocusSpace</h1>
                 <label htmlFor='email'> </label>
                 <input

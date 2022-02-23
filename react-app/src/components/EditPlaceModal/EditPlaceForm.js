@@ -53,14 +53,13 @@ function EditPlaceForm({ place, setShowModal }) {
     return (
         <div className="form-container">
             <form className='form' onSubmit={handleSubmit}>
-                {errors?
-                    <ul className='edit-error-messages'>
-                        {errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
+                {errors.length > 0 ?
+                <ul className='errors-list'>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
                         ))}
-                    </ul>
-                    : null
-                }
+                </ul>
+                : null}
                 {success?
                     <h2 className='edit-success-message'>
                         {success}
