@@ -15,6 +15,16 @@
     align-items: center;
     grid-auto-rows: 13px;
     transition: all 0.25s;
+
+}
+nav > ul {
+    position: relative;
+}
+nav > ul > div {
+    position: absolute;
+    top: 3rem;
+    right: -6rem;
+    z-index: 9999;
 }
 .light-navbar {
     position: fixed;
@@ -167,11 +177,10 @@
 
 .profile-dropdown {
     border-radius: 5px;
-    position: relative;
     left: 107rem;
     background-color: rgb(253, 253, 253);
     list-style: none;
-    max-width: 15%;
+    max-width: 48%;
     top: 3rem;
     color: black;
 }

@@ -3,12 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
-const LoginForm = ({ setLoginModal, demoLogin }) => {
+const LoginForm = ({ setLoginModal }) => {
 	const [ errors, setErrors ] = useState([]);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+
+    const demoLogin = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+		const email = 'demo@aa.io';
+		const password = 'password';
+		return dispatch(login(email, password)).then( () =>{
+            setLoginModal(false)
+        })
+	};
 
 	const onLogin = async (e) => {
 		e.preventDefault();
@@ -41,9 +51,13 @@ const LoginForm = ({ setLoginModal, demoLogin }) => {
 	return (
         <div className='form-container'>
             <form className='form' onSubmit={onLogin}>
-                <ul className='errors-list'>{errors.map((error, idx) => (
-                            <li key={idx}>{error}</li>
-                        ))}</ul>
+                {errors.length > 0 ?
+                <ul className='errors-list'>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                        ))}
+                </ul>
+                : null}
                 <h1 className='form-title'>Welcome to FocusSpace</h1>
                 <label htmlFor='email'> </label>
                 <input

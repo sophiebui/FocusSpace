@@ -24,7 +24,13 @@ const PlaceId = () => {
             <div className='images-container'>
             {place?.images?.map((image) => (
                 <div key={image.id} className='image-div'>
-                    <img src={image.url} alt={place.name} className='place-images'></img>
+                    <img src={image.url}
+                    alt={place.name}
+                    className='place-images'
+                    onError={event => {
+                        event.target.src = "https://res.cloudinary.com/dxubahnmi/image/upload/v1644967329/FocusSpace/1-default.jpg"
+                        event.onerror = null
+                    }} />
                 </div>
             ))}
             </div>

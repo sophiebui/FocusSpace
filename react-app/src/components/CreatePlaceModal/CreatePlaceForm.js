@@ -22,7 +22,6 @@ function CreatePlaceForm({ setShowModal }) {
     const statesArr = Object.keys(states)
     const [imagesList, setImagesList] = useState([{ imageUrl: ''}]);
     const [ , setLoginModal ] = useState(false);
-	const [ , setSignupModal ] = useState(false);
 
 	const demoLogin = () => {
 		const email = 'demo@aa.io';
@@ -67,33 +66,32 @@ function CreatePlaceForm({ setShowModal }) {
         }
 
         return dispatch(addPlace(newPlace))
-            .then(
-                (response) => {
-                    if (response.errors) {
-                        setErrors(response.errors)
-                        return
-                    }
-                    setSuccess('Success!');
-                    setTimeout(() => {
-                        setShowModal(false);
-                    }, 1500);
+        .then(
+            (response) => {
+                if (response.errors) {
+                    setErrors(response.errors)
+                    return
                 }
+                setSuccess('Success!');
+                setTimeout(() => {
+                    setShowModal(false);
+                }, 1500);
+            }
             );
-    };
+        };
 
-    if (user) {
-        return (
-            <div className='create-place-form-container'>
+        if (user) {
+            return (
+                <div className='create-place-form-container'>
                 <form className='create-place-form' onSubmit={handleSubmit}>
-                    <h2>
-                        {success}
-                    </h2>
+                    {success ? <h2>{success}</h2> : null }
+                    {errors.length > 0 ?
                     <ul className='errors-list'>
                         {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
-                        ))}
+                            ))}
                     </ul>
-
+                    : null}
                     <h1 className='add-place-header'>Add Place</h1>
                     <div className='input-container'>
                         <input

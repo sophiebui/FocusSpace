@@ -1,0 +1,30 @@
+.booking-image-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.booking-image {
+    width: 18rem;
+    height: 12rem;
+}
+
+.places-images {
+    width:100%;
+    height:100%;
+    border-radius: 1rem;
+    object-fit: cover;
+
+}
+
+.bookings-container {
+    display: flex;
+    margin: 2rem;
+    align-items: center;
+}
+
+.bookings-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 17px;
+}

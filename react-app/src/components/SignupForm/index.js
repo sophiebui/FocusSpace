@@ -17,7 +17,6 @@ const SignupForm = ({ setSignupModal }) => {
 	    setErrors([])
 	    return dispatch(signUp(username, email, password, repeatPassword))
         .then((response) => {
-                console.log(response)
                 if (response?.errors) {
                     setErrors(response.errors)
                     return
@@ -50,11 +49,13 @@ const SignupForm = ({ setSignupModal }) => {
 	return (
 		<div className="form-container">
 			<form className="form" onSubmit={onSignUp}>
-                <ul className='errors-list'>
-                    {errors.map((error, idx) => (
+                {errors.length > 0 ?
+                    <ul className='errors-list'>
+                        {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
-                        ))}
-                </ul>
+                            ))}
+                    </ul>
+                : null}
 				<h1 className="form-title">Sign Up</h1>
 
 				<label />
