@@ -21,7 +21,9 @@ const NavBar = () => {
     const [scrollTop, setScrollTop] = useState(0);
     const location = useLocation()
 
-	const demoLogin = () => {
+	const demoLogin = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
 		const email = 'demo@aa.io';
 		const password = 'password';
 		return dispatch(login(email, password));
@@ -40,7 +42,6 @@ const NavBar = () => {
     return (
         <>
             <nav>
-                {/* <ul className={`${location.pathname === '/' && !scrolling ? 'dark-navbar' : 'light-navbar' }`}> */}
                 <ul className={`${location.pathname !== '/' ? 'regular-navbar' : (location.pathname === '/' && !scrolling ? 'dark-navbar' : 'light-navbar') }`}>
                     <li>
                         <NavLink to='/'>
