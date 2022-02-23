@@ -17,7 +17,6 @@ const SignupForm = ({ setSignupModal }) => {
 	    setErrors([])
 	    return dispatch(signUp(username, email, password, repeatPassword))
         .then((response) => {
-                console.log(response)
                 if (response?.errors) {
                     setErrors(response.errors)
                     return

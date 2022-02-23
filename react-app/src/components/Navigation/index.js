@@ -13,7 +13,6 @@ import SearchBarNav from '../SearchBarNav';
 import './Navigation.css';
 
 const NavBar = () => {
-	const dispatch = useDispatch();
     const [ profileButton, setProfileButton ] = useState(false);
 	const [ loginModal, setLoginModal ] = useState(false);
 	const [ signupModal, setSignupModal ] = useState(false);
@@ -21,13 +20,6 @@ const NavBar = () => {
     const [scrollTop, setScrollTop] = useState(0);
     const location = useLocation()
 
-	const demoLogin = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-		const email = 'demo@aa.io';
-		const password = 'password';
-		return dispatch(login(email, password));
-	};
 
     useEffect(() => {
         const onScroll = e => {
@@ -60,7 +52,7 @@ const NavBar = () => {
                     </li>
                     {loginModal && (
                         <Modal onClose={() => setLoginModal(false)}>
-                            <LoginForm setLoginModal={setLoginModal} demoLogin={demoLogin} />
+                            <LoginForm setLoginModal={setLoginModal} />
                         </Modal>
                     )}
                     {signupModal && (
