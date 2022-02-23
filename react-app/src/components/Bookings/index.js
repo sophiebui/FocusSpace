@@ -21,28 +21,33 @@ const Bookings = () => {
         return (
             <div className='page-container'>
                 {bookings?.map((booking) => (
-                    <div key={booking.id}>
-                        <div key={booking.place.name}>
-                            Name of Place: {booking.place.name}
+                    <div key={booking.id} className='bookings-container'>
+                        <div key={booking.place.images.id}  className='booking-image-container'>
+                            <img src={booking.place.images[0].url}  className='booking-image '/>
                         </div>
-                        <div key={booking.place.address}>
-                            Address: {booking.place.address}
+                        <div className='bookings-detail'>
+                            <div key={booking.place.name}>
+                                Name of Place: {booking.place.name}
+                            </div>
+                            <div key={booking.place.address}>
+                                Address: {booking.place.address}
+                            </div>
+                            <div key={booking.date}>
+                                Date: {booking.date}
+                            </div>
+                            <div key={booking.time}>
+                            Time:  {booking.time}
+                            </div>
+                            <div key={booking.duration}>
+                            Duration: {booking.duration}
+                            </div>
+                            <div key={booking.guests}>
+                            # of Guests: {booking.guests}
+                            </div>
                         </div>
-                        <div key={booking.date}>
-                            Date: {booking.date}
-                        </div>
-                        <div key={booking.time}>
-                          Time:  {booking.time}
-                        </div>
-                        <div key={booking.duration}>
-                           Duration: {booking.duration}
-                        </div>
-                        <div key={booking.guests}>
-                           # of Guests: {booking.guests}
-                        </div>
-                        <div>
-                            <EditBookingForm booking={booking}/>
-                        </div>
+                            <div>
+                                <EditBookingForm booking={booking}/>
+                            </div>
                     </div>
                 ))}
             </div>
