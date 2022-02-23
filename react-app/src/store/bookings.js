@@ -3,21 +3,21 @@ const ADD_BOOKING = 'ADD_BOOKING';
 const DELETE_BOOKING = 'DELETE BOOKING';
 
 // ACTIONS
-export const addOneBooking = (booking) => {
+const addOneBooking = (booking) => {
 	return {
 		type: ADD_BOOKING,
 		booking
 	};
 };
 
-export const loadBookings = (bookings) => {
+const loadBookings = (bookings) => {
     return {
         type: LOAD_BOOKINGS,
         bookings
     }
 }
 
-export const deleteBooking = (booking) => {
+const deleteBooking = (booking) => {
 	return {
 		type: DELETE_BOOKING,
 		booking

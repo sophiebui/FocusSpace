@@ -3,3 +3,11 @@
     padding: 0px;
     margin: 0px 0px 20px 0px;
 }
+.edit-place-button {
+	border: none;
+	width: 12rem;
+    color: white;
+	height: 2rem;
+	background-color: #ff5a5f;
+	border-radius: 4px;
+}

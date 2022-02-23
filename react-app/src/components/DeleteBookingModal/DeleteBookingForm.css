@@ -1,0 +1,27 @@
+.delete-booking-button{
+border: none;
+width: 100%;
+color: white;
+height: 2rem;
+background-color: #ff5a5f;
+border-radius: 4px;
+margin-top: 10px;
+}
+
+.delete-submit-button{
+    border: none;
+    width: 12rem;
+    color: white;
+    height: 2rem;
+    background-color: #ff5a5f;
+    border-radius: 4px;
+    }
+
+.delete-cancel-button{
+    border: none;
+    width: 12rem;
+    color: white;
+    height: 2rem;
+    background-color: #ff5a5f;
+    border-radius: 4px;
+    }

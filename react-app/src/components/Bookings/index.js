@@ -42,7 +42,6 @@ const Bookings = () => {
                         </div>
                         <div>
                             <EditBookingForm booking={booking}/>
-                            <DeleteBookingModal booking={booking} />
                         </div>
                     </div>
                 ))}

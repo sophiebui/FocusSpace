@@ -144,8 +144,6 @@
     height: 1.75rem;
 }
 
-
-
 .profile-dropdown {
     border-radius: 5px;
     position: relative;
@@ -155,4 +153,13 @@
     max-width: 15%;
     top: 3rem;
     color: black;
+}
+
+.logout-button {
+    border: none;
+	width: 5rem;
+    color: white;
+	height: 2rem;
+	background-color: #ff5a5f;
+	border-radius: 4px;
 }

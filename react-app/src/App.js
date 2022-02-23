@@ -10,6 +10,7 @@ import PlaceId from './components/PlaceId'
 import Bookings from './components/Bookings'
 import PageNotFound from './components/PageNotFound';
 import HomePage from './components/HomePage';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +33,9 @@ function App() {
       <Switch>
         <Route path='/places'  exact={true}>
             <Places />
+        </Route>
+        <Route path='/places/search/:query' exact={true}>
+            <SearchResults />
         </Route>
         <ProtectedRoute path='/places/:placeId'  exact={true}>
             <PlaceId />

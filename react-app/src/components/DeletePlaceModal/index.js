@@ -1,7 +1,7 @@
 import { Modal } from '../../context/Modal';
 import DeletePlaceForm from './DeletePlaceForm';
 import {useStateIfMounted} from 'use-state-if-mounted'
-
+import './DeletePlaceForm.css'
 function DeletePlaceModal({place}) {
   const [showModal, setShowModal] = useStateIfMounted(false);
 
