@@ -72,8 +72,8 @@ function CreatePlaceForm({ setShowModal }) {
     };
 
     return (
-        <div className='form-container'>
-            <form className='form' onSubmit={handleSubmit}>
+        <div className='create-place-form-container'>
+            <form className='create-place-form' onSubmit={handleSubmit}>
                 <h2>
                     {success}
                 </h2>
