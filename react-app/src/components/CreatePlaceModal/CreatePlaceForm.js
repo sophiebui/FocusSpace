@@ -88,7 +88,7 @@ function CreatePlaceForm({ setShowModal }) {
                     <h2>
                         {success}
                     </h2>
-                    <ul>
+                    <ul className='errors-list'>
                         {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
                         ))}

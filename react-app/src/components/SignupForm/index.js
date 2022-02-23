@@ -50,7 +50,7 @@ const SignupForm = ({ setSignupModal }) => {
 	return (
 		<div className="form-container">
 			<form className="form" onSubmit={onSignUp}>
-                <ul>
+                <ul className='errors-list'>
                     {errors.map((error, idx) => (
                             <li key={idx}>{error}</li>
                         ))}

@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import User from './components/User';
 import { authenticate } from './store/session';
 import Places from './components/Places'
 import PlaceId from './components/PlaceId'
@@ -42,9 +41,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/bookings/:userId'  exact={true}>
             <Bookings />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <HomePage />

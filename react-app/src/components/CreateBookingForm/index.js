@@ -44,7 +44,7 @@ function CreateBookingForm({ place, setShowModal }) {
 		<div className='create-booking-form-container'>
 			<form className='form' onSubmit={handleSubmit}>
 				<h2>{success}</h2>
-				<ul>{errors.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
+				<ul className='errors-list'>{errors.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
 
 				<h1 className='add-booking-header'>Create a New Booking</h1>
 				<div className=''>
