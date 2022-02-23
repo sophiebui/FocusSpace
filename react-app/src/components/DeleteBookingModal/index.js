@@ -1,6 +1,7 @@
 import { Modal } from '../../context/Modal';
 import DeleteBookingForm from './DeleteBookingForm';
 import {useStateIfMounted} from 'use-state-if-mounted'
+import './DeleteBookingForm.css'
 
 function DeleteBookingModal({booking}) {
   const [showModal, setShowModal] = useStateIfMounted(false);

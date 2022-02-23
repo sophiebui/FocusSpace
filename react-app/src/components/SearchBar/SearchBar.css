@@ -4,7 +4,11 @@
     align-items: center;
     background-color: white;
     border-radius: 10rem;
-    width: 59rem;
+    width: 53rem;
+}
+
+.search-input-div {
+    margin-left: 2rem;
 }
 
 .search-input {

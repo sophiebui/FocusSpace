@@ -3,6 +3,7 @@ import { editBooking } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
 import './EditBookingForm.css'
 import dateFormat from "dateformat";
+import DeleteBookingModal from '../DeleteBookingModal'
 
 function EditBookingForm({ booking }) {
     const dispatch = useDispatch();
@@ -103,6 +104,7 @@ function EditBookingForm({ booking }) {
 				<div className='form-button-container'>
 					<button className='form-button'>Edit Booking</button>
 				</div>
+                <DeleteBookingModal booking={booking}/>
 			</form>
         </div>
     )

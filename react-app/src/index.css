@@ -5,3 +5,7 @@
 .page-container {
 padding-top: 100px;
 }
+
+button:hover {
+    cursor: pointer;
+}
