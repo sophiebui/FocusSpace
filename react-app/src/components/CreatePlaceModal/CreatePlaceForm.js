@@ -167,18 +167,20 @@ function CreatePlaceForm({ setShowModal }) {
                 {imagesList.map((el, index) => {
                     return (
                         <div className='image-upload-div'>
-                        <input
-                        name='imageUrl'
-                        type='url'
-                        placeholder='Enter Image URL'
-                        value={el.imageUrl}
-                        onChange={e => addToImagesList(e, index)}
-                        />
-                        <div >
-                        {imagesList.length - 1 === index && <button onClick={handleAdd}> Add </button>}
-                        {imagesList.length !== 1 && <button onClick={() => handleRemove(index)}> Remove </button>}
+                            <input
+                            name='imageUrl'
+                            type='url'
+                            className='image-upload-input'
+                            placeholder='Enter Image URL'
+                            value={el.imageUrl}
+                            onChange={e => addToImagesList(e, index)}
+                            required
+                            />
+                            <div className='image-upload-button-div'>
+                                {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
+                                {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
+                            </div>
                         </div>
-                    </div>
                     );
                 })}
                 <div className='form-button-container'>
