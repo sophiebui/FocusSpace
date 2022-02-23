@@ -20,7 +20,6 @@ const NavBar = () => {
     const [scrolling, setScrolling] = useState(false);
     const [scrollTop, setScrollTop] = useState(0);
     const location = useLocation()
-    console.log(location.pathname)
 
 	const demoLogin = () => {
 		const email = 'demo@aa.io';

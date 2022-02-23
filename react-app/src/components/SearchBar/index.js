@@ -10,7 +10,6 @@ function SearchBar({ place }) {
 	const [ location, setLocation ] = useState('');
 	const [ date, setDate ] = useState('');
 	const [ time, setTime ] = useState('');
-	const [ duration, setDuration ] = useState('');
 	const [ guests, setGuests ] = useState('');
 	const [ errors, setErrors ] = useState([]);
 	const [ success, setSuccess ] = useState('');

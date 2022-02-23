@@ -21,14 +21,17 @@ const Places = () => {
             {places?.map((place) => (
                 <div key={place.id} className='places-container'>
                     <div className='places-images-container'>
-                        <div key={place.images[0].id} className='places-image-div'>
-                           <NavLink to={`/places/${place.id}`}> <img src={place.images[0].url} alt={place.images[0].name} className='places-images'/></NavLink>
+                        <div key={place.images[0]?.id} className='places-image-div'>
+                           <NavLink to={`/places/${place.id}`}> <img src={place.images[0]?.url} alt={place.images[0]?.name} className='places-images'/></NavLink>
                          </div>
                     </div>
-                    <div key={place.id} className='places-container-title'>
+                    <div key={place.id} className='places-title'>
                         {place.name}
-                    <div key={place.address}>
-                        {place.address}
+                        <div key={place.address} className='places-address'>
+                            {place.address}
+                        </div>
+                    <div>
+                        ${place.price} / hour
                     </div>
                     </div>
                 </div>
