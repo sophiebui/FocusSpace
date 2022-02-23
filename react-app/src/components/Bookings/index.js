@@ -23,7 +23,12 @@ const Bookings = () => {
                 {bookings?.map((booking) => (
                     <div key={booking.id} className='bookings-container'>
                         <div key={booking.place.images.id}  className='booking-image-container'>
-                            <img src={booking.place.images[0].url}  className='booking-image '/>
+                            <img src={booking.place.images[0].url}
+                            className='booking-image'
+                            onError={event => {
+                                event.target.src = "https://res.cloudinary.com/dxubahnmi/image/upload/v1644967329/FocusSpace/1-default.jpg"
+                                event.onerror = null
+                            }} />
                         </div>
                         <div className='bookings-detail'>
                             <div key={booking.place.name}>
