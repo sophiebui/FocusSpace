@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = ({ setLoginModal, demoLogin }) => {
-	const [ , setErrors ] = useState([]);
+	const [ errors, setErrors ] = useState([]);
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const user = useSelector((state) => state.session.user);
@@ -13,13 +13,18 @@ const LoginForm = ({ setLoginModal, demoLogin }) => {
 	const onLogin = async (e) => {
 		e.preventDefault();
 		setErrors([]);
-		return dispatch(login(email, password)).then((response) => {
-			if (response?.errors) {
-				setErrors(response.errors);
-				return;
-			} else if (!response?.errors) setLoginModal(false);
-		});
-	};
+		return dispatch(login(email, password)).then(
+            (response) => {
+                console.log(response)
+                if (response?.errors) {
+                    setErrors(response.errors)
+                    return
+                }
+                setLoginModal(false);
+            }
+        );
+    };
+
 
 	const updateEmail = (e) => {
 		setEmail(e.target.value);
@@ -36,7 +41,9 @@ const LoginForm = ({ setLoginModal, demoLogin }) => {
 	return (
         <div className='form-container'>
             <form className='form' onSubmit={onLogin}>
-                {/* <div className='error-list'>{errors[0]}</div> */}
+                <div className='error-list'>{errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}</div>
                 <h1 className='form-title'>Welcome to FocusSpace</h1>
                 <label htmlFor='email'> </label>
                 <input
