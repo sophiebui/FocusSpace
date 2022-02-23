@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.forms import DeletePlaceForm, PlaceForm
-from app.models import Place, db
+from app.models import Place, Image, db
 
 place_routes = Blueprint('places', __name__)
 
@@ -22,6 +22,7 @@ def get_places():
     Route for displaying all places
     """
     if request.method == 'POST':
+        data = request.get_json()
         form = PlaceForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
@@ -37,7 +38,12 @@ def get_places():
             new_place = Place(user_id=user_id, name=name, description=description, address=address, city=city, state=state, zip_code=zip_code, price=price, guests=guests)
             db.session.add(new_place)
             db.session.commit()
-            print('-'*40, new_place.to_dict())
+
+            image_list = data['images']
+            for image in image_list:
+                new_image = Image(place_id=new_place.id, url = image)
+                db.session.add(new_image)
+                db.session.commit()
             return new_place.to_dict()
         elif form.errors:
             print("form.errors", form.errors)

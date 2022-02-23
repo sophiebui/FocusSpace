@@ -1,5 +1,6 @@
+from ast import Str
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, DecimalField
+from wtforms import StringField, IntegerField, DecimalField, FileField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange
 
 class PlaceForm(FlaskForm):
@@ -12,7 +13,7 @@ class PlaceForm(FlaskForm):
     zip_code = IntegerField("zipCode",  validators=[DataRequired(), NumberRange(min=5, message="Zip code must be 5 characters")])
     price = DecimalField("price: ", validators={DataRequired()})
     guests = IntegerField("guests: ", validators={DataRequired()})
-
+    images = FileField("images", validators={DataRequired()})
 
 class DeletePlaceForm(FlaskForm):
     place_id = IntegerField("", validators=[DataRequired()])

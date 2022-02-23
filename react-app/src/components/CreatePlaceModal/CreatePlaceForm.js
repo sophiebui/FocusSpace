@@ -40,7 +40,8 @@ function CreatePlaceForm({ setShowModal }) {
     const handleSubmit = async e => {
         e.preventDefault();
         setErrors([]);
-        const images = imagesList.map((image) =>  image.imageUrl)
+        let imageArr = []
+        imagesList.map((image) =>  imageArr.push(image.imageUrl))
 
         const newPlace = {
             user_id,
@@ -52,7 +53,7 @@ function CreatePlaceForm({ setShowModal }) {
             zip_code: zipCode,
             price,
             guests: guests,
-            images
+            images: imageArr
         }
 
         return dispatch(addPlace(newPlace))
