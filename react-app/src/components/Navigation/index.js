@@ -40,7 +40,8 @@ const NavBar = () => {
     return (
         <>
             <nav>
-                <ul className={`${location.pathname === '/' && !scrolling ? 'dark-navbar' : 'light-navbar' }`}>
+                {/* <ul className={`${location.pathname === '/' && !scrolling ? 'dark-navbar' : 'light-navbar' }`}> */}
+                <ul className={`${location.pathname !== '/' ? 'regular-navbar' : (location.pathname === '/' && !scrolling ? 'dark-navbar' : 'light-navbar') }`}>
                     <li>
                         <NavLink to='/'>
                             <img src={logo} alt='FocusPlace logo' className={`${location.pathname ==='/' && !scrolling ? 'dark-logo' : 'light-logo'}`} />
