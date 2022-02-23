@@ -63,7 +63,7 @@ function SearchBar() {
 					id="states"
 				>
                     {uniqueStates?.map((state) => (
-                        <option value={state}>{state}</option>))}
+                        <option key={state} value={state}>{state}</option>))}
                 </select>
 			</div>
 			<div className="search-input-div">

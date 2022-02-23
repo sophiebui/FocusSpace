@@ -22,7 +22,6 @@ function CreatePlaceForm({ setShowModal }) {
     const statesArr = Object.keys(states)
     const [imagesList, setImagesList] = useState([{ imageUrl: ''}]);
     const [ , setLoginModal ] = useState(false);
-	const [ , setSignupModal ] = useState(false);
 
 	const demoLogin = () => {
 		const email = 'demo@aa.io';

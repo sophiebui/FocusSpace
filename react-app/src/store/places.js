@@ -111,9 +111,9 @@ export const getSearchResults = (query) => async (dispatch) => {
     });
     const results = await response.json();
 
-    // if (response.ok) {
-    //     dispatch(loadSearch(results))
-    // }
+    if (response.ok) {
+        dispatch(loadSearch(results))
+    }
     return results
 }
 

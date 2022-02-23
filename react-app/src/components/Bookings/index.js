@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../../store/bookings';
 import { useParams } from 'react-router-dom';
 import EditBookingForm from '../EditBookingForm';
-import DeleteBookingModal from '../DeleteBookingModal';
+import './Bookings.css'
 
 const Bookings = () => {
     const dispatch = useDispatch();
