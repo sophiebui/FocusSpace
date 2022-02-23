@@ -1,32 +1,41 @@
-import { useState } from 'react';
-import { addBooking } from '../../store/bookings';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getPlaces, getSearchResults } from '../../store/places'
 import searchIcon from '../../assets/search.svg';
 import './SearchBar.css';
 
-function SearchBar({ place }) {
+function SearchBar() {
 	const dispatch = useDispatch();
-	// const user_id = useSelector((state) => state.session.user.id);
-	const [ location, setLocation ] = useState('');
+    const places = useSelector(state => Object.values(state.places))
+	const [ states, setStates ] = useState('AZ');
 	const [ date, setDate ] = useState('');
 	const [ time, setTime ] = useState('');
 	const [ guests, setGuests ] = useState('');
 	const [ errors, setErrors ] = useState([]);
 	const [ success, setSuccess ] = useState('');
 
+	useEffect(() => {
+        dispatch(getPlaces());
+    },[ dispatch ])
+
+    const statesArr = []
+    places.map((place) => {
+        statesArr.push(place.state)
+        return statesArr.sort()})
+
+    const uniqueStates = [...new Set(statesArr)]
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors([]);
 		const query = {
-			location,
-			// user_id,
-			place_id: place.id,
+			location: states,
 			date,
 			time,
 			guests
 		};
-
-		return dispatch(addBooking(query)).then((response) => {
+		return dispatch(getSearchResults(query))
+        .then((response) => {
 			if (response.errors) {
 				setErrors(response.errors);
 				return;
@@ -46,14 +55,16 @@ function SearchBar({ place }) {
 				<label className="search-date-location" htmlFor="location">
 					Location:
 				</label>
-				<input
-					type="location"
-					value={location}
-					onChange={(e) => setLocation(e.target.value)}
+				<select
+					value={states}
+					onChange={(e) => setStates(e.target.value)}
 					required
 					className="search-input"
-					id="location"
-				/>
+					id="states"
+				>
+                    {uniqueStates?.map((state) => (
+                        <option value={state}>{state}</option>))}
+                </select>
 			</div>
 			<div className="search-input-div">
 				<label className="search-date-label" htmlFor="date">

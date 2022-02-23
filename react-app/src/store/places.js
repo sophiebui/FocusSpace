@@ -1,28 +1,37 @@
 const LOAD_PLACES = 'LOAD_PLACES';
 const ADD_PLACE = 'ADD_PLACE';
 const DELETE_PLACE = 'DELETE_PLACE';
+const LOAD_SEARCH = "LOAD_SEARCH";
 
 // ACTIONS
-export const loadPlaces = (places) => {
+const loadPlaces = (places) => {
 	return {
 		type: LOAD_PLACES,
 		places
 	};
 };
 
-export const addOnePlace = (place) => {
+const addOnePlace = (place) => {
 	return {
 		type: ADD_PLACE,
 		place
 	};
 };
 
-export const deletePlace = (place) => {
+const deletePlace = (place) => {
 	return {
 		type: DELETE_PLACE,
 		place
 	};
 };
+
+const loadSearch = (results) => {
+    return {
+        type: LOAD_SEARCH,
+        results
+    };
+};
+
 
 // SELECTORS/THUNKS
 export const getPlaces = () => async (dispatch) => {
@@ -92,6 +101,22 @@ export const removePlace = (payload) => async (dispatch) => {
 		return response;
 	}
 };
+
+export const getSearchResults = (query) => async (dispatch) => {
+    console.log('this is query.. in store.', query)
+    const response = await fetch(`/api/places/search/${query}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(query)
+    });
+    const results = await response.json();
+
+    // if (response.ok) {
+    //     dispatch(loadSearch(results))
+    // }
+    return results
+}
+
 
 // REDUCER
 const placesReducer = (state = {}, action) => {
