@@ -50,9 +50,8 @@ export const getOnePlace = (id) => async (dispatch) => {
 };
 
 export const addPlace = (newPlace) => async (dispatch) => {
-    console.log(newPlace)
-	const response = await fetch(`/api/places/`, {
-		method: 'POST',
+    const response = await fetch(`/api/places/`, {
+        method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(newPlace)
 	});
