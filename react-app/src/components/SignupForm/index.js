@@ -16,14 +16,16 @@ const SignupForm = ({ setSignupModal }) => {
 	    e.preventDefault();
 	    setErrors([])
 	    return dispatch(signUp(username, email, password, repeatPassword))
-	      .then((response) => {
-	        if (response?.errors) {
-	          setErrors(response.errors)
-	          return
-	        }
-	        else if (!response?.errors) setSignupModal(false);
-	      })
-	  };
+        .then((response) => {
+                console.log(response)
+                if (response?.errors) {
+                    setErrors(response.errors)
+                    return
+                }
+                setSignupModal(false);
+            }
+        );
+    };
 
 	const updateUsername = (e) => {
 		setUsername(e.target.value);
@@ -48,7 +50,11 @@ const SignupForm = ({ setSignupModal }) => {
 	return (
 		<div className="form-container">
 			<form className="form" onSubmit={onSignUp}>
-				<div>{errors.map((error, ind) => <div key={ind}>{error}</div>)}</div>
+                <ul>
+                    {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                </ul>
 				<h1 className="form-title">Sign Up</h1>
 
 				<label />
@@ -85,7 +91,6 @@ const SignupForm = ({ setSignupModal }) => {
 					name="repeat_password"
 					onChange={updateRepeatPassword}
 					value={repeatPassword}
-					required={true}
 					className="nav-bar-input"
 				/>
 				<button className="form-button" type="submit">
