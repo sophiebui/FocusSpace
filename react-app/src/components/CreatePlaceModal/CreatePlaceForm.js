@@ -18,10 +18,30 @@ function CreatePlaceForm({ setShowModal }) {
     const [errors, setErrors] = useState([]);
     const [success, setSuccess] = useState('');
     const statesArr = Object.keys(states)
+    const [imagesList, setImagesList] = useState([{ imageUrl: ''}]);
+
+    const addToImagesList = (e, index) => {
+      const { name, value } = e.target;
+      const newList = [...imagesList];
+      newList[index][name] = value;
+      setImagesList(newList);
+    };
+
+    const handleRemove = index => {
+      const newList = [...imagesList];
+      newList.splice(index, 1);
+      setImagesList(newList);
+    };
+
+    const handleAdd = () => {
+      setImagesList([...imagesList, { imageUrl: '' }]);
+    };
 
     const handleSubmit = async e => {
         e.preventDefault();
         setErrors([]);
+        const images = imagesList.map((image) =>  image.imageUrl)
+
         const newPlace = {
             user_id,
             name,
@@ -31,7 +51,8 @@ function CreatePlaceForm({ setShowModal }) {
             state,
             zip_code: zipCode,
             price,
-            guests: guests
+            guests: guests,
+            images
         }
 
         return dispatch(addPlace(newPlace))
@@ -143,19 +164,35 @@ function CreatePlaceForm({ setShowModal }) {
                     />
                     <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
                 </div>
-                <div className='image-upload-div'>
-                    <label htmlFor='images'>Upload Images: </label>
-                    <input
-                    type='file'
-                    accept='.png,.jpg,.jpeg,.gif'
-                    name='images'
-                    className='image-upload-input' />
-                </div>
+                {imagesList.map((el, index) => {
+                    return (
+                        <div className='image-upload-div'>
+                            <input
+                            name='imageUrl'
+                            type='url'
+                            className='image-upload-input'
+                            placeholder='Enter Image URL'
+                            value={el.imageUrl}
+                            onChange={e => addToImagesList(e, index)}
+                            required
+                            />
+                            <div className='image-upload-button-div'>
+                                {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
+                                {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
+                            </div>
+                        </div>
+                    );
+                })}
                 <div className='form-button-container'>
                     <button className='form-button'>Add Place</button>
                 </div>
             </form>
-        </div>
+
+    </div>
+
+
+
+
     )
 }
 
