@@ -45,7 +45,7 @@ function EditBookingForm({ booking }) {
 		<div className="edit-booking-form-container">
 			<form className="form" onSubmit={handleSubmit}>
 				<h2>{success}</h2>
-				<ul>{errors.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
+				<ul className='errors-list'>{errors.map((error, idx) => <li key={idx}>{error}</li>)}</ul>
 
 				<h1 className="edit-booking-header">Edit Booking</h1>
 				<div className="">

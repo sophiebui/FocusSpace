@@ -36,6 +36,27 @@
     padding-top: 1.5rem;
     transition: all 0.25s;
 }
+.regular-navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    color: black;
+    padding: 1em;
+    z-index: 9999;
+    margin: 0px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 0.1fr;
+    grid-template-areas: "logo explore profileButton";
+    align-items: center;
+    grid-auto-rows: 13px;
+    height: 2rem;
+    padding-top: 1.5rem;
+
+}
+
 .light-navbar a:visited {
     color: black;
 }
