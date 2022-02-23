@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { addPlace } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
 import { states } from '../../assets/stateAbbreviations'
-
+import { login } from '../../store/session';
+import LoginForm from '../LoginForm'
 import './CreatePlaceForm.css'
+
 function CreatePlaceForm({ setShowModal }) {
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.session.user.id);
+    const user = useSelector(state => state.session.user);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
@@ -19,6 +21,14 @@ function CreatePlaceForm({ setShowModal }) {
     const [success, setSuccess] = useState('');
     const statesArr = Object.keys(states)
     const [imagesList, setImagesList] = useState([{ imageUrl: ''}]);
+    const [ , setLoginModal ] = useState(false);
+	const [ , setSignupModal ] = useState(false);
+
+	const demoLogin = () => {
+		const email = 'demo@aa.io';
+		const password = 'password';
+		return dispatch(login(email, password));
+	};
 
     const addToImagesList = (e, index) => {
       const { name, value } = e.target;
@@ -44,7 +54,7 @@ function CreatePlaceForm({ setShowModal }) {
         imagesList.map((image) =>  imageArr.push(image.imageUrl))
 
         const newPlace = {
-            user_id,
+            user_id: user.id,
             name,
             description,
             address,
@@ -71,130 +81,135 @@ function CreatePlaceForm({ setShowModal }) {
             );
     };
 
-    return (
-        <div className='create-place-form-container'>
-            <form className='create-place-form' onSubmit={handleSubmit}>
-                <h2>
-                    {success}
-                </h2>
-                <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
+    if (user) {
+        return (
+            <div className='create-place-form-container'>
+                <form className='create-place-form' onSubmit={handleSubmit}>
+                    <h2>
+                        {success}
+                    </h2>
+                    <ul>
+                        {errors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
+                        ))}
+                    </ul>
 
-                <h1 className='add-place-header'>Add Place</h1>
-                <div className='input-container'>
-                    <input
-                        type='text'
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        required
-                        className='input add-place'
-                        id='name'
-                    />
-                    <label className={name && 'filled'} htmlFor='name'>Name</label>
-                </div>
-                <div className='input-container'>
-                    <input
-                        type='text'
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                        className='input add-place'
-                        id='description'
-                    />
-                    <label className={description && 'filled'} htmlFor='description'>Description</label>
-                </div>
-                <div className='input-container'>
-                    <input
-                        type='text'
-                        value={address}
-                        onChange={e => setAddress(e.target.value)}
-                        className='input add-place'
-                        id='address'
-                    />
-                    <label className={address && 'filled'} htmlFor='address'>Address</label>
-                </div>
-                <div className='input-container'>
-                    <input
-                        type='text'
-                        value={city}
-                        onChange={e => setCity(e.target.value)}
-                        className='input add-place'
-                        id='city'
-                    />
-                    <label className={city && 'filled'} htmlFor='city'>City</label>
-                </div>
-                <div className='select-wrap'>
-                    <label htmlFor='state'>State</label>
-                    <select
-                        name='state'
-                        value={state}
-                        onChange={e => setState(e.target.value)}
-                        id='state'>
-                            {statesArr.map((state) => <option value={state} key={state}>{state}</option>)}
-                    </select>
-                </div>
-                <div className='input-container'>
-                    <input
-                        type='text'
-                        value={zipCode}
-                        onChange={e => setZipCode(e.target.value)}
-                        className='input add-place'
-                        id='zipCode'
-                    />
-                    <label className={zipCode && 'filled'} htmlFor='zipCode'>Zip Code</label>
-                </div>
-                <div className='input-container'>
-                    <input
-                        type='text'
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}
-                        className='input add-place'
-                        id='price'
-                    />
-                    <label className={price && 'filled'} htmlFor='price'>Price</label>
-                </div>
-                <div className='input-container'>
-                    <input
-                        type='number'
-                        value={guests}
-                        onChange={e => setGuests(e.target.value)}
-                        className='input add-place'
-                        id='guests'
-                    />
-                    <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
-                </div>
-                {imagesList.map((el, index) => {
-                    return (
-                        <div className='image-upload-div'>
-                            <input
-                            name='imageUrl'
-                            type='url'
-                            className='image-upload-input'
-                            placeholder='Enter Image URL'
-                            value={el.imageUrl}
-                            onChange={e => addToImagesList(e, index)}
+                    <h1 className='add-place-header'>Add Place</h1>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            value={name}
+                            onChange={e => setName(e.target.value)}
                             required
-                            />
-                            <div className='image-upload-button-div'>
-                                {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
-                                {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
+                            className='input add-place'
+                            id='name'
+                        />
+                        <label className={name && 'filled'} htmlFor='name'>Name</label>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                            className='input add-place'
+                            id='description'
+                        />
+                        <label className={description && 'filled'} htmlFor='description'>Description</label>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            value={address}
+                            onChange={e => setAddress(e.target.value)}
+                            className='input add-place'
+                            id='address'
+                        />
+                        <label className={address && 'filled'} htmlFor='address'>Address</label>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            value={city}
+                            onChange={e => setCity(e.target.value)}
+                            className='input add-place'
+                            id='city'
+                        />
+                        <label className={city && 'filled'} htmlFor='city'>City</label>
+                    </div>
+                    <div className='select-wrap'>
+                        <label htmlFor='state'>State</label>
+                        <select
+                            name='state'
+                            value={state}
+                            onChange={e => setState(e.target.value)}
+                            id='state'>
+                                {statesArr.map((state) => <option value={state} key={state}>{state}</option>)}
+                        </select>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            value={zipCode}
+                            onChange={e => setZipCode(e.target.value)}
+                            className='input add-place'
+                            id='zipCode'
+                        />
+                        <label className={zipCode && 'filled'} htmlFor='zipCode'>Zip Code</label>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type='text'
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}
+                            className='input add-place'
+                            id='price'
+                        />
+                        <label className={price && 'filled'} htmlFor='price'>Price</label>
+                    </div>
+                    <div className='input-container'>
+                        <input
+                            type='number'
+                            value={guests}
+                            onChange={e => setGuests(e.target.value)}
+                            className='input add-place'
+                            id='guests'
+                        />
+                        <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
+                    </div>
+                    {imagesList.map((el, index) => {
+                        return (
+                            <div className='image-upload-div'>
+                                <input
+                                name='imageUrl'
+                                type='url'
+                                className='image-upload-input'
+                                placeholder='Enter Image URL'
+                                value={el.imageUrl}
+                                onChange={e => addToImagesList(e, index)}
+                                required
+                                />
+                                <div className='image-upload-button-div'>
+                                    {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
+                                    {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
-                <div className='form-button-container'>
-                    <button className='form-button'>Add Place</button>
-                </div>
-            </form>
+                        );
+                    })}
+                    <div className='form-button-container'>
+                        <button className='form-button'>Add Place</button>
+                    </div>
+                </form>
+        </div>
+        )
+    } else {
+        return (
+            <>
+            <p>Please log in to create a new listing</p>
+            <LoginForm setLoginModal={setLoginModal} demoLogin={demoLogin} />
 
-    </div>
-
-
-
-
-    )
+            </>
+        )
+    }
 }
 
 export default CreatePlaceForm;
