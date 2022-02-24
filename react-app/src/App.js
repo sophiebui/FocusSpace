@@ -36,9 +36,9 @@ function App() {
         <Route path='/places/search/:query' exact={true}>
             <SearchResults />
         </Route>
-        <ProtectedRoute path='/places/:placeId'  exact={true}>
+        <Route path='/places/:placeId'  exact={true}>
             <PlaceId />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/bookings/:userId'  exact={true}>
             <Bookings />
         </ProtectedRoute>

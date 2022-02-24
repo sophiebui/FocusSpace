@@ -10,12 +10,13 @@ import './PlaceId.css'
 const PlaceId = () => {
     const dispatch = useDispatch();
     const { placeId } = useParams()
-    const user = useSelector((state) => state.session.user.id);
+    const user = useSelector((state) => state.session?.user?.id);
     const place = useSelector(state => state.places[placeId])
 
     useLayoutEffect(() => {
             dispatch(getPlaces())
-		},[ dispatch])
+            dispatch(getOnePlace(placeId))
+		},[ dispatch, placeId])
 
     if (place) {
         const isOwner = user === place?.user_id;
@@ -41,17 +42,22 @@ const PlaceId = () => {
             <p className='place-description'>
                 {place.description}
             </p>
-            {isOwner && (
-                <>
-                <EditPlaceModal place={place} />
-                <DeletePlaceModal place={place} />
-                </>
-            )}
-            {!isOwner && (
-            <div>
-                <CreateBookingForm place={place}/>
-            </div>
-            )}
+
+            {(user && !isOwner) ?  (
+                <div>
+                    <CreateBookingForm place={place}/>
+                </div>
+                ) : (user && isOwner) ?(
+                <div>
+                    <EditPlaceModal place={place} id={placeId} />
+                    <DeletePlaceModal place={place} />
+                </div>
+                ) : (
+                <div>
+                    Pleace log in to book this place
+                </div>
+                )
+            }
         </div>
     )
 } else return "Error: this place does not exist"

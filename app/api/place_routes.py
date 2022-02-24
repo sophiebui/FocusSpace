@@ -129,6 +129,4 @@ def get_search_results(query):
         place_location_results = Place.query.filter(Place.state == data['location']).all()
         place_location_results  = [place.to_dict() for place in place_location_results ]
         print('-------------place results---------', place_location_results)
-
-
     return ''

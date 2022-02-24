@@ -8,7 +8,7 @@ import { useAlert } from 'react-alert'
 function CreateBookingForm({ place }) {
 	const dispatch = useDispatch();
     const alert = useAlert();
-	const user_id = useSelector((state) => state.session.user.id);
+	const user_id = useSelector((state) => state.session?.user?.id);
 	const [ date, setDate ] = useState('');
 	const [ time, setTime ] = useState('');
 	const [ duration, setDuration ] = useState('');
