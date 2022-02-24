@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import { addBooking } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
 import './CreateBookingForm.css';
+import { useAlert } from 'react-alert'
 
-function CreateBookingForm({ place, setShowModal }) {
+
+function CreateBookingForm({ place }) {
 	const dispatch = useDispatch();
+    const alert = useAlert();
 	const user_id = useSelector((state) => state.session.user.id);
 	const [ date, setDate ] = useState('');
 	const [ time, setTime ] = useState('');
 	const [ duration, setDuration ] = useState('');
 	const [ guests, setGuests ] = useState('');
 	const [ errors, setErrors ] = useState([]);
-	const [ success, setSuccess ] = useState('');
 
 
 	const handleSubmit = async (e) => {
@@ -32,10 +34,7 @@ function CreateBookingForm({ place, setShowModal }) {
                     setErrors(response.errors);
                     return;
                 }
-                setSuccess('Success!');
-                setTimeout(() => {
-                    setSuccess(false)
-                }, 1500);
+                alert.show(<div style={{ textTransform: 'initial' }}> New Booking Created </div>)
             });
 
         };
@@ -43,7 +42,6 @@ function CreateBookingForm({ place, setShowModal }) {
 	return (
 		<div className='create-booking-form-container'>
 			<form className='form' onSubmit={handleSubmit}>
-                {success ? <h2>{success}</h2> : null }
                 {errors.length > 0 ?
                 <ul className='errors-list'>
                     {errors.map((error, idx) => (

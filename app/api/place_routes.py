@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.forms import DeletePlaceForm, PlaceForm
+from app.forms.image_form import DeleteImageForm
 from app.models import Place, Image, db
 
 place_routes = Blueprint('places', __name__)
@@ -59,6 +60,7 @@ def get_one_place(id):
     Route for getting specic place based on specific id
     """
     place = Place.query.get(id)
+    data = request.get_json()
     if request.method == 'PUT':
         form = PlaceForm()
         form['csrf_token'].data = request.cookies['csrf_token']
@@ -82,6 +84,13 @@ def get_one_place(id):
             place.price=price
             place.guests=guests
             db.session.commit()
+
+            image_list = data['images']
+            print('--------imagelist=-----------', image_list)
+            for image in image_list:
+                new_image = Image(place_id=place.id, url = image)
+                db.session.add(new_image)
+                db.session.commit()
             return place.to_dict()
         elif form.errors:
             print("form.errors", form.errors)
@@ -118,4 +127,21 @@ def get_search_results(query):
         place_location_results  = [place.to_dict() for place in place_location_results ]
         print('-------------place results---------', place_location_results)
 
+
     return ''
+@place_routes.route('/image/<int:id>', methods=['DELETE'])
+def delete_image(id):
+    """
+    Route for getting a specifc place based on id then deletes it from the database.
+    Returns 200 status if the place was deleted & 404 if the place does not exist
+    """
+    form = DeleteImageForm()
+    print('---------------id--------------', id)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        image = Image.query.get(id)
+        print('------------image----------', image)
+        db.session.delete(image)
+        db.session.commit()
+        return image.to_dict(), 200
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

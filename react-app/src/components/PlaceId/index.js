@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOnePlace } from '../../store/places';
+import { getOnePlace, getPlaces } from '../../store/places';
 import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
@@ -14,8 +14,8 @@ const PlaceId = () => {
     const place = useSelector(state => state.places[placeId])
 
     useLayoutEffect(() => {
-			dispatch(getOnePlace(placeId));
-		},[ dispatch, placeId ])
+            dispatch(getPlaces())
+		},[ dispatch])
 
     if (place) {
         const isOwner = user === place?.user_id;

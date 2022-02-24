@@ -1,4 +1,3 @@
-from ast import Str
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, DecimalField, FileField
 from wtforms.validators import DataRequired, Length, EqualTo, NumberRange

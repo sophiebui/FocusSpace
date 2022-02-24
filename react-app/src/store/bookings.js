@@ -69,7 +69,6 @@ export const editBooking = booking => async (dispatch) => {
 
 
 export const removeBooking = (payload) => async (dispatch) => {
-    console.log('-----payload----', payload)
 	const response = await fetch(`/api/bookings/${payload.booking_id}`, {
         method: 'DELETE',
 		headers: { 'Content-Type': 'application/json' },
@@ -77,9 +76,7 @@ export const removeBooking = (payload) => async (dispatch) => {
 		body: JSON.stringify(payload)
 	});
 
-    console.log('-----response----', response)
 	const data = await response.json();
-    console.log('-----data----', data)
 	if (response.ok) {
 		dispatch(deleteBooking(data));
 		return null;

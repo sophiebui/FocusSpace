@@ -7,7 +7,7 @@ import bookingsReducer from './bookings';
 const rootReducer = combineReducers({
   session,
   places: placesReducer,
-  bookings: bookingsReducer
+  bookings: bookingsReducer,
 });
 
 

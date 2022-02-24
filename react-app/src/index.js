@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+import { transitions, types, zIndex, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 import './index.css';
 import App from './App';
@@ -10,14 +10,15 @@ import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
 
-// optional config for react-alert
+
+// config for react-alert
 const options = {
-    // you can also just use 'bottom center'
     position: 'top right',
-    timeout: 4000,
-    offset: '50px',
-    // you can also just use 'scale'
-    transition: transitions.SCALE
+    timeout: 2000,
+    offset: '80px',
+    type: types.SUCCESS,
+    transition: transitions.FADE,
+    containerStyle: {zIndex: 99999}
   }
 
 ReactDOM.render(

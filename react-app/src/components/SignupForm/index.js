@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { useAlert } from 'react-alert'
 
 const SignupForm = ({ setSignupModal }) => {
 	const [ errors, setErrors ] = useState([]);
@@ -11,6 +12,7 @@ const SignupForm = ({ setSignupModal }) => {
 	const [ repeatPassword, setRepeatPassword ] = useState('');
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+    const alert = useAlert()
 
 	  const onSignUp = async (e) => {
 	    e.preventDefault();
@@ -21,6 +23,7 @@ const SignupForm = ({ setSignupModal }) => {
                     setErrors(response.errors)
                     return
                 }
+                alert.show(<div style={{ textTransform: 'initial' }}>You are officially signed up!</div>)
                 setSignupModal(false);
             }
         );

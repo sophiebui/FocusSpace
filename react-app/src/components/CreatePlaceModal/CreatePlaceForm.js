@@ -3,11 +3,13 @@ import { addPlace } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
 import { states } from '../../assets/stateAbbreviations'
 import { login } from '../../store/session';
+import { useAlert } from 'react-alert'
 import LoginForm from '../LoginForm'
 import './CreatePlaceForm.css'
 
 function CreatePlaceForm({ setShowModal }) {
     const dispatch = useDispatch();
+    const alert = useAlert();
     const user = useSelector(state => state.session.user);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -18,15 +20,19 @@ function CreatePlaceForm({ setShowModal }) {
     const [price, setPrice] = useState('');
     const [guests, setGuests] = useState('');
     const [errors, setErrors] = useState([]);
-    const [success, setSuccess] = useState('');
     const statesArr = Object.keys(states)
     const [imagesList, setImagesList] = useState([{ imageUrl: ''}]);
     const [ , setLoginModal ] = useState(false);
 
-	const demoLogin = () => {
+    const demoLogin = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
 		const email = 'demo@aa.io';
 		const password = 'password';
-		return dispatch(login(email, password));
+		return dispatch(login(email, password)).then( () =>{
+            alert.show(<div style={{ textTransform: 'initial' }}>Login Successful</div>)
+            setLoginModal(false)
+        })
 	};
 
     const addToImagesList = (e, index) => {
@@ -49,6 +55,7 @@ function CreatePlaceForm({ setShowModal }) {
     const handleSubmit = async e => {
         e.preventDefault();
         setErrors([]);
+
         let imageArr = []
         imagesList.map((image) =>  imageArr.push(image.imageUrl))
 
@@ -64,7 +71,7 @@ function CreatePlaceForm({ setShowModal }) {
             guests: guests,
             images: imageArr
         }
-
+        
         return dispatch(addPlace(newPlace))
         .then(
             (response) => {
@@ -72,10 +79,9 @@ function CreatePlaceForm({ setShowModal }) {
                     setErrors(response.errors)
                     return
                 }
-                setSuccess('Success!');
-                setTimeout(() => {
-                    setShowModal(false);
-                }, 1500);
+                alert.show(<div style={{ textTransform: 'initial' }}> New Booking Created </div>)
+                 setShowModal(false);
+
             }
             );
         };
@@ -84,7 +90,6 @@ function CreatePlaceForm({ setShowModal }) {
             return (
                 <div className='create-place-form-container'>
                 <form className='create-place-form' onSubmit={handleSubmit}>
-                    {success ? <h2>{success}</h2> : null }
                     {errors.length > 0 ?
                     <ul className='errors-list'>
                         {errors.map((error, idx) => (

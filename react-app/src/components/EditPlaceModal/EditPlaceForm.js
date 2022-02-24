@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { editPlace } from '../../store/places';
+import { editPlace, getPlaces, removeImage } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
 import { states } from '../../assets/stateAbbreviations'
+import { useAlert } from 'react-alert'
 import './EditPlaceForm.css'
 
 function EditPlaceForm({ place, setShowModal }) {
     const dispatch = useDispatch();
+    const alert = useAlert();
     const user_id = useSelector(state => state.session.user.id);
     const [name, setName] = useState(place.name);
     const [description, setDescription] = useState(place.description);
@@ -16,12 +18,42 @@ function EditPlaceForm({ place, setShowModal }) {
     const [price, setPrice] = useState(place.price);
     const [guests, setGuests] = useState(place.guests);
     const [errors, setErrors] = useState([]);
-    const [success, setSuccess] = useState("");
     const statesArr = Object.keys(states)
+    const [imagesList, setImagesList] = useState(place.images);
+
+    const addToImagesList = (e, index) => {
+        const { name, value } = e.target;
+        const newList = [...imagesList];
+        newList[index][name] = value;
+        setImagesList(newList);
+    };
+
+    const handleRemove = index => {
+        const newList = [...imagesList];
+        let image = newList.splice(index, 1);
+        setImagesList(newList);
+
+        const imagePayload = {
+            id: image[0].id,
+            place_id: place.id,
+            url: image[0].url,
+        }
+        dispatch(removeImage(imagePayload))
+        dispatch(getPlaces())
+    };
+
+    const handleAdd = () => {
+        setImagesList([...imagesList, { url: '' }]);
+    };
 
     const handleSubmit = async e => {
         e.preventDefault();
         setErrors([]);
+
+
+        let imageArr = []
+        imagesList.map((image) =>  imageArr.push(image.url))
+
         const newPlace = {
             id: place.id,
             user_id,
@@ -32,20 +64,19 @@ function EditPlaceForm({ place, setShowModal }) {
             state,
             zip_code: zipCode,
             price,
-            guests: guests
+            guests: guests,
+            images: imageArr
         }
 
-        return dispatch(editPlace(newPlace))
+        return dispatch(editPlace(newPlace)), dispatch(getPlaces())
             .then(
                 (response) => {
                     if (response.errors) {
                         setErrors(response.errors)
                         return
                     }
-                    setSuccess("Success!");
-                    setTimeout(() => {
-                        setShowModal(false);
-                    }, 800);
+                    alert.show(<div style={{ textTransform: 'initial' }}> Changes Complete </div>)
+                    setShowModal(false);
                 }
             );
     };
@@ -60,12 +91,6 @@ function EditPlaceForm({ place, setShowModal }) {
                         ))}
                 </ul>
                 : null}
-                {success?
-                    <h2 className='edit-success-message'>
-                        {success}
-                    </h2>
-                    : null
-                }
                 <h1 className='add-place-header'>Edit Place</h1>
                 <div className='input-container'>
                     <input
@@ -148,6 +173,25 @@ function EditPlaceForm({ place, setShowModal }) {
                     />
                     <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
                 </div>
+                {imagesList.map((el, index) => {
+                        return (
+                            <div className='image-upload-div'>
+                                <input
+                                name='url'
+                                type='url'
+                                className='image-upload-input'
+                                placeholder='Enter Image URL'
+                                value={el.url}
+                                onChange={e => addToImagesList(e, index)}
+                                required
+                                />
+                                <div className='image-upload-button-div'>
+                                    {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
+                                    {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
+                                </div>
+                            </div>
+                        );
+                    })}
                 <div className='form-button-container'>
                     <button className='form-button'>Add Place</button>
                 </div>
