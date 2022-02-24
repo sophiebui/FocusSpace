@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { editBooking } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
-import './EditBookingForm.css';
+import '../Bookings/Bookings.css';
 import dateFormat from 'dateformat';
 import DeleteBookingModal from '../DeleteBookingModal';
 
@@ -42,7 +42,7 @@ function EditBookingForm({ booking }) {
 
 	return (
 		<div className="edit-booking-form-container">
-			<form className="form" onSubmit={handleSubmit}>
+			<form className="form edit-booking-form" onSubmit={handleSubmit}>
                 {success ? <h2>{success}</h2> : null }
                 {errors.length > 0 ?
                 <ul className='errors-list'>

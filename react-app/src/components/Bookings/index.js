@@ -21,6 +21,7 @@ const Bookings = () => {
         if (bookings.length > 0) {
             return (
                 <div className='page-container'>
+                    <div className='bookings'>
                     {bookings?.map((booking) => (
                         <div key={booking.id} className='bookings-container'>
                             <div key={booking.place.images.id}  className='booking-image-container'>
@@ -39,10 +40,10 @@ const Bookings = () => {
                                     Address: {booking.place.address}
                                 </div>
                                 <div key={booking.date}>
-                                    Date: {booking.date}
+                                    Date: {booking.date.slice(0, 16)}
                                 </div>
                                 <div key={booking.time}>
-                                Time:  {booking.time}
+                                Time:  {booking.time.slice(0, 5)}
                                 </div>
                                 <div key={booking.duration}>
                                 Duration: {booking.duration}
@@ -56,6 +57,7 @@ const Bookings = () => {
                                 </div>
                         </div>
                     ))}
+                </div>
                 </div>
             )
     } else {

@@ -1,25 +1,36 @@
-.booking-image-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.booking-image {
-    width: 18rem;
-    height: 12rem;
-}
-
-.places-images {
-    width:100%;
-    height:100%;
-    border-radius: 1rem;
-    object-fit: cover;
-
+.bookings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    justify-content: center;
+    gap: 4rem;
+    margin: 1rem 5vw;
+    padding: 0;
+    list-style-type: none;
 }
 
 .bookings-container {
     display: flex;
+    flex-direction: column;
     margin: 2rem;
-        align-items: center;
+    align-items: center;
+    border-radius: 12px;
+    background-color: rgb(236, 234, 234);
+}
+.booking-image-container {
+    position: relative;
+    display: block;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.booking-image {
+    /* width: 18rem;
+    height: 12rem; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .bookings-detail {
@@ -31,4 +42,24 @@
 
 .bookings-page-error {
     margin-top: 7rem;
+}
+
+.edit-booking-form-container{
+    width: 223%;
+    margin: -10px 6px 14px -77px;
+}
+.edit-booking-header {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 10px 0px 0px -16px;
+
+
+}
+
+.bookings-detail > div {
+   margin: 4px 0px 4px 0px;
+}
+
+.edit-booking-form > div {
+    margin-top: 7px;
 }
