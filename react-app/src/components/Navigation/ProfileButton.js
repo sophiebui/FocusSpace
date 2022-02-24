@@ -24,7 +24,7 @@ const ProfileButton = ({ setProfileButton, setSignupModal, setLoginModal }) => {
                     }}>
                     <ul className='profile-dropdown'>
                         <li>
-                            <NavLink to={`/bookings/${userId}`} className='profile-dropdown-link'>View Upcoming Bookings</NavLink>
+                            <NavLink to={`/bookings/${userId}`} className='profile-dropdown-link'><span className='profile-dropdown-span'>View Upcoming Bookings</span></NavLink>
                         </li>
                         <li>
                             <button onClick={logout} className='logout-button'>
