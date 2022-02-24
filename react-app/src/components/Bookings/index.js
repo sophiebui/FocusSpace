@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../../store/bookings';
 import { useParams } from 'react-router-dom';
@@ -12,9 +12,8 @@ const Bookings = () => {
     const currUser = useSelector((state) => state.session.user.id);
     const isOwner = +userId === currUser;
 
-	useEffect(() => {
+	useLayoutEffect(() => {
         dispatch(getBookings(userId));
-
     },[ dispatch, userId])
 
     if (isOwner) {

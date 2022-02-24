@@ -15,7 +15,8 @@ const PlaceId = () => {
 
     useLayoutEffect(() => {
             dispatch(getPlaces())
-		},[ dispatch])
+            dispatch(getOnePlace(placeId))
+		},[ dispatch, placeId])
 
     if (place) {
         const isOwner = user === place?.user_id;
@@ -48,7 +49,7 @@ const PlaceId = () => {
                 </div>
                 ) : (user && isOwner) ?(
                 <div>
-                    <EditPlaceModal place={place} />
+                    <EditPlaceModal place={place} id={placeId} />
                     <DeletePlaceModal place={place} />
                 </div>
                 ) : (

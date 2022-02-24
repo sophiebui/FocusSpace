@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { editPlace, getPlaces } from '../../store/places';
+import { useState, useParams } from 'react';
+import { editPlace, getPlaces, getOnePlace } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
 import { states } from '../../assets/stateAbbreviations'
 import { useAlert } from 'react-alert'
 import './EditPlaceForm.css'
 
-function EditPlaceForm({ place, setShowModal }) {
+
+function EditPlaceForm({ place, id, setShowModal }) {
     const dispatch = useDispatch();
     const alert = useAlert();
     const user_id = useSelector(state => state.session.user.id);
@@ -20,7 +21,7 @@ function EditPlaceForm({ place, setShowModal }) {
     const [errors, setErrors] = useState([]);
     const statesArr = Object.keys(states)
     const [imagesList, setImagesList] = useState(place.images);
-
+ 
     const addToImagesList = (e, index) => {
         const { name, value } = e.target;
         const newList = [...imagesList];
@@ -60,13 +61,15 @@ function EditPlaceForm({ place, setShowModal }) {
             images: imageArr
         }
 
-        return dispatch(editPlace(newPlace)), dispatch(getPlaces())
+        return dispatch(editPlace(newPlace))
             .then(
                 (response) => {
                     if (response.errors) {
                         setErrors(response.errors)
                         return
                     }
+                    dispatch(getPlaces())
+                    dispatch(getOnePlace(id))
                     alert.show(<div style={{ textTransform: 'initial' }}> Changes Complete </div>)
                     setShowModal(false);
                 }

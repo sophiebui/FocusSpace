@@ -2,7 +2,6 @@ const LOAD_PLACES = 'LOAD_PLACES';
 const ADD_PLACE = 'ADD_PLACE';
 const DELETE_PLACE = 'DELETE_PLACE';
 const LOAD_SEARCH = "LOAD_SEARCH";
-const DELETE_IMAGE = 'DELETE_IMAGE'
 
 // ACTIONS
 const loadPlaces = (places) => {
@@ -32,14 +31,6 @@ const loadSearch = (results) => {
         results
     };
 };
-
-const deleteImage = (image) => {
-	return {
-		type: DELETE_IMAGE,
-		image
-	};
-};
-
 
 // SELECTORS/THUNKS
 export const getPlaces = () => async (dispatch) => {
@@ -123,23 +114,6 @@ export const getSearchResults = (query) => async (dispatch) => {
     }
     return results
 }
-
-
-// export const removeImage = (image) => async (dispatch) => {
-// 	const response = await fetch(`/api/places/image/${image.id}`, {
-// 		method: 'DELETE',
-// 		headers: { 'Content-Type': 'application/json' },
-// 		Accept: 'application/json',
-// 		body: JSON.stringify(image)
-// 	});
-
-// 	const data = await response.json();
-// 	if (response.ok) {
-// 		return null;
-// 	} else {
-// 		return response;
-// 	}
-// };
 
 // REDUCER
 const placesReducer = (state = {}, action) => {
