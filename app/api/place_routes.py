@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from app.forms import DeletePlaceForm, PlaceForm
-from app.forms.image_form import DeleteImageForm
-from app.models import Place, Image, db
+from app.models import Place, Image, db, Booking
 
 place_routes = Blueprint('places', __name__)
 
@@ -116,17 +115,3 @@ def delete_place(id):
         db.session.commit()
         return place.to_dict(), 200
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-
-@place_routes.route('/search/<string:query>', methods=['POST'])
-def get_search_results(query):
-    """
-    Route for displaying all places
-    """
-    if request.method == 'POST':
-        data = request.get_json()
-        print('---------data----------', data)
-        place_location_results = Place.query.filter(Place.state == data['location']).all()
-        place_location_results  = [place.to_dict() for place in place_location_results ]
-        print('-------------place results---------', place_location_results)
-    return ''

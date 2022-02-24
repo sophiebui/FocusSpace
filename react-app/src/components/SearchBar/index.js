@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlaces, getSearchResults } from '../../store/places'
 import searchIcon from '../../assets/search.svg';
+import { useAlert } from 'react-alert'
 import './SearchBar.css';
+
 
 function SearchBar() {
 	const dispatch = useDispatch();
+    const alert = useAlert();
     const places = useSelector(state => Object.values(state.places))
 	const [ states, setStates ] = useState('AZ');
 	const [ date, setDate ] = useState('');
 	const [ time, setTime ] = useState('');
 	const [ guests, setGuests ] = useState('');
 	const [ errors, setErrors ] = useState([]);
-	const [ success, setSuccess ] = useState('');
+    const history = useHistory();
 
 	useEffect(() => {
         dispatch(getPlaces());
@@ -40,16 +44,16 @@ function SearchBar() {
 				setErrors(response.errors);
 				return;
 			}
-			setSuccess('Success!');
-			setTimeout(() => {
-				setSuccess(false);
-			}, 1500);
+            alert.show(<div style={{ textTransform: 'initial' }}>Search Successful</div>)
+            const queryString = Object.keys(query)
+                .map(key => `${key}=${query[key]}`)
+                .join('&');
+            history.push(`/search?${queryString}`)
 		});
 	};
 
 	return (
 		<form className="search-form" onSubmit={handleSubmit}>
-            {success ? <h2>{success}</h2> : null }
             {errors.length > 0 ?
                 <ul className='errors-list'>
                     {errors.map((error, idx) => (

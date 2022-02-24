@@ -102,12 +102,18 @@ export const removePlace = (payload) => async (dispatch) => {
 };
 
 export const getSearchResults = (query) => async (dispatch) => {
-    const response = await fetch(`/api/places/search/${query}`, {
+    const queryString = Object.keys(query)
+        .map(key => `${key}=${query[key]}`)
+        .join('&');
+
+    const response = await fetch(`/api/search/${queryString}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(query)
     });
+
     const results = await response.json();
+    console.log('this is results',results)
 
     if (response.ok) {
         dispatch(loadSearch(results))
@@ -134,6 +140,13 @@ const placesReducer = (state = {}, action) => {
 		case DELETE_PLACE: {
 			const newState = Object.assign({}, state);
 			delete newState[action.place.id];
+			return newState;
+		}
+        case LOAD_SEARCH: {
+			const newState = {};
+			action.results.places.forEach((place) => {
+				newState[place.id] = place;
+			});
 			return newState;
 		}
 		default:
