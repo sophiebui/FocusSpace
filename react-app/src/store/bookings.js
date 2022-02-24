@@ -55,12 +55,15 @@ export const addBooking = (newBooking) => async (dispatch) => {
 };
 
 export const editBooking = booking => async (dispatch) => {
+    console.log('this is booking store', booking)
     const response = await fetch(`/api/bookings/${booking.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(booking)
     })
+    console.log(response)
     const data = await response.json();
+    console.log('this is booking data', data)
     if (response.ok) {
         dispatch(addOneBooking(data));
     }

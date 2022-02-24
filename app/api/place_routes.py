@@ -86,9 +86,12 @@ def get_one_place(id):
             db.session.commit()
 
             image_list = data['images']
-            print('--------imagelist=-----------', image_list)
+            place_images = Image.query.filter(Image.place_id == place.id).all()
+            for place in place_images:
+                db.session.delete(place)
+                db.session.commit()
             for image in image_list:
-                new_image = Image(place_id=place.id, url = image)
+                new_image = Image(place_id=id, url = image)
                 db.session.add(new_image)
                 db.session.commit()
             return place.to_dict()
@@ -129,19 +132,3 @@ def get_search_results(query):
 
 
     return ''
-@place_routes.route('/image/<int:id>', methods=['DELETE'])
-def delete_image(id):
-    """
-    Route for getting a specifc place based on id then deletes it from the database.
-    Returns 200 status if the place was deleted & 404 if the place does not exist
-    """
-    form = DeleteImageForm()
-    print('---------------id--------------', id)
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        image = Image.query.get(id)
-        print('------------image----------', image)
-        db.session.delete(image)
-        db.session.commit()
-        return image.to_dict(), 200
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

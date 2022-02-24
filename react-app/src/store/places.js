@@ -125,21 +125,21 @@ export const getSearchResults = (query) => async (dispatch) => {
 }
 
 
-export const removeImage = (image) => async (dispatch) => {
-	const response = await fetch(`/api/places/image/${image.id}`, {
-		method: 'DELETE',
-		headers: { 'Content-Type': 'application/json' },
-		Accept: 'application/json',
-		body: JSON.stringify(image)
-	});
+// export const removeImage = (image) => async (dispatch) => {
+// 	const response = await fetch(`/api/places/image/${image.id}`, {
+// 		method: 'DELETE',
+// 		headers: { 'Content-Type': 'application/json' },
+// 		Accept: 'application/json',
+// 		body: JSON.stringify(image)
+// 	});
 
-	const data = await response.json();
-	if (response.ok) {
-		return null;
-	} else {
-		return response;
-	}
-};
+// 	const data = await response.json();
+// 	if (response.ok) {
+// 		return null;
+// 	} else {
+// 		return response;
+// 	}
+// };
 
 // REDUCER
 const placesReducer = (state = {}, action) => {
@@ -162,7 +162,6 @@ const placesReducer = (state = {}, action) => {
 			delete newState[action.place.id];
 			return newState;
 		}
-
 		default:
 			return state;
 	}

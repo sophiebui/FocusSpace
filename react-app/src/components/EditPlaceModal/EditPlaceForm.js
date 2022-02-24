@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { editPlace, getPlaces, removeImage } from '../../store/places';
+import { editPlace, getPlaces } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
 import { states } from '../../assets/stateAbbreviations'
 import { useAlert } from 'react-alert'
@@ -30,16 +30,8 @@ function EditPlaceForm({ place, setShowModal }) {
 
     const handleRemove = index => {
         const newList = [...imagesList];
-        let image = newList.splice(index, 1);
+        newList.splice(index, 1);
         setImagesList(newList);
-
-        const imagePayload = {
-            id: image[0].id,
-            place_id: place.id,
-            url: image[0].url,
-        }
-        dispatch(removeImage(imagePayload))
-        dispatch(getPlaces())
     };
 
     const handleAdd = () => {
@@ -193,7 +185,7 @@ function EditPlaceForm({ place, setShowModal }) {
                         );
                     })}
                 <div className='form-button-container'>
-                    <button className='form-button'>Add Place</button>
+                    <button className='form-button'>Edit Place</button>
                 </div>
             </form>
         </div>
