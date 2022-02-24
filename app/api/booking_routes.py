@@ -59,6 +59,7 @@ def new_booking(id):
             guests = form.data['guests']
             booking.user_id = user_id
             booking.place_id=place_id
+            booking.date =date
             booking.time=time
             booking.duration=duration
             booking.guests=guests

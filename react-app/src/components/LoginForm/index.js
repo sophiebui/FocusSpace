@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { useAlert } from 'react-alert'
 
 const LoginForm = ({ setLoginModal }) => {
 	const [ errors, setErrors ] = useState([]);
@@ -9,6 +10,7 @@ const LoginForm = ({ setLoginModal }) => {
 	const [ password, setPassword ] = useState('');
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+    const alert = useAlert();
 
     const demoLogin = (e) => {
         e.preventDefault()
@@ -16,6 +18,7 @@ const LoginForm = ({ setLoginModal }) => {
 		const email = 'demo@aa.io';
 		const password = 'password';
 		return dispatch(login(email, password)).then( () =>{
+            alert.show(<div style={{ textTransform: 'initial' }}>Login Successful</div>)
             setLoginModal(false)
         })
 	};
@@ -25,11 +28,12 @@ const LoginForm = ({ setLoginModal }) => {
 		setErrors([]);
 		return dispatch(login(email, password)).then(
             (response) => {
-                console.log(response)
                 if (response?.errors) {
                     setErrors(response.errors)
                     return
                 }
+
+                alert.show(<div style={{ textTransform: 'initial' }}>Login Successful</div>)
                 setLoginModal(false);
             }
         );

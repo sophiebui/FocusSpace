@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { editBooking } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
-import './EditBookingForm.css';
+import { useAlert } from 'react-alert'
+import '../Bookings/Bookings.css';
 import dateFormat from 'dateformat';
 import DeleteBookingModal from '../DeleteBookingModal';
 
 function EditBookingForm({ booking }) {
 	const dispatch = useDispatch();
+    const alert = useAlert();
 	const userId = useSelector((state) => state.session.user.id);
 	const [ date, setDate ] = useState(dateFormat(booking.date, 'yyyy-mm-dd'));
 	const [ time, setTime ] = useState(booking.time);
 	const [ duration, setDuration ] = useState(booking.duration);
 	const [ guests, setGuests ] = useState(booking.guests);
 	const [ errors, setErrors ] = useState([]);
-	const [ success, setSuccess ] = useState('');
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -27,24 +29,23 @@ function EditBookingForm({ booking }) {
 			duration,
 			guests
 		};
-		console.log('---new booking', newBooking);
+        console.log(newBooking)
 
-		return dispatch(editBooking(newBooking)).then((response) => {
-			if (response.errors) {
-				setErrors(response.errors);
-				return;
-			}
-			setSuccess('Success!');
-			setTimeout(() => {
-				setSuccess(false);
-			}, 800);
-		});
-	};
+		return dispatch(editBooking(newBooking))
+        .then(
+            (response) => {
+                if (response.errors) {
+                    setErrors(response.errors)
+                    return
+                }
+                alert.show(<div style={{ textTransform: 'initial' }}> Changes Complete </div>)
+            }
+        );
+    };
 
 	return (
 		<div className="edit-booking-form-container">
-			<form className="form" onSubmit={handleSubmit}>
-                {success ? <h2>{success}</h2> : null }
+			<form className="form edit-booking-form" onSubmit={handleSubmit}>
                 {errors.length > 0 ?
                 <ul className='errors-list'>
                     {errors.map((error, idx) => (

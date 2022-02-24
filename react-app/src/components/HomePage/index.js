@@ -3,6 +3,7 @@ import banner from '../../assets/banner.jpg'
 import SearchBar from '../SearchBar';
 import './HomePage.css'
 
+
 const HomePage = () => {
     const [scrolling, setScrolling] = useState(false);
     const [scrollTop, setScrollTop] = useState(0);

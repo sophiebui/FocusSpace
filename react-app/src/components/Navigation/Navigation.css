@@ -6,7 +6,7 @@
     background-color: black;
     color: white;
     padding: 1em;
-    z-index: 9999;
+    z-index: 900;
     margin: 10px 0px 0px 0px;
     list-style: none;
     display: grid;
@@ -23,8 +23,7 @@ nav > ul {
 nav > ul > div {
     position: absolute;
     top: 3rem;
-    right: -6rem;
-    z-index: 9999;
+    right: -3rem;
 }
 .light-navbar {
     position: fixed;
@@ -34,7 +33,7 @@ nav > ul > div {
     background-color: white;
     color: black;
     padding: 1em;
-    z-index: 9999;
+    z-index: 900;
     margin: 0px;
     list-style: none;
     display: grid;
@@ -54,7 +53,7 @@ nav > ul > div {
     background-color: white;
     color: black;
     padding: 1em;
-    z-index: 9999;
+    z-index: 900;
     margin: 0px;
     list-style: none;
     display: grid;

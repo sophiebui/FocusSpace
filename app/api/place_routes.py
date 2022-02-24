@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.forms import DeletePlaceForm, PlaceForm
+from app.forms.image_form import DeleteImageForm
 from app.models import Place, Image, db
 
 place_routes = Blueprint('places', __name__)
@@ -59,6 +60,7 @@ def get_one_place(id):
     Route for getting specic place based on specific id
     """
     place = Place.query.get(id)
+    data = request.get_json()
     if request.method == 'PUT':
         form = PlaceForm()
         form['csrf_token'].data = request.cookies['csrf_token']
@@ -82,6 +84,16 @@ def get_one_place(id):
             place.price=price
             place.guests=guests
             db.session.commit()
+
+            image_list = data['images']
+            place_images = Image.query.filter(Image.place_id == place.id).all()
+            for place in place_images:
+                db.session.delete(place)
+                db.session.commit()
+            for image in image_list:
+                new_image = Image(place_id=id, url = image)
+                db.session.add(new_image)
+                db.session.commit()
             return place.to_dict()
         elif form.errors:
             print("form.errors", form.errors)
@@ -117,5 +129,6 @@ def get_search_results(query):
         place_location_results = Place.query.filter(Place.state == data['location']).all()
         place_location_results  = [place.to_dict() for place in place_location_results ]
         print('-------------place results---------', place_location_results)
+
 
     return ''
