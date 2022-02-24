@@ -19,7 +19,7 @@
 .bookings-container {
     display: flex;
     margin: 2rem;
-    align-items: center;
+        align-items: center;
 }
 
 .bookings-detail {
@@ -27,4 +27,8 @@
     flex-direction: column;
     justify-content: center;
     margin: 17px;
+}
+
+.bookings-page-error {
+    margin-top: 7rem;
 }
