@@ -17,14 +17,6 @@
     transition: all 0.25s;
 
 }
-nav > ul {
-    position: relative;
-}
-nav > ul > div {
-    position: absolute;
-    top: 3rem;
-    right: -3rem;
-}
 .light-navbar {
     position: fixed;
     width: 100%;
@@ -75,13 +67,6 @@ nav > ul > div {
     color: white;
 }
 
-.profile-dropdown-link{
-    text-decoration: none;
-}
-
-.profile-dropdown a:visited {
-    color: black;
-}
 
 
 .light-logo {
@@ -119,13 +104,6 @@ nav > ul > div {
     border: solid rgb(218, 215, 215) .005px;
 }
 
-.nav-button {
-    border:none;
-    width: 7rem;
-    height: 2rem;
-    border-radius: 2px;
-    margin-right: 12px;
-}
 .form-container {
     padding: 25px;
 }
@@ -174,21 +152,78 @@ nav > ul > div {
     height: 1.75rem;
 }
 
+nav > ul {
+    position: relative;
+}
+nav > ul > div {
+    position: absolute;
+    top: 3rem;
+    right: 2.5rem;
+    width: 11rem;
+}
 .profile-dropdown {
     border-radius: 5px;
     left: 107rem;
     background-color: rgb(253, 253, 253);
     list-style: none;
-    max-width: 48%;
     top: 3rem;
+    height: 7rem;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav-button {
+    border: none;
+    height: 3rem;
+    background-color: white;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    transition: all 300ms ease-out 100ms
+}
+
+.nav-button:hover {
+    background-color: #8f8c8c;
+    color: white;
+}
+
+.profile-dropdown-link  {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin: 0px 0px 0px -17px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    transition: all 300ms ease-out 100ms;
 }
 
 .logout-button {
     border: none;
-	width: 5rem;
+    height: 2rem;
+    background-color: white;
+    margin: 0px 0px 0px -17px;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    align-items: center;
+    transition: all 300ms ease-out 100ms
+}
+
+.profile-dropdown-link:hover {
+    background-color: #8f8c8c;
+    color: white !important;
+}
+
+.profile-dropdown a:visited {
+    color: black;
+}
+
+.logout-button:hover {
+    background-color: #8f8c8c;
     color: white;
-	height: 2rem;
-	background-color: #ff5a5f;
-	border-radius: 4px;
 }
