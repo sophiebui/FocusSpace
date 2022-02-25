@@ -1,6 +1,6 @@
 # FocusSpace
 
-<a href="">Live Site</a>  |  <a href="https://github.com/sophiebui/FocusSpace/wiki"> Project Wiki</a> | <a href="https://github.com/sophiebui/FocusSpace/issue">Report Bug</a>
+<a href="https://focusspace.herokuapp.com/">Live Site</a>  |  <a href="https://github.com/sophiebui/FocusSpace/wiki"> Project Wiki</a> | <a href="https://github.com/sophiebui/FocusSpace/issue">Report Bug</a>
 
 FocusSpace is a website where users can create, search, and book different focus spaces (i.e. conference room). This website was designed as a capstone project as part of App Academy's 24-week Full Stack Software Engineering Bootcamp.
 
