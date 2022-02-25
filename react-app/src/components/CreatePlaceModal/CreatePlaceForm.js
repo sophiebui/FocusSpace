@@ -71,7 +71,7 @@ function CreatePlaceForm({ setShowModal }) {
             guests: guests,
             images: imageArr
         }
-
+        console.log(newPlace)
         return dispatch(addPlace(newPlace))
         .then(
             (response) => {
@@ -151,7 +151,7 @@ function CreatePlaceForm({ setShowModal }) {
                     </div>
                     <div className='input-container'>
                         <input
-                            type='text'
+                            type='string'
                             value={zipCode}
                             onChange={e => setZipCode(e.target.value)}
                             className='input add-place'
@@ -161,13 +161,13 @@ function CreatePlaceForm({ setShowModal }) {
                     </div>
                     <div className='input-container'>
                         <input
-                            type='text'
+                            type='number'
                             value={price}
                             onChange={e => setPrice(e.target.value)}
                             className='input add-place'
                             id='price'
                         />
-                        <label className={price && 'filled'} htmlFor='price'>Price</label>
+                        <label className={price && 'filled'} htmlFor='price'>Price (per hour)</label>
                     </div>
                     <div className='input-container'>
                         <input
