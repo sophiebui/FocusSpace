@@ -113,7 +113,6 @@ export const getSearchResults = (query) => async (dispatch) => {
     });
 
     const results = await response.json();
-    console.log('this is results',results)
 
     if (response.ok) {
         dispatch(loadSearch(results))
@@ -126,7 +125,6 @@ const placesReducer = (state = {}, action) => {
 	switch (action.type) {
 		case LOAD_PLACES: {
 			const newState = {};
-            console.log(newState)
 			action.places.forEach((place) => {
 				newState[place.id] = place;
 			});

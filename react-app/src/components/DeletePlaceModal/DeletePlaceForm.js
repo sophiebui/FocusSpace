@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { removePlace } from "../../store/places";
 import { useHistory } from 'react-router-dom';
-import {useStateIfMounted} from 'use-state-if-mounted'
-
-
 
 function DeletePlaceForm({place, setShowModal}) {
     const dispatch = useDispatch();

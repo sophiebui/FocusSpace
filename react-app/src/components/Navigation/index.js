@@ -1,8 +1,6 @@
 import { useState, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
-import { login } from '../../store/session';
 import logo from '../../assets/logo-no-bkgd.PNG';
 import bars from '../../assets/bars-solid.svg';
 import userLogo from '../../assets/user.svg';

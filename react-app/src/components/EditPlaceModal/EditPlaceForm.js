@@ -1,4 +1,4 @@
-import { useState, useParams } from 'react';
+import { useState } from 'react';
 import { editPlace, getPlaces, getOnePlace } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
 import { states } from '../../assets/stateAbbreviations'
@@ -21,7 +21,7 @@ function EditPlaceForm({ place, id, setShowModal }) {
     const [errors, setErrors] = useState([]);
     const statesArr = Object.keys(states)
     const [imagesList, setImagesList] = useState(place.images);
- 
+
     const addToImagesList = (e, index) => {
         const { name, value } = e.target;
         const newList = [...imagesList];

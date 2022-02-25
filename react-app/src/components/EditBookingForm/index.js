@@ -29,7 +29,6 @@ function EditBookingForm({ booking }) {
 			duration,
 			guests
 		};
-        console.log(newBooking)
 
 		return dispatch(editBooking(newBooking))
         .then(
