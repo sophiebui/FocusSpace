@@ -35,8 +35,8 @@ const Places = () => {
                     </div>
                     <div key={place.id} className='places-title'>
                         {place.name}
-                        <div key={place.address} className='places-address'>
-                            {place.address}
+                        <div key={place.city} className='places-address'>
+                            {place.city} {place.state}
                         </div>
                     <div>
                         ${place.price} / hour

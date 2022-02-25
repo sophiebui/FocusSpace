@@ -10,7 +10,6 @@ function DeleteBookingForm({ booking, setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [ , setErrors] = useState([]);
-    const [success, setSuccess] = useStateIfMounted("");
     const currUserId = useSelector(state => state.session.user.id);
     const currUserBookingId = useSelector(state => state?.bookings[booking.id]?.user_id);
 
@@ -29,10 +28,6 @@ function DeleteBookingForm({ booking, setShowModal }) {
                         setErrors(response.errors)
                         return
                     }
-                    setSuccess("Success");
-                    setTimeout(() => {
-                        setShowModal(false);
-                    }, 1500);
                     history.push(`/bookings/${currUserId}`)
                 }
             )
@@ -44,7 +39,6 @@ function DeleteBookingForm({ booking, setShowModal }) {
         <h3>This action cannot be undone.</h3>
         <button type="button" onClick={(e) => submitDelete()} className='delete-submit-button'>Yes</button>
         <button type="button" onClick={(e) => setShowModal(false)} className='delete-cancel-button'>No</button>
-        <h2>{success}</h2>
     </div>)
 }
 

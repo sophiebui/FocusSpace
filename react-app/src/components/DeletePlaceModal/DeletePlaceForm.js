@@ -10,10 +10,8 @@ function DeletePlaceForm({place, setShowModal}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const [ , setErrors] = useState([]);
-    const [success, setSuccess] = useStateIfMounted("");
     const currUserId = useSelector(state => state.session.user.id);
     const currUserPlaceId = useSelector(state => state?.places[place.id]?.user_id);
-
 
 
     const submitDelete = (e) => {
@@ -31,10 +29,6 @@ function DeletePlaceForm({place, setShowModal}) {
                         setErrors(response.errors)
                         return
                     }
-                    setSuccess("Success");
-                    setTimeout(() => {
-                        setShowModal(false);
-                    }, 1500);
                     history.push('/places')
                 }
             )
@@ -46,7 +40,6 @@ function DeletePlaceForm({place, setShowModal}) {
         <h3>This cannot be undone.</h3>
         <button type="button" onClick={(e) => submitDelete()} className='delete-submit-button'>Yes</button>
         <button type="button" onClick={(e) => setShowModal(false)} className='delete-cancel-button'>No</button>
-        <h2>{success}</h2>
     </div>)
 }
 

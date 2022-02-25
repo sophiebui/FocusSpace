@@ -71,7 +71,7 @@ function CreatePlaceForm({ setShowModal }) {
             guests: guests,
             images: imageArr
         }
-        
+
         return dispatch(addPlace(newPlace))
         .then(
             (response) => {

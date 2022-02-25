@@ -1,12 +1,11 @@
-import './SearchResults.css'
-const SearchResults = () => {
-    return (
-        <>
-            <h1 className="h1">
-                        You made it!
-                        </h1>
+import Places from '../Places'
 
-        </>
+const SearchResults = () => {
+
+    return (
+        <div>
+            <Places />
+        </div>
         )
     }
 

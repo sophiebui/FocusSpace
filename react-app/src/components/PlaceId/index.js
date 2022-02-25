@@ -42,6 +42,13 @@ const PlaceId = () => {
             <p className='place-description'>
                 {place.description}
             </p>
+            <p className='place-description'>
+                {place.address} {place.city} {place.state} {place.zip_code}
+            </p>
+            <p className='place-description'>
+                # of Guests allowed: {place.guests}
+            </p>
+
 
             {(user && !isOwner) ?  (
                 <div>
