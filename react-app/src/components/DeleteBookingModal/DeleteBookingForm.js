@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { removeBooking } from "../../store/bookings";
 import { useHistory } from 'react-router-dom';
-import { useStateIfMounted } from 'use-state-if-mounted'
-
-
 
 function DeleteBookingForm({ booking, setShowModal }) {
     const dispatch = useDispatch();
