@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import NavBar from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
+import { getPlaces } from './store/places';
 import Places from './components/Places'
 import PlaceId from './components/PlaceId'
 import Bookings from './components/Bookings'
@@ -12,12 +13,14 @@ import HomePage from './components/HomePage';
 import SearchResults from './components/SearchResults';
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
+  const [placesLoaded, setPlacesLoaded] = useState(false)
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getPlaces()).then(()=> setPlacesLoaded(true))
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -31,10 +34,10 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/places'  exact={true}>
-            <Places />
+            <Places  />
         </Route>
         <Route path='/places/:placeId'  exact={true}>
-            <PlaceId />
+            <PlaceId placesLoaded={placesLoaded}/>
         </Route>
         <Route path='/search' exact={true}>
             <SearchResults />
