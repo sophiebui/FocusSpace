@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOnePlace, getPlaces } from '../../store/places';
+import { getOnePlace } from '../../store/places';
 import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
