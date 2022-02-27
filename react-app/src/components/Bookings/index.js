@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../../store/bookings';
 import { useParams } from 'react-router-dom';
@@ -10,11 +10,18 @@ const Bookings = () => {
     const { userId } = useParams()
     const bookings = useSelector(state => Object.values(state.bookings))
     const currUser = useSelector((state) => state.session.user.id);
+    const [isLoaded, setIsloaded] = useState(false)
     const isOwner = +userId === currUser;
 
-	useLayoutEffect(() => {
-        dispatch(getBookings(userId));
+	useEffect(() => {
+        dispatch(getBookings(userId)).then(() =>{
+            setIsloaded(true)
+        })
     },[ dispatch, userId])
+
+    if (!isLoaded) {
+        return null
+    }
 
     if (isOwner) {
         if (bookings.length > 0) {

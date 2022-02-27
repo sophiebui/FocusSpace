@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOnePlace } from '../../store/places';
@@ -13,7 +13,7 @@ const PlaceId = ({placesLoaded}) => {
     const user = useSelector((state) => state.session?.user?.id);
     const place = useSelector(state => state.places[placeId])
 
-    useLayoutEffect(() => {
+    useEffect(() => {
             dispatch(getOnePlace(placeId))
 		},[ dispatch, placeId])
 
