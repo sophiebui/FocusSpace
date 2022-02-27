@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import OutsideClickHandler from 'react-outside-click-handler';
 
-
 const ProfileButton = ({ setProfileButton, setSignupModal, setLoginModal }) => {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);

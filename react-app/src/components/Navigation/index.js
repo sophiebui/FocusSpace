@@ -40,7 +40,9 @@ const NavBar = () => {
                     </li>
                     <li>
                        {location.pathname === '/' && !scrolling ?
-                            <NavLink to='/places' className={'navbar-explore-link'}>Explore</NavLink>
+                       <>
+                        <NavLink to='/places' className={'navbar-explore-link'}>Explore</NavLink>
+                                             </>
                         : <SearchBarNav />
                     }
                     </li>
