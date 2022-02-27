@@ -2,7 +2,7 @@
     border: none;
     outline: none;
     opacity: 100%;
-    color: black;
+    color: white;
     background-color: transparent;
     padding: 0;
     font-size: 13px;
@@ -14,7 +14,9 @@
 }
 
 .create-listing-nav-text {
-    color: black;
+    color: white;
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .create-listing-nav-text:hover {
