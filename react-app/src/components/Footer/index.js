@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import NavCreatePlaceModal from '../NavCreateBookingModal';
+import FooterCreatePlaceModal from '../FooterCreatePlaceModal';
 import './Footer.css'
 
 const Footer = () => {
@@ -13,7 +13,7 @@ const Footer = () => {
                         <div className='links-container'>
                             <p className='link-container'><NavLink to='/' className='about-links'> Home </NavLink></p>
                             <p className='link-container'><NavLink to='/places' className='about-links'> Explore </NavLink></p>
-                            <p className='link-container'><NavCreatePlaceModal /></p>
+                            <p className='link-container'><FooterCreatePlaceModal /></p>
                             <p className='link-container'><NavLink to={`/bookings/${userId}`} className='about-links'> Your Bookings </NavLink></p>
                         </div>
                 </div>

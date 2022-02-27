@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import CreatePlaceForm from '../CreatePlaceModal/CreatePlaceForm';
-import './NavCreateBookingModal.css'
+import './NavbarCreatePlaceModal.css'
 
-function NavCreatePlaceModal() {
+function NavbarCreatePlaceModal() {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -18,4 +18,4 @@ function NavCreatePlaceModal() {
     )
 }
 
-export default NavCreatePlaceModal;
+export default NavbarCreatePlaceModal;

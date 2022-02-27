@@ -1,0 +1,22 @@
+.create-listing-footer-button {
+    border: none;
+    outline: none;
+    color: black;
+    background-color: transparent;
+    padding: 0;
+    font-size: 13px;
+}
+
+.create-listing-footer-button:hover {
+    color: rgb(131, 123, 123);
+    cursor: pointer;
+}
+
+.create-listing-footer-text {
+    color: black;
+}
+
+.create-listing-footer-text:hover {
+    color: rgb(131, 123, 123);
+    cursor: pointer;
+}
