@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { addPlace } from '../../store/places';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { states } from '../../assets/stateAbbreviations'
 import { login } from '../../store/session';
 import { useAlert } from 'react-alert'
@@ -9,6 +10,7 @@ import './CreatePlaceForm.css'
 
 function CreatePlaceForm({ setShowModal }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const alert = useAlert();
     const user = useSelector(state => state.session.user);
     const [name, setName] = useState('');
@@ -79,8 +81,9 @@ function CreatePlaceForm({ setShowModal }) {
                     return
                 }
                 alert.show(<div style={{ textTransform: 'initial' }}> New Booking Created </div>)
-                 setShowModal(false);
-
+                setShowModal(false);
+                const newId = response.id
+                history.push(`/places/${newId}`)
             }
             );
         };
@@ -150,7 +153,7 @@ function CreatePlaceForm({ setShowModal }) {
                     </div>
                     <div className='input-container'>
                         <input
-                            type='string'
+                            type='text'
                             value={zipCode}
                             onChange={e => setZipCode(e.target.value)}
                             className='input add-place'
@@ -180,17 +183,18 @@ function CreatePlaceForm({ setShowModal }) {
                     </div>
                     {imagesList.map((el, index) => {
                         return (
-                            <div className='image-upload-div'>
+                            <div className='image-upload-div' key={el}>
                                 <input
                                 name='imageUrl'
                                 type='url'
                                 className='image-upload-input'
                                 placeholder='Enter Image URL'
                                 value={el.imageUrl}
+                                key={el.imageUrl}
                                 onChange={e => addToImagesList(e, index)}
                                 required
                                 />
-                                <div className='image-upload-button-div'>
+                                <div className='image-upload-button-div' key={index}>
                                     {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
                                     {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
                                 </div>

@@ -40,16 +40,16 @@ const PlaceId = ({placesLoaded}) => {
             </div>
 
             <h1 className='place-name-heading'>
-                {place.name}
+                {place?.name}
             </h1>
             <p className='place-description'>
-                {place.description}
+                {place?.description}
             </p>
             <p className='place-description'>
-                {place.address} {place.city} {place.state} {place.zip_code}
+                {place?.address} {place?.city} {place?.state} {place?.zip_code}
             </p>
             <p className='place-description'>
-                # of Guests allowed: {place.guests}
+                # of Guests allowed: {place?.guests}
             </p>
 
 

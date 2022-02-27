@@ -9,6 +9,7 @@ import SignupForm from '../SignupForm';
 import ProfileButton from './ProfileButton';
 import SearchBarNav from '../SearchBarNav';
 import './Navigation.css';
+import NavbarCreatePlaceModal from '../NavbarCreatePlaceModal';
 
 const NavBar = () => {
     const [ profileButton, setProfileButton ] = useState(false);
@@ -40,9 +41,10 @@ const NavBar = () => {
                     </li>
                     <li>
                        {location.pathname === '/' && !scrolling ?
-                       <>
-                        <NavLink to='/places' className={'navbar-explore-link'}>Explore</NavLink>
-                                             </>
+                       <div className='navbar-links'>
+                        <NavLink to='/places' className={'navbar-explore-link'}><p className='navbar-explore-link'>Explore</p></NavLink>
+                        <NavbarCreatePlaceModal />
+                                             </div>
                         : <SearchBarNav />
                     }
                     </li>

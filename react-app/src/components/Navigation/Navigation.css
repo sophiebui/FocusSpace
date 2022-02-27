@@ -88,12 +88,21 @@
     margin-top: 14px;
 }
 
+.navbar-links {
+    display: flex;
+    margin-left: -8rem;
+}
 
 .navbar-explore-link {
     grid-area: explore;
     text-decoration: none;
     font-size: 17px;
     font-weight: 300;
+    margin-right: 3rem;
+}
+
+.navbar-explore-link:hover {
+    color: rgb(131, 123, 123);
 }
 
 .navbar-profile-button-div {

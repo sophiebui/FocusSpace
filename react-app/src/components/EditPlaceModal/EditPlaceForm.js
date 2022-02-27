@@ -55,12 +55,11 @@ function EditPlaceForm({ place, id, setShowModal }) {
             address,
             city,
             state,
-            zip_code: zipCode,
+            zip_code: zipCode.toString(),
             price,
             guests: guests,
             images: imageArr
         }
-
         return dispatch(editPlace(newPlace))
             .then(
                 (response) => {
@@ -150,7 +149,7 @@ function EditPlaceForm({ place, id, setShowModal }) {
                 </div>
                 <div className='input-container'>
                     <input
-                        type='text'
+                        type='number'
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                         className='input add-place'
@@ -170,17 +169,18 @@ function EditPlaceForm({ place, id, setShowModal }) {
                 </div>
                 {imagesList.map((el, index) => {
                         return (
-                            <div className='image-upload-div'>
+                            <div className='image-upload-div' key={el.id}>
                                 <input
                                 name='url'
                                 type='url'
                                 className='image-upload-input'
                                 placeholder='Enter Image URL'
                                 value={el.url}
+                                key={el.url}
                                 onChange={e => addToImagesList(e, index)}
                                 required
                                 />
-                                <div className='image-upload-button-div'>
+                                <div className='image-upload-button-div' key={index}>
                                     {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
                                     {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
                                 </div>
