@@ -44,7 +44,6 @@ export const getPlaces = () => async (dispatch) => {
 };
 
 export const getOnePlace = (id) => async (dispatch) => {
-    console.log(id)
     const response = await fetch(`/api/places/${id}`, {
         headers: {
             'Content-Type': 'application/json',
