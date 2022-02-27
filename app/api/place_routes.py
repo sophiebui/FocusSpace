@@ -59,8 +59,8 @@ def get_one_place(id):
     Route for getting specic place based on specific id
     """
     place = Place.query.get(id)
-    data = request.get_json()
     if request.method == 'PUT':
+        data = request.get_json()
         form = PlaceForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():

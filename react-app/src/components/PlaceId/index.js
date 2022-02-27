@@ -1,24 +1,27 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOnePlace, getPlaces } from '../../store/places';
+import { getOnePlace } from '../../store/places';
 import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
 import './PlaceId.css'
 
-const PlaceId = () => {
+const PlaceId = ({placesLoaded}) => {
     const dispatch = useDispatch();
     const { placeId } = useParams()
     const user = useSelector((state) => state.session?.user?.id);
     const place = useSelector(state => state.places[placeId])
 
-    useLayoutEffect(() => {
-            dispatch(getPlaces())
+    useEffect(() => {
             dispatch(getOnePlace(placeId))
 		},[ dispatch, placeId])
 
-    if (place) {
+    if (!placesLoaded) {
+        return null
+    }
+
+    if (placesLoaded) {
         const isOwner = user === place?.user_id;
         return (
         <div className='page-container'>
@@ -65,9 +68,12 @@ const PlaceId = () => {
                 </div>
                 )
             }
+        {!place ? (<>
+            Erorr: Place does not exist
+            </>) : null}
         </div>
     )
-} else return "Error: this place does not exist"
+}
 }
 
 export default PlaceId;

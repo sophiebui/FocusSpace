@@ -1,7 +1,8 @@
 const LOAD_PLACES = 'LOAD_PLACES';
+const LOAD_PLACE = 'LOAD_PLACE';
 const ADD_PLACE = 'ADD_PLACE';
 const DELETE_PLACE = 'DELETE_PLACE';
-const LOAD_SEARCH = "LOAD_SEARCH";
+const LOAD_SEARCH = 'LOAD_SEARCH';
 
 // ACTIONS
 const loadPlaces = (places) => {
@@ -11,6 +12,12 @@ const loadPlaces = (places) => {
 	};
 };
 
+const loadPlace = (place) => {
+	return {
+		type: LOAD_PLACE,
+		place
+	};
+};
 const addOnePlace = (place) => {
 	return {
 		type: ADD_PLACE,
@@ -52,7 +59,7 @@ export const getOnePlace = (id) => async (dispatch) => {
 
 	const place = await response.json();
 	if (response.ok) {
-        dispatch(addOnePlace(place));
+        dispatch(loadPlace(place));
 	}
 	return place;
 };
@@ -108,7 +115,7 @@ export const getSearchResults = (query) => async (dispatch) => {
 
     const response = await fetch(`/api/search/${queryString}`, {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(query)
     });
 
@@ -129,6 +136,11 @@ const placesReducer = (state = {}, action) => {
 				newState[place.id] = place;
 			});
 			return newState;
+		}
+		case LOAD_PLACE: {
+			const newPlace = { ...state };
+			newPlace[action.place.id] = action.place;
+			return newPlace;
 		}
 		case ADD_PLACE: {
 			const newPlace = { ...state };
