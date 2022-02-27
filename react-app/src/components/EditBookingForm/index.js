@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { editBooking } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import { useAlert } from 'react-alert'
 import '../Bookings/Bookings.css';
-import dateFormat from 'dateformat';
+
 import DeleteBookingModal from '../DeleteBookingModal';
 
 function EditBookingForm({ booking }) {
 	const dispatch = useDispatch();
     const alert = useAlert();
 	const userId = useSelector((state) => state.session.user.id);
-	const [ date, setDate ] = useState(dateFormat(booking.date, 'yyyy-mm-dd'));
+	const [ date, setDate ] = useState(moment(booking.date).add(1, 'days').format('YYYY-MM-DD'));
 	const [ time, setTime ] = useState(booking.time);
 	const [ duration, setDuration ] = useState(booking.duration);
 	const [ guests, setGuests ] = useState(booking.guests);
 	const [ errors, setErrors ] = useState([]);
-
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();

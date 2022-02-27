@@ -2,7 +2,6 @@ const LOAD_PLACES = 'LOAD_PLACES';
 const LOAD_PLACE = 'LOAD_PLACE';
 const ADD_PLACE = 'ADD_PLACE';
 const DELETE_PLACE = 'DELETE_PLACE';
-const LOAD_SEARCH = 'LOAD_SEARCH';
 
 // ACTIONS
 const loadPlaces = (places) => {
@@ -30,13 +29,6 @@ const deletePlace = (place) => {
 		type: DELETE_PLACE,
 		place
 	};
-};
-
-const loadSearch = (results) => {
-    return {
-        type: LOAD_SEARCH,
-        results
-    };
 };
 
 // SELECTORS/THUNKS
@@ -83,7 +75,7 @@ export const editPlace = place => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(place)
     })
-    
+
     const data = await response.json();
     if (response.ok) {
         dispatch(addOnePlace(data));
@@ -108,25 +100,6 @@ export const removePlace = (payload) => async (dispatch) => {
 	}
 };
 
-export const getSearchResults = (query) => async (dispatch) => {
-    const queryString = Object.keys(query)
-        .map(key => `${key}=${query[key]}`)
-        .join('&');
-
-    const response = await fetch(`/api/search/${queryString}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(query)
-    });
-
-    const results = await response.json();
-
-    if (response.ok) {
-        dispatch(loadSearch(results))
-    }
-    return results
-}
-
 // REDUCER
 const placesReducer = (state = {}, action) => {
 	switch (action.type) {
@@ -148,15 +121,8 @@ const placesReducer = (state = {}, action) => {
 			return newPlace;
 		}
 		case DELETE_PLACE: {
-			const newState = Object.assign({}, state);
+			const newState = { ...state };
 			delete newState[action.place.id];
-			return newState;
-		}
-        case LOAD_SEARCH: {
-			const newState = {};
-			action.results.places.forEach((place) => {
-				newState[place.id] = place;
-			});
 			return newState;
 		}
 		default:

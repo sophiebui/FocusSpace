@@ -24,14 +24,16 @@ def get_search_results(query):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = request.get_json()
-        print('---------data----------', data)
-        places = Place.query.join(Booking).filter(
+        places_by_state = Place.query.filter(Place.state == data['location'], Place.guests >= data['guests']).all()
+        places_with_bookings = Place.query.join(Booking).filter(
             Place.state == data['location'],
             Booking.date != data['date'] and Booking.time != data['time'],
             Place.guests >= data['guests']
         ).all()
-        print('-------------join results---------', places)
-        return {'places': [place.to_dict() for place in places]}
+        if (len(places_with_bookings) > 0):
+            return {'places': [place.to_dict() for place in places_with_bookings]}
+        else:
+            return {'places': [place.to_dict() for place in places_by_state]}
     elif form.errors:
         print("form.errors", form.errors)
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401

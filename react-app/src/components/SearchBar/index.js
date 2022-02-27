@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlaces, getSearchResults } from '../../store/places'
+import { getPlaces } from '../../store/places'
 import searchIcon from '../../assets/search.svg';
 import { useAlert } from 'react-alert'
 import './SearchBar.css';
+import { getSearchResults } from '../../store/search'
 
 
 function SearchBar() {
@@ -17,6 +18,7 @@ function SearchBar() {
 	const [ guests, setGuests ] = useState('');
 	const [ errors, setErrors ] = useState([]);
     const history = useHistory();
+
 
 	useEffect(() => {
         dispatch(getPlaces());
