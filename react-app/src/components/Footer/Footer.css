@@ -1,7 +1,7 @@
 .footer-container {
     display: flex;
     flex-direction: column;
-    background: #dddddd;
+    background: #ecebeb;
     margin-bottom: -18px;
 }
 
@@ -11,15 +11,32 @@
     margin: 1rem 4rem 1rem 4rem;
 }
 
-.about-container{
+.about-container {
     display: flex;
+    margin: 0.5rem 6rem 0 5rem;
+    height: 11rem;
+    column-gap: 3rem;
     flex-direction: column;
-    margin: 0 2rem 0 2rem;
+    margin-bottom: 1rem;
 }
 
 .about-title {
     font-size: 14px;
     font-weight: 700;
+    margin: .25rem 0 .25rem 0;
+}
+
+.links-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 11rem;
+    column-gap: 3rem;
+    padding: 1px;
+}
+
+.link-container {
+    margin: .5rem 0 .5rem 0;
 }
 
 .about-links {
@@ -32,10 +49,16 @@
     color: black;
 }
 
+.about-links:hover {
+    color: rgb(131, 123, 123);
+    cursor: pointer;
+}
+
 .footer-bottom-content {
     display: flex;
     justify-content: center;
     border-top: 1px solid #a3a2a283;
-    width: 95rem;
-    margin: 1rem 4rem 1rem 4rem;
+    width: 95%;
+    margin: 1rem 4rem 1rem 3rem;
+    padding-top: 0.75rem;
 }
