@@ -1,0 +1,41 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    background: #dddddd;
+    margin-bottom: -18px;
+}
+
+.footer-main-content {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 4rem 1rem 4rem;
+}
+
+.about-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem 0 2rem;
+}
+
+.about-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.about-links {
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+}
+
+.about-links:visited {
+    color: black;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #a3a2a283;
+    width: 95rem;
+    margin: 1rem 4rem 1rem 4rem;
+}

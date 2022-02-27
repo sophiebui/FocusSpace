@@ -11,6 +11,8 @@ import Bookings from './components/Bookings'
 import PageNotFound from './components/PageNotFound';
 import HomePage from './components/HomePage';
 import SearchResults from './components/SearchResults';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <NavBar />
       <Switch>
         <Route path='/places'  exact={true}>
@@ -52,6 +55,7 @@ function App() {
             <PageNotFound />
           </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
