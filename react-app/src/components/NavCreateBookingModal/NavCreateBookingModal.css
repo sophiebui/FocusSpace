@@ -2,12 +2,22 @@
     border: none;
     outline: none;
     opacity: 100%;
+    color: black;
     background-color: transparent;
     padding: 0;
     font-size: 13px;
 }
 
 .create-listing-nav-button:hover {
+    color: rgb(131, 123, 123);
+    cursor: pointer;
+}
+
+.create-listing-nav-text {
+    color: black;
+}
+
+.create-listing-nav-text:hover {
     color: rgb(131, 123, 123);
     cursor: pointer;
 }
