@@ -40,6 +40,7 @@
 
 .bookings-page-error {
     margin-top: 7rem;
+    min-height: 54vh;
 }
 
 .edit-booking-form-container{
