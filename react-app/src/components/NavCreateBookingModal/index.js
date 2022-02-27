@@ -8,7 +8,7 @@ function NavCreatePlaceModal() {
 
     return (
         <>
-            <button className='create-listing-nav-button' onClick={() => setShowModal(true)}>Create a New Listing</button>
+            <button className='create-listing-nav-button' onClick={() => setShowModal(true)}><span className='create-listing-nav-text'>Create a New Listing</span></button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CreatePlaceForm setShowModal={setShowModal} />
