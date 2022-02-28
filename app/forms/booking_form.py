@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, DateField, TimeField
-from wtforms.validators import DataRequired, EqualTo, ValidationError
+from wtforms.validators import DataRequired, EqualTo, ValidationError, NumberRange
 import datetime
 
 def validate_date(form, field):
@@ -10,10 +10,10 @@ def validate_date(form, field):
 class BookingForm(FlaskForm):
     user_id = IntegerField("", validators={DataRequired()})
     place_id = IntegerField("", validators={DataRequired()})
-    date = DateField("date", validators=[DataRequired(), validate_date])
-    time = TimeField("time", validators={DataRequired()})
-    duration = IntegerField("duration", validators={DataRequired()})
-    guests = IntegerField("guests", validators={DataRequired()})
+    date = DateField("date", validators=[DataRequired(message="Date field is required"), validate_date])
+    time = TimeField("time", validators={DataRequired(message="Time field is required")})
+    duration = IntegerField("duration", validators=[DataRequired(), NumberRange(min=1, message="Duration must be 1 or more hours")])
+    guests = IntegerField("guests: ", validators=[DataRequired(message="Number of guest cannot be blank"), NumberRange(min=1, message="Number of guests must be greater than 0")])
 
 
 class DeleteBookingForm(FlaskForm):

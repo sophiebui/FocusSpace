@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOnePlace } from '../../store/places';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
-import { Pagination, Navigation } from "swiper";
+import { getOnePlace,  } from '../../store/places';
 import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
 import './PlaceId.css'
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
 
 const PlaceId = ({placesLoaded}) => {
     const dispatch = useDispatch();
@@ -30,28 +26,17 @@ const PlaceId = ({placesLoaded}) => {
         return (
         <div className='page-container'>
             <div className='images-container'>
-                <Swiper
-                    pagination={{
-                    type: "fraction",
-                    }}
-                    navigation={true}
-                    loop={true}
-                    modules={[Pagination, Navigation]}
-                    className="mySwiper"
-                >
-                    {place?.images?.map((image) => (
-                                    <div key={image.id}>
-                                        <SwiperSlide>
-                                        <img src={image.url}
-                                        alt={place.name}
-                                        onError={event => {
-                                            event.target.src = "https://res.cloudinary.com/dxubahnmi/image/upload/v1644967329/FocusSpace/1-default.jpg"
-                                            event.onerror = null
-                                        }} />
-                                        </SwiperSlide>
-                                    </div>
-                    ))}
-                </Swiper>
+            {place?.images?.map((image) => (
+                <div key={image.id} className='image-div'>
+                    <img src={image.url}
+                    alt={place.name}
+                    className='place-images'
+                    onError={event => {
+                        event.target.src = "https://res.cloudinary.com/dxubahnmi/image/upload/v1644967329/FocusSpace/1-default.jpg"
+                        event.onerror = null
+                    }} />
+                </div>
+            ))}
             </div>
             <div className='place-info-parent-div'>
                 <div className='place-info-div'>

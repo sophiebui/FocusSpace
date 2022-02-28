@@ -41,7 +41,7 @@ const Bookings = () => {
                             </div>
                             <div className='bookings-detail'>
                                 <div key={booking.place.name}>
-                                    Name of Place: {booking.place.name}
+                                   <span> Name of Place: </span> {booking.place.name}
                                 </div>
                                 <div key={booking.place.address}>
                                     Address: {booking.place.address}
