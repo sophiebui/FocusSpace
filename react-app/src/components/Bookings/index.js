@@ -4,6 +4,7 @@ import { getBookings } from '../../store/bookings';
 import { useParams } from 'react-router-dom';
 import EditBookingForm from '../EditBookingForm';
 import './Bookings.css'
+import moment from 'moment';
 
 const Bookings = () => {
     const dispatch = useDispatch();
@@ -41,22 +42,22 @@ const Bookings = () => {
                             </div>
                             <div className='bookings-detail'>
                                 <div key={booking.place.name}>
-                                   <span> Name of Place: </span> {booking.place.name}
+                                    {booking.place.name}
                                 </div>
                                 <div key={booking.place.address}>
-                                    Address: {booking.place.address}
+                                <span className='booking-label'> Address: </span> {booking.place.address}
                                 </div>
                                 <div key={booking.date}>
-                                    Date: {booking.date.slice(0, 16)}
+                                <span className='booking-label'>  Date: </span>{booking.date.slice(0, 16)}
                                 </div>
                                 <div key={booking.time}>
-                                Time:  {booking.time.slice(0, 5)}
+                            <span className='booking-label'>Time:</span>  {booking.time.slice(0, 5)}
                                 </div>
                                 <div key={booking.duration}>
-                                Duration: {booking.duration}
+                                <span className='booking-label'>Duration: </span> {booking.duration}
                                 </div>
                                 <div key={booking.guests}>
-                                # of Guests: {booking.guests}
+                                <span className='booking-label'># of Guests: </span>{booking.guests}
                                 </div>
                             </div>
                                 <div>

@@ -20,8 +20,8 @@ class PlaceForm(FlaskForm):
     city = StringField("city", validators={DataRequired(message="City cannot be blank")})
     state = StringField("state", validators={DataRequired(message="State cannot be blank")})
     zip_code = StringField("zipCode",  validators=[DataRequired(message="Zip code cannot be blank"),  validate_zip_code])
-    price = DecimalField("price: ", validators=[DataRequired(message="Price cannot be blank"), NumberRange(min=1, message="Price cannot be less than 0")])
-    guests = IntegerField("guests: ", validators=[DataRequired(message="Number of guest cannot be blank"), NumberRange(min=1, message="Max occupancy must be greater than 0")])
+    price = DecimalField("price: ", validators=[DataRequired(message="Price cannot be blank"), NumberRange(min=1, message="Price cannot be less than 0"), NumberRange(max=999, message='Price cannot be more than $999')])
+    guests = IntegerField("guests: ", validators=[DataRequired(message="Number of guest cannot be blank"), NumberRange(min=1, message="Max occupancy must be greater than 0"), NumberRange(max=2000, message='Max occupancy must not exceed 2000 guest')])
     images = FileField("images", validators={DataRequired(message="Image cannot be blank")})
 
 class DeletePlaceForm(FlaskForm):
