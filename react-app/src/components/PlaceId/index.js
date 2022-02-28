@@ -53,40 +53,46 @@ const PlaceId = ({placesLoaded}) => {
                     ))}
                 </Swiper>
             </div>
-
-            <h1 className='place-name-heading'>
-                {place?.name}
-            </h1>
-            <p className='place-description'>
-                {place?.description}
-            </p>
-            <p className='place-description'>
-                {place?.address} {place?.city} {place?.state} {place?.zip_code}
-            </p>
-            <p className='place-description'>
-                # of Guests allowed: {place?.guests}
-            </p>
-
-
-            {(user && !isOwner) ?  (
-                <div>
-                    <CreateBookingForm place={place}/>
+            <div className='place-info-parent-div'>
+                <div className='place-info-div'>
+                    <h1 className='place-name-heading'>
+                        {place?.name}
+                    </h1>
+                    <p className='place-description'>
+                        {place?.description}
+                    </p>
+                    <p className='place-description'>
+                        {place?.address} {place?.city} {place?.state} {place?.zip_code}
+                    </p>
+                    <p className='place-description'>
+                        # of Guests allowed: {place?.guests}
+                    </p>
                 </div>
-                ) : (user && isOwner) ?(
                 <div>
-                    <EditPlaceModal place={place} id={placeId} />
-                    <DeletePlaceModal place={place} />
+                    {(user && !isOwner) ?  (
+                        <div>
+                            <CreateBookingForm place={place}/>
+                        </div>
+                        ) : (user && isOwner) ?(
+                        <div className='place-form-and-buttons'>
+                            <EditPlaceModal place={place} id={placeId} />
+                            <DeletePlaceModal place={place} />
+                        </div>
+                        ) : (
+                        <div>
+                            Pleace log in to book this place
+                        </div>
+                        )
+                    }
                 </div>
-                ) : (
-                <div>
-                    Pleace log in to book this place
-                </div>
-                )
-            }
+
+            </div>
+
         {!place ? (<>
             Erorr: Place does not exist
             </>) : null}
         </div>
+
     )
 }
 }
