@@ -1,3 +1,7 @@
+.delete {
+    padding: 2rem;
+}
+
 .delete-place-button {
 	border: none;
 	width: 12rem;
@@ -7,20 +11,42 @@
 	border-radius: 4px;
 }
 
-.delete-submit-button {
+.delete-place-submit-button {
     border: none;
-	width: 12rem;
+	width: 10rem;
 	height: 2rem;
     color: white;
 	background-color: #ff5a5f;
 	border-radius: 4px;
 }
 
-.delete-cancel-button {
+.delete-place-submit-button:hover {
+    color: black
+}
+
+.delete-place-cancel-button {
     border: none;
     color: white;
-	width: 12rem;
+	width: 10rem;
 	height: 2rem;
-	background-color: #ff5a5f;
+	background-color: #646464;
 	border-radius: 4px;
+}
+
+.delete-place-cancel-button:hover {
+    color: black;
+}
+
+.delete-message {
+    font-size: 19px;
+}
+
+.delete-note {
+    font-size: 14px;
+}
+
+.delete-button-div {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2.5rem;
 }
