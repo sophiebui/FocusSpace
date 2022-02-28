@@ -4,7 +4,6 @@ import { getBookings } from '../../store/bookings';
 import { useParams } from 'react-router-dom';
 import EditBookingForm from '../EditBookingForm';
 import './Bookings.css'
-import moment from 'moment';
 
 const Bookings = () => {
     const dispatch = useDispatch();

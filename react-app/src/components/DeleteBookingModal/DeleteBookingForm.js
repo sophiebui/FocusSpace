@@ -32,10 +32,12 @@ function DeleteBookingForm({ booking, setShowModal }) {
 
     return (
         <div className='delete'>
-        <h2>Are you sure you want to remove this booking?</h2>
-        <h3>This action cannot be undone.</h3>
+        <p className='delete-message'>Are you sure you want to remove this booking?</p>
+        <p className='delete-note'>Please note: this action cannot be undone.</p>
+        <div className="delete-button-div">
         <button type="button" onClick={(e) => submitDelete()} className='delete-submit-button'>Yes</button>
         <button type="button" onClick={(e) => setShowModal(false)} className='delete-cancel-button'>No</button>
+        </div>
     </div>)
 }
 

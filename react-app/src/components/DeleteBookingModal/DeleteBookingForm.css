@@ -1,27 +1,35 @@
 .delete-booking-button{
-border: none;
-width: 100%;
-color: white;
-height: 2rem;
-background-color: #ff5a5f;
-border-radius: 4px;
-margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: #646464;
+    border: none;
+    border-radius: 4px;
+    height: 3em;
+    margin-left: 1rem;
 }
 
 .delete-submit-button{
     border: none;
-    width: 12rem;
+	width: 10rem;
+	height: 2rem;
     color: white;
-    height: 2rem;
-    background-color: #ff5a5f;
-    border-radius: 4px;
+	background-color: #ff5a5f;
+	border-radius: 4px;
+    }
+
+.delete-submit-button:hover {
+        color: black
     }
 
 .delete-cancel-button{
     border: none;
-    width: 12rem;
     color: white;
-    height: 2rem;
-    background-color: #ff5a5f;
-    border-radius: 4px;
+	width: 10rem;
+	height: 2rem;
+	background-color: #646464;
+	border-radius: 4px;
+    }
+    
+.delete-cancel-button:hover {
+        color: black;
     }

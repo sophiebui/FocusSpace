@@ -102,10 +102,10 @@ function EditBookingForm({ booking }) {
 						Number of Guests
 					</label>
 				</div>
-				<div className="form-button-container">
-					<button className="form-button">Edit Booking</button>
+				<div className="edit-form-button-container">
+					<button className="edit-form-button">Edit Booking</button>
+				    <DeleteBookingModal booking={booking} />
 				</div>
-				<DeleteBookingModal booking={booking} />
 			</form>
 		</div>
 	);
