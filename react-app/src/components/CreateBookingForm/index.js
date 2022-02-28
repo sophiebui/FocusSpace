@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { addBooking } from '../../store/bookings';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './CreateBookingForm.css';
 import { useAlert } from 'react-alert'
@@ -7,6 +8,7 @@ import { useAlert } from 'react-alert'
 
 function CreateBookingForm({ place }) {
 	const dispatch = useDispatch();
+    const history = useHistory();
     const alert = useAlert();
 	const user_id = useSelector((state) => state.session?.user?.id);
 	const [ date, setDate ] = useState('');
@@ -35,6 +37,7 @@ function CreateBookingForm({ place }) {
                     return;
                 }
                 alert.show(<div style={{ textTransform: 'initial' }}> New Booking Created </div>)
+                history.push(`/bookings/${user_id}`)
             });
 
         };
