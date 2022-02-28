@@ -6,17 +6,32 @@
     color: black;
 }
 
-.images-container {
-    display: flex;
-    flex-direction: row;
-}
-
 .image-div {
     width: 500px;
     height: 330px;
 }
 
-.place-images {
-    max-width:100%;
-    max-height:100%;
+.swiper {
+    height: 40%;
+    width: 40%;
+}
+.swiper-slide img {
+    max-height: 40vh;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.swiper-pagination {
+    position: absolute;
+    text-align: center;
+    transition: .3s opacity;
+    background-color: white;
+    margin-bottom: -0.5rem;
+    transform: translate3d(0,0,0);
+    z-index: 10;
+}
+
+.swiper-pagination-fraction {
+    padding-top: 4px;
 }
