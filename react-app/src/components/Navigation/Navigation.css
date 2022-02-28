@@ -146,6 +146,7 @@
     border: none;
     border-radius: 4px;
     height: 3em;
+    margin-top: 11px;
 }
 
 .form-button:hover {

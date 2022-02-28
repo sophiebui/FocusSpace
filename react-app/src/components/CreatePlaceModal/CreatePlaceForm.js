@@ -210,7 +210,7 @@ function CreatePlaceForm({ setShowModal }) {
     } else {
         return (
             <>
-            <p>Please log in to create a new listing</p>
+            <p className='error-login-message'>Please log in to create a new listing</p>
             <LoginForm setLoginModal={setLoginModal} demoLogin={demoLogin} />
 
             </>
