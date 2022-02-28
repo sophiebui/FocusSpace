@@ -44,7 +44,7 @@ function EditBookingForm({ booking }) {
 
 	return (
 		<div className="edit-booking-form-container">
-			<form className="form edit-booking-form" onSubmit={handleSubmit}>
+			<form className="edit-booking-form" onSubmit={handleSubmit}>
                 {errors.length > 0 ?
                 <ul className='errors-list'>
                     {errors.map((error, idx) => (
@@ -53,8 +53,8 @@ function EditBookingForm({ booking }) {
                 </ul>
                 : null}
 				<h1 className="edit-booking-header">Edit Booking</h1>
-				<div className="">
-					<label className="" htmlFor="date">
+				<div className="date-time-div">
+					<label className="date-time-label-edit" htmlFor="date">
 						Date:
 					</label>
 					<input
@@ -62,12 +62,12 @@ function EditBookingForm({ booking }) {
 						value={date}
 						onChange={(e) => setDate(e.target.value)}
 						required
-						className="input edit-booking"
+						className=""
 						id="date"
 					/>
 				</div>
-				<div className="">
-					<label className="" htmlFor="time">
+				<div className="date-time-div">
+					<label className="date-time-label-edit" htmlFor="time">
 						Time:
 					</label>
 					<input
@@ -78,7 +78,7 @@ function EditBookingForm({ booking }) {
 						id="time"
 					/>
 				</div>
-				<div className="input-container">
+				<div className="booking-edit-input-container">
 					<input
 						type="number"
 						value={duration}
@@ -86,11 +86,11 @@ function EditBookingForm({ booking }) {
 						className="input edit-booking"
 						id="duration"
 					/>
-					<label className={duration && 'filled'} htmlFor="duration">
+					<label className={duration && 'booking-edit-filled'} htmlFor="duration">
 						Duration
 					</label>
 				</div>
-				<div className="input-container">
+				<div className="booking-edit-input-container">
 					<input
 						type="number"
 						value={guests}
@@ -98,7 +98,7 @@ function EditBookingForm({ booking }) {
 						className="input edit-booking"
 						id="guests"
 					/>
-					<label className={guests && 'filled'} htmlFor="guests">
+					<label className={guests && 'booking-edit-filled'} htmlFor="guests">
 						Number of Guests
 					</label>
 				</div>

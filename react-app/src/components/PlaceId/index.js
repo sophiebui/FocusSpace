@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getOnePlace,  } from '../../store/places';
@@ -6,8 +6,6 @@ import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
 import './PlaceId.css'
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
 
 const PlaceId = ({placesLoaded}) => {
     const dispatch = useDispatch();
