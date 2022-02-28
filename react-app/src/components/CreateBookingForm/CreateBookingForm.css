@@ -1,0 +1,70 @@
+.create-booking-form-container {
+    margin-top: 2rem;
+    padding: 24px;
+    border-radius: 18px;
+    width: 100%;
+    box-shadow:
+    2.2px 1.7px 16.5px -18px rgba(0, 0, 0, 0.051),
+    5.6px 4.3px 41.8px -18px rgba(0, 0, 0, 0.067),
+    11.5px 8.9px 85.2px -18px rgba(0, 0, 0, 0.082),
+    23.7px 18.3px 175.6px -18px rgba(0, 0, 0, 0.103),
+    65px 50px 481px -18px rgba(0, 0, 0, 0.17);
+}
+
+.add-booking-header {
+   font-size: 20px;
+}
+
+.date-time-div {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
+.date-time-label {
+    margin-right: 10px;
+}
+
+.create-booking-form-button {
+    background-color: #FF5A5F;
+    color: white;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 28px;
+    margin-top: 10px;
+    border-radius: 4px;
+
+}
+
+.create-booking-form-button:hover {
+    color: black;
+}
+
+.booking-input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-input-container input {
+    margin: 10px 0 10px 0;
+    padding: 7px 0 0 21px;
+}
+
+.booking-input-container label {
+    position: absolute;
+    transform: translate(0, 21px) scale(1);
+    transform-origin: top left;
+    transition: 200ms ease-out;
+    font-size: 15px;
+    line-height: 1;
+    left: 12px;
+}
+
+.booking-input-container:focus-within label {
+    transform: translate(0, 13px) scale(0.75);
+}
+
+.booking-input-container .booking-filled {
+    transform: translate(0, 13px) scale(0.75);
+}

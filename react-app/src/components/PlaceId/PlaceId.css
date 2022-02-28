@@ -1,3 +1,41 @@
+.swiper {
+    height: 40%;
+    width: 40%;
+}
+.swiper-slide img {
+    max-height: 40vh;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.swiper-pagination {
+    position: absolute;
+    text-align: center;
+    transition: .3s opacity;
+    background-color: white;
+    margin-bottom: -0.5rem;
+    transform: translate3d(0,0,0);
+    z-index: 10;
+}
+
+.swiper-pagination-fraction {
+    padding-top: 4px;
+}
+
+.place-info-parent-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12rem;
+    border-top: 1px solid rgb(216, 215, 218);
+    margin: 2rem 0 2rem 0;
+}
+.place-info-div {
+    display: flex;
+    flex-direction: column;
+    width: 36%;
+}
 .place-name-heading {
     color: black;
 }
@@ -6,17 +44,9 @@
     color: black;
 }
 
-.images-container {
+.place-form-and-buttons {
     display: flex;
-    flex-direction: row;
-}
-
-.image-div {
-    width: 500px;
-    height: 330px;
-}
-
-.place-images {
-    max-width:100%;
-    max-height:100%;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 5rem;
 }
