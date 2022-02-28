@@ -50,8 +50,8 @@ function CreateBookingForm({ place }) {
                 </ul>
                 : null}
 				<h1 className='add-booking-header'>Create a New Booking</h1>
-				<div className=''>
-					<label className='' htmlFor='date'>
+				<div className='date-time-div'>
+					<label className='date-time-label' htmlFor='date'>
 						Date:
 					</label>
 					<input
@@ -63,8 +63,8 @@ function CreateBookingForm({ place }) {
 						id='date'
 					/>
 				</div>
-				<div className=''>
-					<label className='' htmlFor='time'>
+				<div className='date-time-div'>
+					<label className='date-time-label' htmlFor='time'>
                         Time:
 					</label>
 					<input
@@ -75,7 +75,7 @@ function CreateBookingForm({ place }) {
 						id='time'
 					/>
 				</div>
-				<div className='input-container'>
+				<div className='booking-input-container'>
 					<input
 						type='number'
 						value={duration}
@@ -83,11 +83,11 @@ function CreateBookingForm({ place }) {
 						className='input add-booking'
 						id='duration'
 					/>
-					<label className={duration && 'filled'} htmlFor='duration'>
+					<label className={duration && 'booking-filled'} htmlFor='duration'>
                         Duration
 					</label>
 				</div>
-				<div className='input-container'>
+				<div className='booking-input-container'>
 					<input
 						type='number'
 						value={guests}
@@ -95,12 +95,12 @@ function CreateBookingForm({ place }) {
 						className='input add-booking'
 						id='guests'
 					/>
-					<label className={guests && 'filled'} htmlFor='guests'>
+					<label className={guests && 'booking-filled'} htmlFor='guests'>
 						Number of Guests
 					</label>
 				</div>
 				<div className='form-button-container'>
-					<button className='form-button'>Add Booking</button>
+					<button className='create-booking-form-button'>Add Booking</button>
 				</div>
 			</form>
 		</div>
