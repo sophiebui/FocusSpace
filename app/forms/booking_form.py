@@ -12,8 +12,8 @@ class BookingForm(FlaskForm):
     place_id = IntegerField("", validators={DataRequired()})
     date = DateField("date", validators=[DataRequired(message="Date field is required"), validate_date])
     time = TimeField("time", validators={DataRequired(message="Time field is required")})
-    duration = IntegerField("duration", validators=[DataRequired(), NumberRange(min=1, message="Duration must be 1 or more hours")])
-    guests = IntegerField("guests: ", validators=[DataRequired(message="Number of guest cannot be blank"), NumberRange(min=1, message="Number of guests must be greater than 0")])
+    duration = IntegerField("duration", validators=[DataRequired(), NumberRange(min=1, message="Duration must be 1 or more hours"), NumberRange(max=24, message="Duration cannot exceed 24 hours")])
+    guests = IntegerField("guests: ", validators=[DataRequired(message="Number of guest cannot be blank"), NumberRange(min=1, message="Number of guests must be greater than 0"), NumberRange(max=2000, message="Number of guests must not exceed 2000")])
 
 
 class DeleteBookingForm(FlaskForm):
