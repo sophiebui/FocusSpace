@@ -61,14 +61,12 @@ flask run
 Full user stories for the initial development phase are available on the [User Stories](https://github.com/sophiebui/FocusSpace/wiki/User-Stories) section of the project wiki. A feature list for the initial development phase is available on the [Feature List](https://github.com/sophiebui/FocusSpace/wiki/Feature-List) section of the project [wiki](https://github.com/sophiebui/FocusSpace/wiki).
 
 <p align='center'>
-
 <img src='readme-images/splash.PNG' alt='Splash page'>
 </p>
 
 ### User Registration and Authentication
 New users can register for an account by entering a unique username, email and a secure password.
 <p align='center'>
--- image coming soon --
 <img src='readme-images/signup.PNG' alt='Sign up modal'>
 </p>
 
