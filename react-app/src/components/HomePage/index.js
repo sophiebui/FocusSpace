@@ -16,7 +16,7 @@ const HomePage = () => {
         window.addEventListener("scroll", onScroll);
 
         return () => window.removeEventListener("scroll", onScroll);
-      }, [scrollTop]);
+      }, []);
 
     return (
         <div className='black-bkgd-div'>
