@@ -60,32 +60,31 @@ flask run
 ## FocusSpace In Action
 Full user stories for the initial development phase are available on the [User Stories](https://github.com/sophiebui/FocusSpace/wiki/User-Stories) section of the project wiki. A feature list for the initial development phase is available on the [Feature List](https://github.com/sophiebui/FocusSpace/wiki/Feature-List) section of the project [wiki](https://github.com/sophiebui/FocusSpace/wiki).
 
+<p align='center'>
+
+<img src='readme-images/splash.PNG' alt='Splash page'>
+</p>
+
 ### User Registration and Authentication
 New users can register for an account by entering a unique username, email and a secure password.
 <p align='center'>
 -- image coming soon --
-<!-- <img src='images/sign-up.PNG' alt='Sign up modal'> -->
+<img src='readme-images/signup.PNG' alt='Sign up modal'>
 </p>
 
 Existing users can log in to their account by submitting their credentials via the login form.
 <p align='center'>
-  -- image coming soon --
-<!-- <img src='images/login.PNG' alt='Login modal'> -->
+<img src='readme-images/login.PNG' alt='Login modal'>
 </p>
 
-Logged in users can edit their profile biography
+
+<!-- Users may log out of their account by clicking the **LOGOUT** button on the site-wide header.
 <p align='center'>
   -- image coming soon --
-<!-- <img src='images/edit-bio.PNG' alt='Edit profile biography feature'> -->
-</p>
+<img src='images/logout-button.PNG' alt='Logout button in navigation bar'>
+</p> -->
 
-Users may log out of their account by clicking the **LOGOUT** button on the site-wide header.
-<p align='center'>
-  -- image coming soon --
-<!-- <img src='images/logout-button.PNG' alt='Logout button in navigation bar'> -->
-</p>
-
-<!-- 
+<!--
 ### Creating and Modifying a Place
 Logged-in users can create a new place with a title and a description.
 <p align='center'>
@@ -167,7 +166,7 @@ All frontend routes are covered in detail on the [Fronted Routes section of our 
 ### API Routes
 All frontend routes are covered in detail on the [API Routes section of our project wiki](https://github.com/DanielLaV/study_buddy/wiki/API-Documentation). API routes were designed for users to interact with a page without being redirected.
    </br> -->
-<!-- 
+<!--
 ## Developmental Challenges
 
 ### Search Function
