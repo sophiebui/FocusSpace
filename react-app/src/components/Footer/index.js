@@ -40,7 +40,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className='footer-bottom-content'>
-            Book & list your conference or study space here
+            Book & list your conference or study space
             </div>
         </div>
     )
