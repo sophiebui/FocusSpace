@@ -14,10 +14,12 @@ const Places = () => {
 		},[ dispatch ])
 
     return (
-        <div className='page-container'>
+        <div className='places-page-container'>
            <div className='create-place-button-div'>
            <CreatePlaceModal />
                </div>
+            <div className='places-content-container'>
+            <div className='parent-places-container'>
             {places?.map((place) => (
                 <div key={place.id} className='places-container'>
                     <div className='places-images-container'>
@@ -44,8 +46,26 @@ const Places = () => {
                     </div>
                 </div>
             ))}
+                </div>
+            <div className='side-image-div'>
+                <img src='https://res.cloudinary.com/dxubahnmi/image/upload/v1646373831/FocusSpace/side-image_t5yb7o.jpg' alt='board room' className='side-image' />
+            </div>
+            </div>
         </div>
     )
 };
 
 export default Places;
+
+<div class="carousel-item" data-bgimage="url(images/portfolio/1.jpg)" data-url="https://focusspace.herokuapp.com/" >
+<div class="mask s2 full-height">
+    <div class="cover">
+        <div class="text">
+            <h2>FocusSpace</h2>
+            <div class="tiny-border"></div>
+            <div class="clearfix"></div>
+            <p>FocusSpace, based off of Airbnb, is a website where users can create, search, and book different focus spaces (i.e. conference room). This project was built using Python, Flask, JavaScript, React, and Redux.</p>
+        </div>
+    </div>
+</div>
+</div>
