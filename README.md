@@ -5,7 +5,7 @@
 FocusSpace is a website where users can create, search, and book different focus spaces (i.e. conference room). This website was designed as a capstone project as part of App Academy's 24-week Full Stack Software Engineering Bootcamp.
 
 ## Technologies Used
-[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | [Node.js](https://nodejs.org/en/) | [Flask](https://flask.palletsprojects.com/en/2.0.x/) | [React](https://reactjs.org/) | [Redux](https://redux.js.org/) | [SQLAlchemy](https://www.sqlalchemy.org/) | [PostgreSQL](https://www.postgresql.org/)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | [Python](https://www.python.org/) | [Node.js](https://nodejs.org/en/) | [Flask](https://flask.palletsprojects.com/en/2.0.x/) | [React](https://reactjs.org/) | [Redux](https://redux.js.org/) | [SQLAlchemy](https://www.sqlalchemy.org/) | [PostgreSQL](https://www.postgresql.org/)
 
 ## Launching Locally
 
