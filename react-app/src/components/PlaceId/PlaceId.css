@@ -4,6 +4,7 @@
     overflow-y: hidden;
     gap: 1rem;
     padding: 2rem;
+    justify-content: center;
 }
 
 .images-container::-webkit-scrollbar {
@@ -28,7 +29,6 @@
 .image-div {
     width: 500px;
     height: 400px;
-    flex-shrink: 0;
     margin-bottom: -4rem;
 }
 
