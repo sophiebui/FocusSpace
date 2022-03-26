@@ -73,3 +73,9 @@
     justify-content: flex-end;
 	margin-left: 38px;
 }
+
+.search-result-number {
+    text-align: end;
+    font-style: italic;
+    margin-right: 7em;
+}
