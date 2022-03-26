@@ -13,7 +13,6 @@ import HomePage from './components/HomePage';
 import SearchResults from './components/SearchResults';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop'
-import CreatePlace from './components/CreatePlace';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,9 +50,6 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <HomePage />
-        </Route>
-        <Route path='/test'>
-            <CreatePlace />
         </Route>
         <Route>
             <PageNotFound />

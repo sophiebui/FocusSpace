@@ -149,3 +149,7 @@ select > option {
 .error-login-message {
     margin: 2rem 0 0 1.5rem;
 }
+
+.image-input-label {
+    margin: 1em 0 .25em 0;
+}
