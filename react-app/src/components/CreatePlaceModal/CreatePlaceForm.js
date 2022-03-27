@@ -181,6 +181,9 @@ function CreatePlaceForm({ setShowModal }) {
                         />
                         <label className={guests && 'filled'} htmlFor='guests'>Maximum Occupancy</label>
                     </div>
+                    <div className='image-input-label'>
+                    <label htmlFor='imageUrl'>Please upload 1 - 4 images:</label>
+                    </div>
                     {imagesList.map((el, index) => {
                         return (
                             <div className='image-upload-div' key={el}>
@@ -195,7 +198,7 @@ function CreatePlaceForm({ setShowModal }) {
                                 required
                                 />
                                 <div className='image-upload-button-div' key={index}>
-                                    {imagesList.length - 1 === index && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
+                                    {imagesList.length - 1 === index && index !== 3 && <button onClick={handleAdd} className='image-upload-button'> Add </button>}
                                     {imagesList.length !== 1 && <button onClick={() => handleRemove(index)} className='image-upload-button'> Remove </button>}
                                 </div>
                             </div>

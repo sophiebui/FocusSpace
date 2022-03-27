@@ -13,6 +13,17 @@ const Bookings = () => {
     const [isLoaded, setIsloaded] = useState(false)
     const isOwner = +userId === currUser;
 
+    const timeConverter = (time) => {
+        const hour = +time.substr(0, 2);
+        const convertedHour = (hour % 12) || 12;
+        const ampm = hour < 12 ? "AM" : "PM";
+
+        time = convertedHour + time.substr(2, 3) + " " + ampm;
+
+        return time
+
+    }
+
 	useEffect(() => {
         dispatch(getBookings(userId)).then(() =>{
             setIsloaded(true)
@@ -50,7 +61,9 @@ const Bookings = () => {
                                 <span className='booking-label'>  Date: </span>{booking.date.slice(0, 16)}
                                 </div>
                                 <div key={booking.time}>
-                            <span className='booking-label'>Time:</span>  {booking.time.slice(0, 5)}
+                            <span className='booking-label'>Time:</span>  {timeConverter(booking.time)}
+                            <div>
+                            </div>
                                 </div>
                                 <div key={booking.duration}>
                                 <span className='booking-label'>Duration: </span> {booking.duration}
