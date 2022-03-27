@@ -50,7 +50,7 @@ const SignupForm = ({ setSignupModal }) => {
 	}
 
 	return (
-		<div className="form-container">
+		<div className="form-container-signup">
 			<form className="form" onSubmit={onSignUp}>
                 {errors.length > 0 ?
                     <ul className='errors-list'>
