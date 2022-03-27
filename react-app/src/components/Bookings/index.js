@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../../store/bookings';
 import { useParams } from 'react-router-dom';
-import EditBookingForm from '../EditBookingForm';
+import EditBookingModal from '../EditBookingModal';
 import './Bookings.css'
 
 import { Navigation, Pagination } from 'swiper';
@@ -88,7 +88,7 @@ const Bookings = () => {
                                 </div>
                             </div>
                             <div key={booking}>
-                                <EditBookingForm booking={booking}/>
+                                <EditBookingModal booking={booking}/>
                             </div>
                         </div>
                     ))}
