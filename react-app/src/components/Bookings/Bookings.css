@@ -29,6 +29,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .bookings-detail {
@@ -122,4 +123,10 @@
     border-radius: 4px;
     height: 3em;
     margin-right: 1rem;
+}
+
+.swiper {
+    height: 14em;
+    width: 20em;
+    margin-top: 10px;
 }

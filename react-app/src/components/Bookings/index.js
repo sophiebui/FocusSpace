@@ -5,6 +5,10 @@ import { useParams } from 'react-router-dom';
 import EditBookingForm from '../EditBookingForm';
 import './Bookings.css'
 
+import { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from '../../../node_modules/swiper/react/swiper-react.js';
+import '../../../node_modules/swiper/swiper-bundle.css'
+
 const Bookings = () => {
     const dispatch = useDispatch();
     const { userId } = useParams()
@@ -19,9 +23,7 @@ const Bookings = () => {
         const ampm = hour < 12 ? "AM" : "PM";
 
         time = convertedHour + time.substr(2, 3) + " " + ampm;
-
         return time
-
     }
 
 	useEffect(() => {
@@ -39,42 +41,55 @@ const Bookings = () => {
             return (
                 <div className='page-container'>
                     <div className='bookings'>
-                    {bookings?.map((booking) => (
+                    {bookings?.map((booking, i) => (
                         <div key={booking.id} className='bookings-container'>
-                            <div key={booking.place.images.id}  className='booking-image-container'>
-                                <img src={booking.place.images[0].url}
-                                alt= {booking.place.name}
-                                className='booking-image'
-                                onError={event => {
-                                    event.target.src = "https://res.cloudinary.com/dxubahnmi/image/upload/v1644967329/FocusSpace/1-default.jpg"
-                                    event.onerror = null
-                                }} />
-                            </div>
+                            <Swiper
+                                navigation={true}
+                                pagination={true}
+                                modules={[Navigation, Pagination]}
+                                spaceBetween={30}
+                                loop={true}
+                                slidesPerView={1}
+                                key={i}
+                            >
+                                {booking.place.images.map((image, i) => (
+                                    <SwiperSlide key={i}>
+                                    <div key={image.id}  className='booking-image-container'>
+                                        <img src={image.url}
+                                        alt= {booking.place.name}
+                                        className='booking-image'
+                                        onError={event => {
+                                            event.target.src = "https://res.cloudinary.com/dxubahnmi/image/upload/v1644967329/FocusSpace/1-default.jpg"
+                                            event.onerror = null
+                                        }} />
+                                     </div>
+                                    </SwiperSlide>
+                                ))}
+
+                            </Swiper>
                             <div className='bookings-detail'>
                                 <div key={booking.place.name}>
                                     {booking.place.name}
                                 </div>
                                 <div key={booking.place.address}>
-                                <span className='booking-label'> Address: </span> {booking.place.address}
+                                    <span className='booking-label'> Address: </span> {booking.place.address}
                                 </div>
                                 <div key={booking.date}>
-                                <span className='booking-label'>  Date: </span>{booking.date.slice(0, 16)}
+                                    <span className='booking-label'>  Date: </span>{booking.date.slice(0, 16)}
                                 </div>
                                 <div key={booking.time}>
-                            <span className='booking-label'>Time:</span>  {timeConverter(booking.time)}
-                            <div>
-                            </div>
+                                    <span className='booking-label'>Time:</span>  {timeConverter(booking.time)}
                                 </div>
                                 <div key={booking.duration}>
-                                <span className='booking-label'>Duration: </span> {booking.duration}
+                                    <span className='booking-label'>Duration: </span> {booking.duration}
                                 </div>
                                 <div key={booking.guests}>
-                                <span className='booking-label'># of Guests: </span>{booking.guests}
+                                    <span className='booking-label'># of Guests: </span>{booking.guests}
                                 </div>
                             </div>
-                                <div>
-                                    <EditBookingForm booking={booking}/>
-                                </div>
+                            <div key={booking}>
+                                <EditBookingForm booking={booking}/>
+                            </div>
                         </div>
                     ))}
                 </div>
