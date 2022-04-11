@@ -47,7 +47,7 @@ const LoginForm = ({ setLoginModal }) => {
 	};
 
 	return (
-        <div className='form-container'>
+        <div className='form-container-login'>
             <form className='form' onSubmit={onLogin}>
                 {errors.length > 0 ?
                 <ul className='errors-list'>

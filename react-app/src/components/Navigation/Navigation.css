@@ -120,6 +120,17 @@
 .form-container {
     padding: 25px;
 }
+
+.form-container-login {
+    padding: 25px;
+    width: 30em;
+}
+
+.form-container-signup {
+    padding: 25px;
+    width: 30em;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -135,8 +146,9 @@
 .nav-bar-input {
     border: solid rgb(218, 215, 215) .005px;
     border-radius: 4px;
-    margin: -15px 0px 14px 0px;
+    margin: -4px 0px 10px 0px;
     height: 3em;
+
 }
 
 .nav-bar-form-button {

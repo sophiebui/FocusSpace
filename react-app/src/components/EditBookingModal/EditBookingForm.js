@@ -3,11 +3,11 @@ import { editBooking } from '../../store/bookings';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useAlert } from 'react-alert'
-import '../Bookings/Bookings.css';
+import './EditBookingForm.css';
 
 import DeleteBookingModal from '../DeleteBookingModal';
 
-function EditBookingForm({ booking }) {
+function EditBookingForm({ booking, setShowModal }) {
 	const dispatch = useDispatch();
     const alert = useAlert();
 	const userId = useSelector((state) => state.session.user.id);
@@ -37,6 +37,7 @@ function EditBookingForm({ booking }) {
                     setErrors(response.errors)
                     return
                 }
+                setShowModal(false);
                 alert.show(<div style={{ textTransform: 'initial' }}> Changes Complete </div>)
             }
         );
