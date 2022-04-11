@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOnePlace,  } from '../../store/places';
+import { getOnePlace } from '../../store/places';
 import CreateBookingForm from '../CreateBookingForm';
 import DeletePlaceModal from '../DeletePlaceModal';
 import EditPlaceModal from '../EditPlaceModal';
+import PlaceIdLogin from './PlaceIdLogin';
 import './PlaceId.css'
 
 const PlaceId = ({placesLoaded}) => {
@@ -12,6 +13,7 @@ const PlaceId = ({placesLoaded}) => {
     const { placeId } = useParams()
     const user = useSelector((state) => state.session?.user?.id);
     const place = useSelector(state => state.places[placeId])
+    const [ , setLoginModal ] = useState(false);
 
     useEffect(() => {
             dispatch(getOnePlace(placeId))
@@ -65,7 +67,7 @@ const PlaceId = ({placesLoaded}) => {
                         </div>
                         ) : (
                         <div>
-                            Pleace log in to book this place
+                            Please<PlaceIdLogin setLoginModal={setLoginModal}/>to book this place
                         </div>
                         )
                     }

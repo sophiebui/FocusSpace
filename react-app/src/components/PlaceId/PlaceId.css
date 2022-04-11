@@ -67,3 +67,15 @@
     justify-content: space-between;
     height: 5rem;
 }
+
+.place-id-login {
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    text-decoration: underline;
+}
+
+.place-id-login:hover {
+    color: #ff5a5f;
+
+}
